@@ -1,0 +1,17 @@
+{
+  "name": "ejulezhu",
+  "description": "Front-end of ejulezhu webapp",
+  "main": "index.html",
+  "authors": [
+    "firejq"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
