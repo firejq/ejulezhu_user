@@ -3,3 +3,16 @@ dist
 .tmp
 bower_components
 test/bower_components
+.idea/ejulezhu_user.iml
+.idea/inspectionProfiles/
+.idea/modules.xml
+.idea/workspace.xml
+app/fonts/
+app/images/
+app/scripts/config/
+app/scripts/controller/
+app/scripts/directive/
+app/scripts/filter/
+app/scripts/service/
+app/styles/
+app/view/
