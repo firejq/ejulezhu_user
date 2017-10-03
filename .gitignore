@@ -7,12 +7,3 @@ test/bower_components
 .idea/inspectionProfiles/
 .idea/modules.xml
 .idea/workspace.xml
-app/fonts/
-app/images/
-app/scripts/config/
-app/scripts/controller/
-app/scripts/directive/
-app/scripts/filter/
-app/scripts/service/
-app/styles/
-app/view/
