@@ -1,0 +1,31 @@
+.foot {
+  background-color: @defaultColor;
+  border-top: 1px solid @lineColor;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  .h(50);
+  display: inline-flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+    width: 25%;
+    &.select {
+      color: @dangerColor;
+    }
+  }
+  .text {
+    font-size: 13px;
+  }
+
+}

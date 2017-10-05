@@ -3,5 +3,6 @@
  */
 'use strict';
 
-angular.module('app', ['ui.router', 'ngCookies', 'validation', 'ngAnimate']);
+angular.module('app', ['ui.router', 'ngCookies', 'validation', 'ngAnimate',
+	'ngSanitize', 'ui.bootstrap']);
 
