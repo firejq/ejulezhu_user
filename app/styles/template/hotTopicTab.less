@@ -1,0 +1,34 @@
+.hot-topic-tab {
+  overflow: auto;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  //margin-bottom: 0;
+  //margin-left: 0;
+  //margin-right: 0;
+  //margin-top: 50px;
+
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+  background-color: @defaultColor;
+  border-bottom: 1px solid @lineColor;
+
+  li {
+    width: 33.3333%;
+    border-radius: 0;
+    border-bottom-width: 0;
+    border-left-color: @lineColor;
+    border-bottom-color: @headBgColor;
+    font-size: 4vw;
+
+    &.select {
+      border-bottom: 4px solid @headBgColor;
+    }
+
+  }
+
+}

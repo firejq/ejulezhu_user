@@ -1,12 +1,5 @@
-<div style="white-space:nowrap;overflow:auto;">
-	<ul style="padding: 5px; margin: 0;">
-		<li class="btn" ng-repeat="(topicIndex, topic) in topics" style="width:33vw;
-			border-radius:0;border-left-width: {{topicIndex&&1||0}}px;border-bottom-width:0;
-			border-left-color:#d9d9d9;border-bottom-color:#ff8b16;font-size: 4vw;"
-		    id="{{topic.Id}}">
-			<a href="hotTopic.html?id={{topic.Id}}">
-				{{topic.Title}}
-			</a>
-		</li>
-	</ul>
-</div>
+<ul class="hot-topic-tab">
+	<li class="btn" ng-repeat="(topicIndex, topic) in topics" style="border-left-width: {{topicIndex&&1||0}}px;"
+	    id="{{topic.Id}}" ng-bind="topic.Title" ui-sref="hotTopic({id:topic.Id})" ui-sref-active="select">
+	</li>
+</ul>
