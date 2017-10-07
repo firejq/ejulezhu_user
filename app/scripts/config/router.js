@@ -25,6 +25,21 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			url: '/hotTopic/:id',
 			templateUrl: 'view/hotTopic.html',
 			controller: 'hotTopicCtrl'
+		})
+		.state('case', {
+			url: '/case',
+			templateUrl: 'view/case.html',
+			controller: 'caseCtrl'
+		})
+		.state('me', {
+			url: '/me',
+			templateUrl: 'view/me.html',
+			controller: 'meCtrl'
+		})
+		.state('login', {
+			url: '/login',
+			templateUrl: 'view/login.html',
+			controller: 'loginCtrl'
 		});
 	$urlRouterProvider.otherwise('main');
 }]);

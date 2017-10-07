@@ -5,7 +5,7 @@
 
 angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', function ($scope, $state, $http) {
 
-	//获取用户热门话题 banner 滚动图片
+	// 获取用户热门话题 banner 滚动图片
 	$http({
 		method: 'GET',
 		url: $scope.global.url + "banner",
@@ -29,6 +29,7 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 	}, function (response) {
 		console.log('failed!! ' + response);
 	});
+
 
 	// 获取热门话题 Tab
 	$http({
@@ -57,7 +58,7 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 			shade: 0
 		});
 
-		// TODO 划到底部时出现不了“没有更多了”
+
 		if("undefined" !== typeof $scope.items[id] && $scope.items[id].length === $scope.total) {
 			$scope.is_done=1;
 			layer.closeAll();
@@ -67,16 +68,15 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 
 		// 获取话题类型对应的条目
 		$http({
-			method:'GET',
-			url:$scope.global.url+"hottopics",
+			method: 'GET',
+			url: $scope.global.url + "hottopics",
 			params:{
-				'Catid':id,
-				'Pagenum':pageNum,
-				'Recperpage':recperPage
+				'Catid': id,
+				'Pagenum': pageNum,
+				'Recperpage': recperPage
 			}
-		}).then(function successCallBack(response) {
+		}).then(function (response) {
 			if(response.data.status === 0){
-				//							console.log(response);
 				for (i = 0; i < response.data.records.length; i++) {
 					response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
 				}
@@ -89,21 +89,19 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 					$scope.items[id] = response.data.records;
 					$scope.total = response.data.Total;
 				}
-				//							console.log($scope.items[id]);
 			}
-		}, function errorCallBack(response) {
-			console.log('failed!!');
+		}, function (response) {
+			console.log('failed!!' + response);
 		});
+
 		layer.closeAll();
 	};
 
 	$scope.id = $state.params.id;
-	//alert($scope.id);
 	$scope.items = [];
-	// 标志是否加载完所有条目
-	$scope.is_done = 0;
+	$scope.is_done = 0;// 标志是否加载完所有条目
 	$scope.pageNum = 1;
-	$scope.GetItem($scope.id,$scope.pageNum++);
+	$scope.GetItem($scope.id, $scope.pageNum++);
 
 
 }]);

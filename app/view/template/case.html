@@ -1,0 +1,14 @@
+<ul class="case f-l">
+	<li class="f-l" ng-repeat="sample in sampleList">
+		<img ng-src="{{sample.Img}}">
+		<div class="case-describe">
+			<label class="case-describe-title" ng-bind="sample.Desc"></label>
+			<div class="case-describe-content">
+				<label ng-bind="sample.City"></label>
+				<label ng-bind="sample.Style"></label>
+				<label ng-bind="sample.HousingLayout"></label>
+				<label ng-bind="sample.HouseSize"></label>
+			</div>
+		</div>
+	</li>
+</ul>

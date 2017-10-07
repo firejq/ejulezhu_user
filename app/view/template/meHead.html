@@ -1,0 +1,14 @@
+<!--头像-->
+<div class="me-head">
+	<span>
+		<img class="me-head-img d-b" src="./images/tx.png"/>
+		<!--若未登陆，显示登陆按钮 -->
+		<input ng-if="!user.loginChecked" ui-sref="login" class="me-head-btn d-b" type="image" src="./images/dl.png"/>
+
+		<!-- 若已登陆，显示用户名和手机号 -->
+		<label ng-if="user.loginChecked" style="text-align: center;font-weight:normal;color: #FFFFFF;">
+			<span style="font-size: 4.27vw;" ng-bind="Username"></span>
+			<span style="font-size: 2.93vw;" ng-bind="phone"></span>
+		</label>
+	</span>
+</div>
