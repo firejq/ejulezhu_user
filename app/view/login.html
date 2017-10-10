@@ -1,7 +1,7 @@
 <div class="login">
 	<div class="layout-1">
 		<img src="./images/login/fh.png" class="img-back" ng-click="back();"/>
-		<img src="./images/login/tx.png" class="img-head"/>
+		<img src="./images/icon_my_about.png" class="img-head"/>
 	</div>
 
 	<form name="LoginForm" ng-submit="submitForm()">
@@ -11,8 +11,7 @@
 			       type="tel"
 			       class="form-control"
 			       ng-model="logindata.Mobileno"
-			       placeholder="请输入手机号码"
-			       required>
+			       placeholder="请输入手机号码"/>
 		</div>
 		<div class="input-group inputarea">
 			<span class="input-group-addon">密码：</span>
@@ -20,14 +19,13 @@
 			       type="password"
 			       class="form-control input-style"
 			       ng-model="logindata.Passwd"
-			       placeholder="请输入登录密码"
-			       required>
+			       placeholder="请输入登录密码"/>
 		</div>
 		<input class="login-submit" type="image" src="./images/login/dl.png" value="Submit"/>
 	</form>
 
 	<div class="login-bottom-div">
-		<label class="f-l login-bottom-div-left" ng-click="register()">注册会员</label>
-		<label class="f-r login-bottom-div-right" ng-click="forgetpass()">找回密码</label>
+		<label class="f-l login-bottom-div-right" ui-sref="forgetPassword">忘记密码</label>
+		<label class="f-r login-bottom-div-left" ui-sref="register">注册会员</label>
 	</div>
 </div>

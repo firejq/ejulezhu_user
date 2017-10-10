@@ -24,14 +24,6 @@ angular.module('app').directive('appMeList', [function () {
 			$scope.customerService = function () {
 				window.location = 'tel:4009268200';
 			};
-
-			$scope.about = function () {
-				window.location = 'about.html';
-			};
-
-			$scope.feedback = function () {
-				top.location = 'feedback.html';
-			};
 		}
 	};
 }]);

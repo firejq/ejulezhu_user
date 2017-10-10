@@ -40,6 +40,38 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			url: '/login',
 			templateUrl: 'view/login.html',
 			controller: 'loginCtrl'
+		})
+		.state('register', {
+			url: '/register',
+			templateUrl: 'view/register.html',
+			controller: 'registerCtrl'
+		})
+		.state('forgetPassword', {
+			url: '/forgetPassword',
+			templateUrl: 'view/forgetPassword.html',
+			controller: 'forgetPasswordCtrl'
+		})
+		.state('about', {
+			url: '/about',
+			templateUrl: 'view/about.html'
+		})
+		.state('aboutUs', {
+			url: '/aboutUs',
+			templateUrl: 'view/aboutUs.html'
+		})
+		.state('protocol', {
+			url: '/protocol',
+			templateUrl: 'view/protocol.html'
+		})
+		.state('feedback', {
+			url: '/feedback',
+			templateUrl: 'view/feedback.html',
+			controller: 'feedbackCtrl'
+		})
+		.state('personalInfo', {
+			url: '/personalInfo',
+			templateUrl: 'view/personalInfo.html',
+			controller: 'personalInfoCtrl'
 		});
 	$urlRouterProvider.otherwise('main');
 }]);

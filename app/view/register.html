@@ -1,0 +1,55 @@
+<div app-head text="会员注册" has-back="true"></div>
+<form class="pt-50 register-form">
+	<label class="f-l form-input-label" for="Mobileno">登陆账号： </label>
+	<input class="form-input-text"
+	       id="Mobileno"
+	       type="tel"
+	       placeholder="请输入手机号"
+	       ng-model="registerData.Mobileno"
+	       autofocus />
+
+	<label class="f-l verification-code-label" for="Identificationcode">验证码： </label>
+	<input class="verification-code-input f-l"
+	       id="Identificationcode"
+	       type="text"
+	       placeholder="请输入验证码"
+	       ng-model="registerData.Identificationcode"/>
+	<button class="verification-code-get f-r {{time?'disabled':''}}"
+	        ng-click="time?1==1:getVerCode();"
+	        ng-bind="time?time:getVerCodeText">
+	</button>
+
+	<label class="f-l form-input-label" for="Passwd">登陆密码： </label>
+	<input class="form-input-text"
+	       id="Passwd"
+	       type="text"
+	       placeholder="请输入登录密码"
+	       ng-model="registerData.Passwd"/>
+
+	<label class="f-l form-input-label" for="Username">您的姓名： </label>
+	<input class="form-input-text"
+	       id="Username"
+	       type="text"
+	       placeholder="请输入您的姓名"
+	       ng-model="registerData.Username"/>
+
+	<input id="agree-protocol"
+	       class="f-l form-agree-protocol-input"
+	       type="image"
+	       ng-click="registerData.AgreeProtocol?registerData.AgreeProtocol=0:registerData.AgreeProtocol=1"
+	       src="{{registerData.AgreeProtocol?'./images/register/yd_1.png':'./images/register/yd_0.png'}}" />
+	<label for="agree-protocol"
+	       class="f-l form-agree-protocol-label">
+		已阅读并同意《平台使用协议》
+	</label>
+
+	<input class="form-submit"
+	       type="submit"
+	       value="注册会员"
+	       ng-click="registerSubmit()"/>
+
+	<label class="f-l form-link" ui-sref="protocol">《平台协议》</label>
+	<label class="f-r form-link" ui-sref="login">用户登录</label>
+
+</form>
+

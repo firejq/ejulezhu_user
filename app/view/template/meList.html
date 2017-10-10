@@ -1,12 +1,12 @@
 <!--列表-->
 <ul class="me-list">
-	<li class="btn" ng-click="goPage(0)">
+	<li class="btn" ui-sref="order">
 		<img src="./images/icon_my_fix.png">
 		<span class="me-list-li-title"> 我的维修</span>
 		<span class="me-list-li-detail">查看维修订单 ></span>
 	</li>
 
-	<li class="btn" ng-click="goPage(1)">
+	<li class="btn" ui-sref="personalInfo">
 		<img src="./images/icon_my_infor.png">
 		<span class="me-list-li-title"> 基本信息</span>
 		<span class="me-list-li-detail">修改个人信息 ></span>
@@ -15,10 +15,10 @@
 	<li class="btn">
 		<img src="./images/icon_my_point.png">
 		<span class="me-list-li-title"> 我的积分</span>
-		<span class="me-list-li-detail" style="color: black">积分： <span ng-bind="Points"></span></span>
+		<span class="me-list-li-detail" style="color: black"><span ng-bind="user.Points?user.Points:'积分： '"></span></span>
 	</li>
 
-	<li class="btn" ng-click="feedback();">
+	<li class="btn" ui-sref="feedback">
 		<img src="./images/icon_my_view.png">
 		<span class="me-list-li-title"> 意见反馈</span>
 		<span class="me-list-li-detail">填写意见反馈 ></span>
@@ -30,7 +30,7 @@
 		<span class="me-list-li-detail">4009268200 ></span>
 	</li>
 
-	<li class="btn" ng-click="about();">
+	<li class="btn" ui-sref="about">
 		<img src="./images/icon_my_about.png">
 		<span class="me-list-li-title"> 关于我们</span>
 		<span class="me-list-li-detail">关于易居乐筑 ></span>
