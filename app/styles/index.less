@@ -8,6 +8,10 @@
 @import 'feedback.less';
 @import 'register.less';
 @import 'personalInfo.less';
+@import 'changePwd.less';
+@import 'manageAddr.less';
+@import 'addAddr.less';
+@import 'cityPicker.less';
 @import 'template/head.less';
 @import 'template/foot.less';
 @import 'template/banner.less';
@@ -98,4 +102,24 @@ button {
   outline-width: 0;
 }
 
+// 更改layer.css中按钮的字体颜色
+.layui-m-layerbtn span[yes] {
+  color: red !important;
+}
+
+.layui-m-layerbtn span[no] {
+  color: #cccccc !important;
+}
+
+body {
+  .layui-m-layer {
+    .layui-m-layer-msg {
+      background-color: rgba(0, 0, 0, .5) !important;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+}
 

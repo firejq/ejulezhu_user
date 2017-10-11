@@ -21,13 +21,13 @@ angular.module('app').controller('feedbackCtrl', ['$scope', '$http', 'cache', fu
 		//	}
 		//}).then(function (response) {
 		//	if (response.data.Status === 0) {
-		//		layer.msg('提交反馈成功');
+		//		$scope.global.msg('提交反馈成功');
 		//	} else {
-		//		layer.msg('提交反馈出错');
+		//		$scope.global.msg('提交反馈出错');
 		//	}
 		//}, function (response) {
 		//	console.log('fail! ' + response);
-		//	layer.msg('连接超时');
+		//	$scope.global.msg('连接超时');
 		//});
 	};
 

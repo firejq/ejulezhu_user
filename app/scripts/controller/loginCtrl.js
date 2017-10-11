@@ -8,10 +8,10 @@ angular.module('app').controller('loginCtrl', ['$scope', '$http', 'cache', '$sta
 	$scope.logindata = {};
 	$scope.submitForm = function() {
 		if (typeof $scope.logindata.Mobileno === 'undefined') {
-			layer.msg('手机号码为空，请输入手机号码');
+			$scope.global.msg('手机号码为空，请输入手机号码');
 			return;
 		} else if (typeof $scope.logindata.Passwd === 'undefined') {
-			layer.msg('密码为空，请输入密码');
+			$scope.global.msg('密码为空，请输入密码');
 			return;
 		}
 
@@ -36,15 +36,15 @@ angular.module('app').controller('loginCtrl', ['$scope', '$http', 'cache', '$sta
 
 				cache.put('Mobileno', response.data.Mobileno, {'expires': expireDate});
 				cache.put('Token', response.data.Token, {'expires': expireDate});
-				layer.msg("登陆成功");
+				$scope.global.msg("登陆成功");
 
 				$state.go('main');
 			} else {
-				layer.msg("登陆失败，请检查帐号密码");
+				$scope.global.msg("登陆失败，请检查帐号密码");
 			}
 		}, function (response) {
 			console.log(response);
-			layer.msg("登陆超时");
+			$scope.global.msg("登陆超时");
 		});
 	};
 

@@ -11,7 +11,14 @@ angular.module('app').run(['$rootScope', function ($rootScope) {
 		url: ip + '/v1/',
 		cryptid: '123456',
 		Mobileno: '',
-		Token: ''
+		Token: '',
+		msg: function (content) {
+			layer.open({
+				content: content,
+				skin: 'msg',
+				time: 1
+			});
+		}
 	};
 
 

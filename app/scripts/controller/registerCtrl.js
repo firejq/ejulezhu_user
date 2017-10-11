@@ -12,7 +12,7 @@ angular.module('app').controller('registerCtrl', ['$scope', '$http', '$interval'
 	var count = 60;
 	$scope.getVerCode = function() {
 		if(typeof($scope.registerData.Mobileno) === 'undefined') {
-			layer.msg("手机号码不能为空");
+			$scope.global.msg("手机号码不能为空");
 			return;
 		}
 		$http({
@@ -24,7 +24,7 @@ angular.module('app').controller('registerCtrl', ['$scope', '$http', '$interval'
 			}
 		}).then(function(response){
 			if (response.data.Status === 0) {
-				layer.msg('验证码已发送，请注意查收');
+				$scope.global.msg('验证码已发送，请注意查收');
 				//var cryptid = response.data.Cryptid;//TODO
 
 				count = 60;
@@ -39,13 +39,13 @@ angular.module('app').controller('registerCtrl', ['$scope', '$http', '$interval'
 					}
 				}, 1000);
 			} else if (response.data.Status === 1) {
-				layer.msg("该手机号已被注册");
+				$scope.global.msg("该手机号已被注册");
 			} else {
-				layer.msg("获取验证码失败");
+				$scope.global.msg("获取验证码失败");
 			}
 		}, function (response) {
 			console.log('fail! ' + response);
-			layer.msg('发送请求失败');
+			$scope.global.msg('发送请求失败');
 		});
 	};
 
@@ -56,11 +56,11 @@ angular.module('app').controller('registerCtrl', ['$scope', '$http', '$interval'
 		var Username = $scope.registerData.Username;
 
 		if (typeof Mobileno === 'undefined' || typeof Identificationcode === 'undefined' || typeof pwd === 'undefined' || typeof Username === 'undefined') {
-			layer.msg('信息填写不完整');
+			$scope.global.msg('信息填写不完整');
 			return;
 		}
 		if ($scope.registerData.AgreeProtocol !== 1) {
-			layer.msg('请同意平台使用协议');
+			$scope.global.msg('请同意平台使用协议');
 			return;
 		}
 		// TODO 未加密
@@ -82,7 +82,7 @@ angular.module('app').controller('registerCtrl', ['$scope', '$http', '$interval'
 			}
 		}).then(function (response) {
 			if(response.data.Status  ===  0) {
-				layer.msg("注册成功");
+				$scope.global.msg("注册成功");
 
 				//注册完毕后自动登陆
 				var Token = response.data.Token;
@@ -92,11 +92,11 @@ angular.module('app').controller('registerCtrl', ['$scope', '$http', '$interval'
 				//跳转到首页
 				$state.go('main');
 			} else{
-				layer.msg("注册失败，请检查输入")
+				$scope.global.msg("注册失败，请检查输入")
 			}
 		}, function (response) {
 			console.log('fail! ' + response);
-			layer.msg('连接超时');
+			$scope.global.msg('连接超时');
 		});
 	};
 

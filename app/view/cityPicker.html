@@ -1,0 +1,55 @@
+<div app-head text="选择城市/区县" has-back="true"></div>
+
+<div class="pt-50 container-fluid place-picker row">
+	<!--<div class="">-->
+		<div class="col-xs-4 dr"  ng-click="choose('province')">
+			<button type="button" class="btn">
+				{{province}} <span class="caret"></span>
+			</button>
+		</div>
+		<div class="col-xs-4 dr"  ng-click="choose('city')">
+			<button  type="button" class="btn">
+				{{city}} <span class="caret"></span>
+			</button>
+		</div>
+		<div class="col-xs-4 dr"  ng-click="choose('area')">
+			<button type="button" class="btn">
+				{{area}} <span class="caret"></span>
+			</button>
+		</div>
+	<!--</div>-->
+</div>
+
+
+
+
+<!--省模态框-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="provinceModal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<ul ng-repeat="item in provinces">
+				<li ng-click="chooseProvince(item.Province,item.Provinceid)">{{item.Province}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--市模态框-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="cityModal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<ul ng-repeat="item in cities">
+				<li ng-click="chooseCity(item.City,item.Cityid)">{{item.City}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--地区模态框-->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="areaModal">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<ul ng-repeat="item in areas">
+				<li ng-click="chooseArea(item.Region,item.Regionid)">{{item.Region}}</li>
+			</ul>
+		</div>
+	</div>
+</div>

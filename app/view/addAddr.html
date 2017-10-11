@@ -1,0 +1,32 @@
+<div app-head text="添加新地址" has-back="true"></div>
+<form class="pt-50 add-addr-form">
+	<!--TODO label input 没办法占满一行，为什么？-->
+	<label for="contactName">联系人</label>
+	<input id="contactName"
+	       type="text"
+	       ng-model="addressInfo.Contactname"
+	       autofocus>
+	<label for="contactPhone">联系电话</label>
+	<input id="contactPhone"
+	       type="text"
+	       ng-model="addressInfo.Phone">
+	<label for="contactRegion">所在地区</label>
+	<input id="contactRegion"
+	       type="text"
+	       ng-model="newAddr.Region"
+	       ui-sref="cityPicker">
+	<textarea id="contactAddr"
+	          placeholder="详细地址"
+	          ng-model="addressInfo.Contactaddr">
+	</textarea>
+
+	<label class="is-default-label-1 f-l">设为默认地址</label>
+	<div class="is-default-checkbox f-r">
+		<input class="is-default-input"
+		       id="isDefault"
+		       type="checkbox"
+		       ng-model="addressInfo.IsDefaultaddr">
+		<label for="isDefault"></label>
+	</div>
+
+</form>

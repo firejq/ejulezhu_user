@@ -10,7 +10,7 @@ angular.module('app').controller('forgetPasswordCtrl', ['$scope', '$http', '$int
 	var count = 60;
 	$scope.getVerCode = function() {
 		if(typeof($scope.forgetdata.Mobileno) === 'undefined') {
-			layer.msg("手机号码不能为空");
+			$scope.global.msg("手机号码不能为空");
 			return;
 		}
 		$http({
@@ -22,7 +22,7 @@ angular.module('app').controller('forgetPasswordCtrl', ['$scope', '$http', '$int
 			}
 		}).then(function(response){
 			if (response.data.Status === 0) {
-				layer.msg('验证码已发送，请注意查收');
+				$scope.global.msg('验证码已发送，请注意查收');
 				count = 60;
 				$scope.time = '60';
 				var interval = $interval(function() {
@@ -35,11 +35,11 @@ angular.module('app').controller('forgetPasswordCtrl', ['$scope', '$http', '$int
 					}
 				}, 1000);
 			} else {
-				layer.msg('获取验证码失败');
+				$scope.global.msg('获取验证码失败');
 			}
 		}, function (response) {
 			console.log('fail! ' + response);
-			layer.msg('发送请求失败');
+			$scope.global.msg('发送请求失败');
 		});
 	};
 	$scope.ForgetPwdSubmit = function () {
@@ -50,10 +50,10 @@ angular.module('app').controller('forgetPasswordCtrl', ['$scope', '$http', '$int
 
 		if (typeof Mobileno === 'undefined' || typeof Identificationcode === 'undefined'
 			|| typeof pwd === 'undefined' || typeof Confirm === 'undefined') {
-			layer.msg('信息填写不完整');
+			$scope.global.msg('信息填写不完整');
 			return;
 		} else if(pwd !== Confirm) {
-			layer.msg("两次输入的密码不一致");
+			$scope.global.msg("两次输入的密码不一致");
 			return;
 		}
 		// TODO 未加密
@@ -74,13 +74,13 @@ angular.module('app').controller('forgetPasswordCtrl', ['$scope', '$http', '$int
 			}
 		}).then(function (response) {
 			if(response.data.Status === 0) {
-				layer.msg('找回密码成功');
+				$scope.global.msg('找回密码成功');
 				$state.go('login');
 			} else {
-				layer.msg('重置失败，请检查输入')
+				$scope.global.msg('重置失败，请检查输入')
 			}
 		}, function (response) {
-			layer.msg('请求发送失败');
+			$scope.global.msg('请求发送失败');
 			console.log(response);
 		});
 

@@ -52,6 +52,7 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 		if (typeof recperPage === "undefined") {
 			recperPage = 10;
 		}
+		// TODO 现替换成了layer的移动版，此代码是layer pc版，待更改
 		layer.open({
 			type: 3,
 			offset: 'b',
@@ -61,6 +62,7 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 
 		if("undefined" !== typeof $scope.items[id] && $scope.items[id].length === $scope.total) {
 			$scope.is_done=1;
+			// TODO 现替换成了layer的移动版，此代码是layer pc版，待更改
 			layer.closeAll();
 			layer.msg("没有更多了", {time:500,offset: 'b'});
 			return;

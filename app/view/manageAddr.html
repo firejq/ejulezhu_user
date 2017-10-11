@@ -1,0 +1,28 @@
+<div app-head text="地址管理" has-back="true"></div>
+<!--当地址列表为空-->
+<div ng-if="addressList.length === 0" app-developing content="地址为空，赶紧去添加地址吧~"></div>
+<!--当地址列表不为空-->
+<div ng-if="addressList.length !== 0" class="pt-50 pb-50 manage-addr-list">
+	<ul ng-repeat="address in addressList">
+		<li class="li-first">
+			<span class="f-l">姓名：</span><span class="f-l" ng-bind="address.Contactname"></span>
+			<span class="f-r" ng-bind="address.Phone"></span><span class="f-r">电话：</span>
+		</li>
+		<li>
+			<span>地址：</span><span ng-bind="address.Contactaddr"></span>
+		</li>
+		<li class="li-third">
+			<!-- TODO 默认地址的勾要如何实现？-->
+			<span class="f-l">默认地址</span>
+			<span class="f-r span-right" ng-click="deleteAddress(address.Id)">
+				<i class="fa fa-trash-o" aria-hidden="true"> 删除</i>
+			</span>
+			<span class="f-r span-right" ng-click="modifyAddress(address)">
+				<i class="fa fa-pencil-square-o" aria-hidden="true"> 编辑</i>
+			</span>
+		</li>
+	</ul>
+</div>
+<!--底部按钮-->
+<button class="add-addr-btn" ui-sref="addAddr">新增地址</button>
+

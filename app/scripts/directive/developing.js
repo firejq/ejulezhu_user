@@ -7,6 +7,9 @@ angular.module('app').directive('appDeveloping', [function () {
 	return {
 		restrict: 'AE',
 		replace: true,
-		templateUrl: 'view/template/developing.html'
+		templateUrl: 'view/template/developing.html',
+		scope: {
+			content: '@'
+		}
 	};
 }]);
