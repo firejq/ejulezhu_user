@@ -8,11 +8,6 @@ angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', '$s
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
 
-	//$scope.userInfo = {
-	//	Mobileno: mobilenoCookie,
-	//	name: '暂时没接口'//TODO
-	//};
-
 	//单个地址信息
 	$scope.addressInfo = {
 		Contactname: '',

@@ -22,41 +22,43 @@ angular.module('app').controller('cityPickerCtrl', ['$rootScope', '$scope','$htt
 		Regionid:0
 	});
 
-	// 从哪个state点击过来即回到哪个state去
-	var goTo = $state.params.from;
-	//if goTo
+
+
 
 	//点击完成的回调函数
 	$scope.finishPick = function() {
-		if ($scope.area !== '区/县') {
-			$state.go(goTo, {
-				province: encodeURI($scope.province),
-				city: encodeURI($scope.city),
-				area: encodeURI($scope.area),
-				regionid: $scope.areaId
-			});
-		} else if ($scope.city !== '城市') {
-			$state.go(goTo, {
-				province: encodeURI($scope.province),
-				city: encodeURI($scope.city),
-				area: '',
-				regionid: ''
-			});
-		} else if ($scope.province !== '省份') {
-			$state.go(goTo, {
-				province: encodeURI($scope.province),
-				city: '',
-				area: '',
-				regionid: ''
-			});
-		} else {
-			$state.go(goTo, {
-				province: '',
-				city: '',
-				area: '',
-				regionid: ''
-			});
+		var params = {
+			province: '',
+			city: '',
+			area: '',
+			regionid: ''
+		};
+
+		// 从哪个state点击过来即回到哪个state去
+		var goTo = $state.params.from;
+		// 若从editAddress来，则在参数中加入editAddressId，并将goTo设置为'editAddress'
+		if (goTo.indexOf('editAddress') !== -1) {
+			params.addrId = goTo.split('-')[1];
+			goTo = goTo.split('-')[0];
+			console.log(params);
 		}
+
+		if ($scope.area !== '区/县') {
+			params.province = encodeURI($scope.province);
+			params.city = encodeURI($scope.city);
+			params.area = encodeURI($scope.area);
+			params.regionid = $scope.areaId;
+			$state.go(goTo, params);
+
+		} else if ($scope.city !== '城市') {
+			params.province = encodeURI($scope.province);
+			params.city = encodeURI($scope.city);
+			$state.go(goTo, params);
+		} else if ($scope.province !== '省份') {
+			params.province = encodeURI($scope.province);
+			$state.go(goTo, params);
+		}
+
 	};
 
 	//获取省列表

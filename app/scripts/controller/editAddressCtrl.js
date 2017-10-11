@@ -38,7 +38,7 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 					Regionid: response.data.records[i].Regionid
 				});
 			}
-			//TODO
+
 			console.log(allAddressList);
 
 			// 从所有地址中选出指定Id的地址，赋值到$scope中
@@ -46,8 +46,17 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 				if (allAddressList[i].Id === parseInt($state.params.addrId)) {
 					$scope.addressInfo = allAddressList[i];
 					//console.log(allAddressList[i]);
+					break;
 				}
 			}
+			var province = decodeURI($state.params.province);
+			var city = decodeURI($state.params.city);
+			var area = decodeURI($state.params.area);
+			if (province !== '' || city !== '' || area !=='') {
+				$scope.addressInfo.Region = province + city + area;
+			}
+
+
 		} else {
 			layer.open({
 				content: '获取地址失败',

@@ -94,7 +94,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				controller: 'cityPickerCtrl'
 			})
 			.state('editAddress', {
-				url: '/editAddress/:addrId',
+				url: '/editAddress/:addrId/:province/:city/:area/:regionid',
 				templateUrl: 'view/editAddress.html',
 				controller: 'editAddressCtrl'
 			});

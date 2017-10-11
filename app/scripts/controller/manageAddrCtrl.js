@@ -39,7 +39,6 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 						Regionid: response.data.records[i].Regionid
 					});
 				}
-				//TODO
 				console.log($scope.addressList);
 			} else {
 				layer.open({

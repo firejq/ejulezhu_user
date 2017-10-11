@@ -9,9 +9,7 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 	$scope.user = {};
 	$scope.user.loginChecked = !(typeof cache.get('Mobileno') === 'undefined' || typeof cache.get('Token') === 'undefined');
 
-	// TODO
 	if ($scope.user.loginChecked === true) {
-		console.log('true');
 		//若已登陆，获取用户信息
 		$scope.user.phone = cache.get('Mobileno');
 		var token =  cache.get('Token');

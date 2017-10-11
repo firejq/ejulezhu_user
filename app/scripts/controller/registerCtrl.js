@@ -25,7 +25,7 @@ angular.module('app').controller('registerCtrl', ['$scope', '$http', '$interval'
 		}).then(function(response){
 			if (response.data.Status === 0) {
 				$scope.global.msg('验证码已发送，请注意查收');
-				//var cryptid = response.data.Cryptid;//TODO
+				//var cryptid = response.data.Cryptid;//TODO 密钥
 
 				count = 60;
 				$scope.time = '60';

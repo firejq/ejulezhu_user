@@ -21,8 +21,7 @@
 	       readonly>
 	<div class="contactRegion-span"
 	     ng-bind="addressInfo.Region?addressInfo.Region:'&gt;'"
-	     ui-sref="cityPicker({from: addressInfo.Id})">
-				<!--TODO 连接地址问题解决-->
+	     ui-sref="cityPicker({from: 'editAddress-'+addressInfo.Id})">
 
 	</div>
 
@@ -36,7 +35,8 @@
 		<input class="is-default-input"
 		       id="isDefault"
 		       type="checkbox"
-		       ng-model="addressInfo.IsDefaultaddr">
+		       ng-model="addressInfo.IsDefaultaddr"
+		       ng-checked="addressInfo.IsDefaultaddr?'true':''">
 		<label for="isDefault"></label>
 	</div>
 
