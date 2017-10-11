@@ -3,39 +3,60 @@
  */
 'use strict';
 
-angular.module('app').controller('cityPickerCtrl', ['$rootScope', '$scope','$http','center','transUrl',function ($rootScope, $scope, $http, center, transUrl) {
+angular.module('app').controller('cityPickerCtrl', ['$rootScope', '$scope','$http', '$state', 'center', function ($rootScope, $scope, $http, $state, center) {
 
 	$scope.province='省份';
 	$scope.city='城市';
 	$scope.area='区/县';
 	//初始化省份、城市、地区列表
 	$scope.provinces=new Array({
-		Province:'省份',
-		Provinceid:0
+		Province: '省份',
+		Provinceid: 0
 	});
 	$scope.cities=new Array({
-		City:'城市',
-		Cityid:0
+		City: '城市',
+		Cityid: 0
 	});
 	$scope.areas=new Array({
 		Region:'区/县',
 		Regionid:0
 	});
 
-	//点击完成回调
-	$rootScope.finishPick=function(){
-		var search='';
-		var href=transUrl()+'#/detailInfo?';
-		if($scope.area!=='区/县'){
-			search+='province='+encodeURI($scope.province)+'&city='+encodeURI($scope.city)+'&area='+encodeURI($scope.area)+'&regionid='+$scope.areaId;
-		}else if($scope.city!=='城市'){
-			search+='province='+encodeURI($scope.province)+'&city='+encodeURI($scope.city);
-		}else if($scope.province!=='省份'){
-			search+='province='+encodeURI($scope.province);
-		}else{
-			search+='place='+encodeURI('请选择工作地区');
+	// 从哪个state点击过来即回到哪个state去
+	var goTo = $state.params.from;
+	//if goTo
+
+	//点击完成的回调函数
+	$scope.finishPick = function() {
+		if ($scope.area !== '区/县') {
+			$state.go(goTo, {
+				province: encodeURI($scope.province),
+				city: encodeURI($scope.city),
+				area: encodeURI($scope.area),
+				regionid: $scope.areaId
+			});
+		} else if ($scope.city !== '城市') {
+			$state.go(goTo, {
+				province: encodeURI($scope.province),
+				city: encodeURI($scope.city),
+				area: '',
+				regionid: ''
+			});
+		} else if ($scope.province !== '省份') {
+			$state.go(goTo, {
+				province: encodeURI($scope.province),
+				city: '',
+				area: '',
+				regionid: ''
+			});
+		} else {
+			$state.go(goTo, {
+				province: '',
+				city: '',
+				area: '',
+				regionid: ''
+			});
 		}
-		location.href=href+search;
 	};
 
 	//获取省列表

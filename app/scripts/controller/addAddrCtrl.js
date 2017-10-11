@@ -3,12 +3,7 @@
  */
 'use strict';
 
-angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', function ($scope, cache, $http) {
-
-	//地址选择器初始化
-	//$("#city-picker").cityPicker({
-	//	title: "选择城市/区县"
-	//});
+angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', '$state', function ($scope, cache, $http, $state) {
 
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
@@ -22,15 +17,20 @@ angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', fun
 	$scope.addressInfo = {
 		Contactname: '',
 		Phone: mobilenoCookie,
-		Region: '',
+		Region: $state.params.regionid,
 		Contactaddr: '',
-		IsDefaultaddr: 0
+		IsDefaultaddr: 0,
+
+		province: decodeURI($state.params.province),
+		city: decodeURI($state.params.city),
+		area: decodeURI($state.params.area)
+
 	};
 
-	$scope.addSubmit = function () {
+	$scope.addAddrSubmit = function () {
 		$scope.addressInfo.IsDefaultaddr = $scope.addressInfo.IsDefaultaddr? 1 : 0;
-		$scope.addressInfo.Region = document.getElementById('city-picker').attributes['data-code'].value;
 		var unix_time = Math.round(new Date().getTime()/1000);//10位unix时间戳
+		//console.log($scope.addressInfo);
 		$http({
 			method: 'GET',
 			url: $scope.global.url + 'fixaddress/add',
@@ -46,12 +46,12 @@ angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', fun
 				IsDefaultaddr: $scope.addressInfo.IsDefaultaddr
 			}
 		}).then(function (response) {
-			console.log(response);
+			//console.log(response);
 			if (response.data.status === 0) {
-				$scope.msg('添加成功');
-				window.history.go(-1);
+				$scope.global.msg('添加成功');
+				$state.go('manageAddr');
 			} else {
-				$scope.msg('添加失败', 'cancel');
+				$scope.global.msg('添加失败');
 			}
 		}, function (response) {
 			console.log('fail!' + response);

@@ -1,5 +1,6 @@
-<div app-head text="添加新地址" has-back="true"></div>
-<form class="pt-50 add-addr-form">
+<div app-head text="修改地址" has-back="true"></div>
+
+<form class="pt-50 edit-addr-form">
 	<!--TODO label input 没办法占满一行，为什么？-->
 	<label for="contactName">联系人</label>
 	<input id="contactName"
@@ -19,8 +20,10 @@
 	       ng-model="addressInfo.Region"
 	       readonly>
 	<div class="contactRegion-span"
-	      ng-bind="addressInfo.province?addressInfo.province+addressInfo.city+addressInfo.area:'&gt;'"
-	      ui-sref="cityPicker({from:'addAddr'})">
+	     ng-bind="addressInfo.Region?addressInfo.Region:'&gt;'"
+	     ui-sref="cityPicker({from: addressInfo.Id})">
+				<!--TODO 连接地址问题解决-->
+
 	</div>
 
 	<textarea id="contactAddr"
@@ -39,4 +42,5 @@
 
 </form>
 
-<button class="add-complete" ng-click="addAddrSubmit()">完成</button>
+
+<button class="edit-complete" ng-click="editAddrSubmit()">保存</button>

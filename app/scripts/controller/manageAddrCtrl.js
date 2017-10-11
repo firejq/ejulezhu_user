@@ -47,6 +47,7 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 					btn: '取消',
 					yes: function (index) {
 						layer.close(index);
+						location.reload();
 					}
 				});
 			}
@@ -56,12 +57,45 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 		});
 	})();
 
-	////////////////////////////////////////////////
-	$scope.modifyAddress = function (addressInfo) {//TODO 怎么给modify_address.html传参数
-		//$scope.curSelectId = addressInfo.Id;
-		//alert($scope.curSelectId);
-		//top.location = 'modify_address.html';
-		$scope.global.msg('6666');
+
+	$scope.modifyAddress = function (newAddressInfo) {
+		newAddressInfo.IsDefaultaddr =	newAddressInfo.IsDefaultaddr?1:0;
+		//console.log(newAddressInfo);
+		// 10位unix时间戳
+		var unix_time = Math.round(new Date().getTime()/1000);
+		$http({
+			method: 'GET',
+			url: $scope.global.url + 'fixaddress/modify',
+			params: {
+				Mobileno: mobilenoCookie,
+				Usertype: 1,
+				Token: tokenCookie,
+				Reqtime: unix_time,
+				Id: newAddressInfo.Id,
+				Phone: newAddressInfo.Phone,
+				Contactaddr: newAddressInfo.Contactaddr,
+				Contactname: newAddressInfo.Contactname,
+				Region: newAddressInfo.Regionid,
+				IsDefaultaddr: newAddressInfo.IsDefaultaddr
+			}
+		}).then(function (response) {
+			//console.log(response);
+			if (response.data.status === 0) {
+				location.reload();
+			} else {
+				layer.open({
+					content: '修改失败',
+					btn: '取消',
+					yes: function (index) {
+						layer.close(index);
+						location.reload();
+					}
+				});
+			}
+
+		}, function (response) {
+			console.log('fail! ' + response);
+		});
 
 	};
 

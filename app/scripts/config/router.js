@@ -79,7 +79,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				controller: 'changePwdCtrl'
 			})
 			.state('addAddr', {
-				url: '/addAddr',
+				url: '/addAddr/:province/:city/:area/:regionid',
 				templateUrl: 'view/addAddr.html',
 				controller: 'addAddrCtrl'
 			})
@@ -89,9 +89,14 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				controller: 'manageAddrCtrl'
 			})
 			.state('cityPicker', {
-				url: '/cityPicker',
+				url: '/cityPicker/:from',
 				templateUrl: 'view/cityPicker.html',
 				controller: 'cityPickerCtrl'
+			})
+			.state('editAddress', {
+				url: '/editAddress/:addrId',
+				templateUrl: 'view/editAddress.html',
+				controller: 'editAddressCtrl'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

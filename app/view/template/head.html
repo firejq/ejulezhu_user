@@ -1,5 +1,12 @@
 <div class="head ta-c p-r">
 	<!--TODO 为什么此处的 hasBack 若不使用 {{}} 会无效，而 text 若使用 {{}} 无法显示？-->
-	<span ng-show="{{hasBack}}" class="p-a c-w back-btn" ng-click="back();">&lt;</span>
+	<span ng-show="{{hasBack}}"
+	      class="p-a c-w back-btn"
+	      ng-click="back();">&lt;</span>
+
 	<span class="c-w" ng-bind="text"></span>
+
+	<!--<span ng-show="{{hasComplete}}"-->
+	      <!--class="right-btn f-r"-->
+	      <!--ng-click="test()">完成</span>-->
 </div>

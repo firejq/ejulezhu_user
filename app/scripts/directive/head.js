@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('app').directive('appHead', [function () {
+angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
 	return {
 		restrict: 'AE',
 		replace: 'true',
@@ -11,6 +11,7 @@ angular.module('app').directive('appHead', [function () {
 		scope: {
 			hasBack: '@',
 			text: '@'
+			//hasComplete: '@'
 		},
 		link: function($scope) {
 			$scope.back = function() {
