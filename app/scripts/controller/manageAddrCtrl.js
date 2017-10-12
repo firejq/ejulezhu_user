@@ -41,14 +41,7 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 				}
 				console.log($scope.addressList);
 			} else {
-				layer.open({
-					content: '获取地址失败',
-					btn: '取消',
-					yes: function (index) {
-						layer.close(index);
-						location.reload();
-					}
-				});
+				$scope.global.cancel('获取地址失败');
 			}
 
 		}, function (response) {
@@ -82,14 +75,7 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 			if (response.data.status === 0) {
 				location.reload();
 			} else {
-				layer.open({
-					content: '修改失败',
-					btn: '取消',
-					yes: function (index) {
-						layer.close(index);
-						location.reload();
-					}
-				});
+				$scope.global.cancel('修改失败');
 			}
 
 		}, function (response) {

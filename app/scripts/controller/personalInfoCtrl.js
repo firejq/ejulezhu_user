@@ -58,14 +58,8 @@ angular.module('app').controller('personalInfoCtrl', ['$scope', '$http', '$state
 
 				}, function (response) {
 					console.log(response);
-					layer.open({
-						content: '注销失败',
-						btn: '取消',
-						yes: function (index) {
-							location.reload();
-							layer.close(index);
-						}
-					});
+					$scope.global.cancel('注销失败');
+
 				});
 			},
 			no: function (index) {

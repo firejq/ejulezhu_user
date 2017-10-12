@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('app').controller('cityPickerCtrl', ['$rootScope', '$scope','$http', '$state', 'center', function ($rootScope, $scope, $http, $state, center) {
+angular.module('app').controller('cityPickerCtrl', ['$scope','$http', '$state', 'center', function ($scope, $http, $state, center) {
 
 	$scope.province='省份';
 	$scope.city='城市';

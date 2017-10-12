@@ -26,6 +26,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				templateUrl: 'view/hotTopic.html',
 				controller: 'hotTopicCtrl'
 			})
+			.state('hotTopicArticleDetail', {
+				url: '/hotTopicArticleDetail/:id',
+				templateUrl: 'view/hotTopicArticleDetail.html',
+				controller: 'hotTopicArticleDetailCtrl'
+			})
 			.state('case', {
 				url: '/case',
 				templateUrl: 'view/case.html',
@@ -35,6 +40,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/me',
 				templateUrl: 'view/me.html',
 				controller: 'meCtrl'
+			})
+			.state('myOrder', {
+				url: '/myOrder',
+				templateUrl: 'view/myOrder.html',
+				controller: 'myOrderCtrl'
 			})
 			.state('login', {
 				url: '/login',
@@ -97,6 +107,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/editAddress/:addrId/:province/:city/:area/:regionid',
 				templateUrl: 'view/editAddress.html',
 				controller: 'editAddressCtrl'
+			})
+			.state('redPackage', {
+				url: '/redPackage',
+				templateUrl: 'view/redPackage.html',
+				controller: 'redPackageCtrl'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

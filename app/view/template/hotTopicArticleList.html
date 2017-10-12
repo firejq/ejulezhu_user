@@ -1,6 +1,8 @@
 <!--文章列表-->
 <ul class="hot-topic-article-list">
-	<li class="btn hot-topic-article-list-item" ng-repeat="item in items[id]">
+	<li class="btn hot-topic-article-list-item"
+	    ng-repeat="item in items[id]"
+	    ui-sref="hotTopicArticleDetail({id: item.Id})">
 
 		<div class="d-ib item-left">
 
@@ -8,16 +10,16 @@
 
 			<div class="item-left-other">
 				<span class="d-ib item-left-other-source" ng-bind="item.Source"></span>
-				<!--TODO view 会被图片挡住-->
+				<!--TODO view number 会被图片挡住-->
 				<div class="d-ib item-left-other-view-number">
-					<img src="./images/public_icon_view.png">
+					<img ng-src="./images/public_icon_view.png">
 					<span ng-bind="item.Clicks"></span>
 				</div>
 			</div>
 
 		</div>
 
-		<img src="{{item.Img}}" class="f-r item-right">
+		<img ng-src="{{item.Img}}" class="f-r item-right">
 
 	</li>
 </ul>

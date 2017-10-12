@@ -3,6 +3,9 @@
  */
 'use strict';
 
+/**
+ * 首页热门话题区块
+ */
 angular.module('app').directive('appHotTopic', function () {
 	return {
 		restrict: 'AE',

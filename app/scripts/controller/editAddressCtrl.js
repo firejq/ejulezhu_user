@@ -58,14 +58,7 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 
 
 		} else {
-			layer.open({
-				content: '获取地址失败',
-				btn: '取消',
-				yes: function (index) {
-					layer.close(index);
-					location.reload();
-				}
-			});
+			$scope.global.cancel('获取地址失败');
 		}
 	}, function (response) {
 		console.log('fail! ' + response);

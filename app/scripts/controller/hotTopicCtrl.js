@@ -3,9 +3,12 @@
  */
 'use strict';
 
+/**
+ * 热门话题文章列表页控制器
+ */
 angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', function ($scope, $state, $http) {
 
-	// 获取用户热门话题 banner 滚动图片
+	// 获取热门话题页面 banner
 	$http({
 		method: 'GET',
 		url: $scope.global.url + "banner",
@@ -48,23 +51,31 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 
 
 	///////////////////////////////////////////////////////////////
+	/**
+	 * 获取指定 topicId 的文章
+	 * @param id 话题id
+	 * @param pageNum 第几页（从１开始）
+	 * @param recperPage 每页多少记录
+	 * @constructor
+	 */
 	$scope.GetItem = function (id, pageNum, recperPage){
+
 		if (typeof recperPage === "undefined") {
-			recperPage = 10;
+			recperPage = 5;
 		}
-		// TODO 现替换成了layer的移动版，此代码是layer pc版，待更改
+
+		// 显示加载动画层
 		layer.open({
-			type: 3,
-			offset: 'b',
-			shade: 0
+			type: 2,
+			//time: 1,
+			//shade: 'background-color: rgba(0,0,0,.3)'
 		});
 
 
 		if("undefined" !== typeof $scope.items[id] && $scope.items[id].length === $scope.total) {
-			$scope.is_done=1;
-			// TODO 现替换成了layer的移动版，此代码是layer pc版，待更改
+			$scope.is_done = 1;//TODO 设置这个变量干啥？
 			layer.closeAll();
-			layer.msg("没有更多了", {time:500,offset: 'b'});
+			$scope.global.msg('没有更多了');
 			return;
 		}
 
@@ -78,18 +89,24 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 				'Recperpage': recperPage
 			}
 		}).then(function (response) {
-			if(response.data.status === 0){
+			console.log(response.data.records);
+
+			if(response.data.status === 0) {
 				for (i = 0; i < response.data.records.length; i++) {
 					response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
 				}
-				if("undefined" !== typeof $scope.items[id]){
-					console.log("defined");
+
+				if ("undefined" === typeof $scope.items[id]) {
+					// 若是第一次请求
+					console.log('first request')
+					$scope.items[id] = response.data.records;
+					$scope.total = response.data.Total;
+				} else {
+					// 若不是第一次请求
+					console.log("not first request");
 					for (var i = 0; i < response.data.records.length; i++) {
 						$scope.items[id].push(response.data.records[i]);
 					}
-				} else {
-					$scope.items[id] = response.data.records;
-					$scope.total = response.data.Total;
 				}
 			}
 		}, function (response) {
@@ -104,6 +121,21 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 	$scope.is_done = 0;// 标志是否加载完所有条目
 	$scope.pageNum = 1;
 	$scope.GetItem($scope.id, $scope.pageNum++);
+
+
+	/**
+	 * 监听scroll事件，到底部加载更多
+	 */
+	window.onscroll = function () {
+		console.log('scroll is triggered');
+		//console.log(window.pageYOffset);
+		//console.log(window.innerHeight);
+		//console.log(document.getElementsByTagName('body')[0].scrollHeight);
+		if (window.pageYOffset + window.innerHeight >=
+			document.getElementsByTagName('body')[0].scrollHeight) {
+			$scope.GetItem($scope.id, $scope.pageNum++);
+		}
+	};
 
 
 }]);

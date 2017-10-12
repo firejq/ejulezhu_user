@@ -3,22 +3,20 @@
 	<div class="feedback-type-div">
 		<!-- TODO select 应通过遮块实现，而不是下拉 -->
 		<label class="feedback-type-label f-l" for="feedback-type">反馈类型</label>
-		<select class="feedback-type-select f-r" id="feedback-type">
-			<option value="volvo">质量投诉</option>
-			<option value="saab">使用问题</option>
-			<option value="opel">其它</option>
+		<select class="feedback-type-select f-r" id="feedback-type" ng-model="feedbackData.selectType">
+			<option ng-repeat="typeObj in feedbackData.type" ng-value="typeObj.Id" ng-bind="typeObj.Type"></option>
 		</select>
 	</div>
 
 	<textarea class="feedback-advise"
 	          placeholder="请输入您的建议(150个字以内)..."
-	          ng-model="feedbackdata.advise">
+	          ng-model="feedbackData.advise">
 	</textarea>
 
 	<!-- TODO 上传图片的样式要如何实现？ -->
 	<div class="feedback-pic">
 		<label for="feedback-pic">上传图片</label>
-		<input id="feedback-pic" type="file"/>
+		<input id="feedback-pic" type="file" ng-model="filetest"/>
 	</div>
 
 	<button class="feedback-submit" ng-click="feedbackSubmit()">提交反馈</button>
