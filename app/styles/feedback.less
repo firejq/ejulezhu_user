@@ -49,15 +49,39 @@
     height: 3rem;
     margin: auto;
     padding: 0.2rem;
+    overflow: hidden;
 
     label {
       font-weight: normal;
+      display: block;
+      margin: 0;
+      padding: 0;
     }
 
     input {
       //opacity: 0;
       //text-indent: -9999px;
+      display: none;
+      //display: inline-block;
+    }
 
+    .feedback-pic-insert-label {
+      display: inline-block;
+    }
+
+    .feedback-pic-preview,
+    .feedback-pic-insert-btn {
+      display: inline-block;
+      margin: .6rem .3rem 0 0;
+      padding: 0;
+      border: none;
+      width: 1.28rem;
+      height: 1.28rem;
+
+    }
+
+    .feedback-pic-insert-btn {
+      border: 1.5px solid rgb(213, 212, 212);
     }
 
 

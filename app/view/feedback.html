@@ -1,10 +1,11 @@
 <div app-head text="意见反馈" has-back="true"></div>
 <form class="pt-50 feedback">
 	<div class="feedback-type-div">
-		<!-- TODO select 应通过遮块实现，而不是下拉 -->
+		<!-- TODO select 应通过模态框实现，而不是下拉 -->
 		<label class="feedback-type-label f-l" for="feedback-type">反馈类型</label>
+
 		<select class="feedback-type-select f-r" id="feedback-type" ng-model="feedbackData.selectType">
-			<option ng-repeat="typeObj in feedbackData.type" ng-value="typeObj.Id" ng-bind="typeObj.Type"></option>
+		<option ng-repeat="typeObj in feedbackData.type" ng-value="typeObj.Id" ng-bind="typeObj.Type"></option>
 		</select>
 	</div>
 
@@ -15,8 +16,10 @@
 
 	<!-- TODO 上传图片的样式要如何实现？ -->
 	<div class="feedback-pic">
-		<label for="feedback-pic">上传图片</label>
-		<input id="feedback-pic" type="file" ng-model="filetest"/>
+		<label>上传图片</label>
+		<input id="feedback-pic" type="file"/>
+		<label id="feedback-pic-insert-label" for="feedback-pic" class="feedback-pic-insert-label"><img class="feedback-pic-insert-btn" ng-src="/images/upload.png"></label>
+
 	</div>
 
 	<button class="feedback-submit" ng-click="feedbackSubmit()">提交反馈</button>

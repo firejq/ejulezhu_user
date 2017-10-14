@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('app').service('cache', ['$cookies', function($cookies){
-	this.put = function(key, value){
+	this.put = function(key, value) {
 		$cookies.put(key, value);
 	};
 	this.get = function(key) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{angular, angular-animate, angular-cookies, angular-sanitize, angular-ui-router, angular-validation, bootstrap, crypto-js, ct-ui-router-extras, jquery, jquery-weui, layer, ui-bootstrap-tpls}" />
+    <file url="PROJECT" libraries="{angular, angular-animate, angular-cookies, angular-file-upload, angular-sanitize, angular-ui-router, angular-validation, bootstrap, crypto-js, ct-ui-router-extras, jquery, jquery-weui, layer, ui-bootstrap-tpls}" />
   </component>
 </project>
