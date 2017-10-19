@@ -1,21 +1,22 @@
 <section class="my-order-detail-state">
-	<!-- TODO 将img的重复改写为动态重复而不写死-->
+	<!-- TODO 此部分写法应优化-->
 	<div class="f-l my-order-detail-state-img">
-		<img ng-src="/images/order/ticket-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
-		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="{{orderDetail.records[0].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[1].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[2].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[3].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[4].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[5].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[6].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[7].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+		<img ng-src="{{orderDetail.records[8].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
+
 	</div>
 
 	<ul class="f-l my-order-detail-state-text">
 		<li ng-repeat="record in orderDetail.records">
-			<span ng-bind="record.Introduction" class="f-l"></span>
-			<span ng-bind="record.FinishTime" class="f-r finish-time"></span>
+			<span ng-bind="record.Introduction" ng-class="'f-l '+(record.FinishTime!==''?'finished-state-style':'')"></span>
+			<span ng-bind="record.Index===5||record.Index===8||record.Index===9?'>':record.FinishTime" class="f-r finish-time" ui-sref="{{(record.Index===5||record.Index===8||record.Index===9)&&(record.Next===1)?(href[record.Index](orderDetail.Orderid)):''}}"></span>
 		</li>
 	</ul>
 

@@ -135,6 +135,16 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			.state('myOrderDetail.detail', {
 				url: '/detail',
 				templateUrl: 'view/myOrderDetail.detail.html'
+			})
+			.state('orderPayRecords', {
+				url: '/orderPayRecords/:orderNo',
+				controller: 'orderPayRecordsCtrl',
+				templateUrl: 'view/orderPayRecords.html'
+			})
+			.state('confirmMasterPrice', {
+				url: '/confirmMasterPrice/:orderId',
+				controller: 'confirmMasterPriceCtrl',
+				templateUrl: 'view/confirmMasterPrice.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

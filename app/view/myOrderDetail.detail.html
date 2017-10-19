@@ -12,20 +12,21 @@
 		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Fixtype"></span>
 	</li>
 	<li class="my-order-detail-detail-field">下单时间
-		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.OrderTime|date:'yyyy-MM-dd HH:mm:ss'"></span>
+		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.OrderTime"></span>
 	</li>
 	<li class="my-order-detail-detail-field">预约时间
-		<span class="f-r my-order-detail-detail-value t-o" ng-bind=""></span>
+		<span class="f-r my-order-detail-detail-value t-o" ng-bind="orderDetail.Appointmenttime"></span>
 	</li>
 	<li class="my-order-detail-detail-field">支付记录
-		<span class="f-r my-order-detail-detail-value">查看 &gt;</span>
+		<!--TODO 支付记录-->
+		<span class="f-r my-order-detail-detail-value" ui-sref="orderPayRecords({orderNo: orderDetail.Orderno})">查看 &gt;</span>
 	</li>
 	<li class="my-order-detail-detail-title">联系人</li>
 	<li class="my-order-detail-detail-field">姓名
 		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Contactname"></span>
 	</li>
 	<li class="my-order-detail-detail-field">手机号码
-		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Contactphone"></span>
+		<span class="f-r my-order-detail-detail-value t-r" ng-bind="orderDetail.Contactphone"></span>
 	</li>
 	<li class="my-order-detail-detail-field">所在区域
 		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Region"></span>
@@ -35,12 +36,21 @@
 	</li>
 	<li class="my-order-detail-detail-title">维修信息</li>
 	<li class="my-order-detail-detail-field">维修图片
-		<span class="f-r my-order-detail-detail-value" ng-bind=""></span>
+		<span class="f-r my-order-detail-detail-value"></span>
 	</li>
+	<li class="my-order-detail-detail-field repair-img">
+		<ul>
+			<!--TODO 点击图片弹出模态框 查看大图 -->
+			<li ng-repeat="imgAddress in orderDetail.ImageList">
+				<img ng-src="{{imgAddress}}" alt="repairImage">
+			</li>
+		</ul>
+	</li>
+	<!-- TODO 语音还没做-->
 	<li class="my-order-detail-detail-field">维修语音
 		<span class="f-r my-order-detail-detail-value" ng-bind=""></span>
 	</li>
-	<li class="my-order-detail-detail-field">维修说明
-		<span class="f-r my-order-detail-detail-value" ng-bind=""></span>
+	<li class="my-order-detail-detail-field repair-description">维修说明
+		<span class="f-r repair-description-value" ng-bind="orderDetail.Attact"></span>
 	</li>
 </ul>
