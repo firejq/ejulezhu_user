@@ -7,16 +7,7 @@ angular.module('app').controller('myOrderCtrl', ['$scope', 'cache', '$http', fun
 
 	$scope.myOrderList = [];
 
-	//$http.post("./v1/order/all.json").success(function(response) {
-	//
-	//	if(response.status === '0'){
-	//		$scope.myOrderList = response.records;
-	//	}
-	//}).error(function(response) {
-	//	console.log('failed!!');
-	//});
 
-	// TODO
 	$http({
 		method: 'GET',
 		url: $scope.global.url + 'order/all',
@@ -30,13 +21,21 @@ angular.module('app').controller('myOrderCtrl', ['$scope', 'cache', '$http', fun
 		//console.log(response);
 		if (response.data.status === 0) {
 			$scope.myOrderList = response.data.records;
-			console.log($scope.myOrderList);
+			for (var i = 0, len = $scope.myOrderList.length; i < len; i++) {
+				if ($scope.myOrderList[i].Img !== '') {
+					$scope.myOrderList[i].Img = $scope.global.ip + $scope.myOrderList[i].Img;
+				} else {
+					$scope.myOrderList[i].Img = '/images/e.png';
+				}
+			}
+			//console.log($scope.myOrderList);
 
 		} else {
-			$scope.global.cancel('请求出错');
+			//$scope.global.cancel('请求出错');
 		}
 	}, function (response) {
 		console.log('fail! ' + response);
 	});
+
 
 }]);

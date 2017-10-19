@@ -1,12 +1,13 @@
 <div app-head text="意见反馈" has-back="true"></div>
-<form class="pt-50 feedback">
+<form class="pt-90 feedback">
 	<div class="feedback-type-div">
-		<!-- TODO select 应通过模态框实现，而不是下拉 -->
 		<label class="feedback-type-label f-l" for="feedback-type">反馈类型</label>
 
-		<select class="feedback-type-select f-r" id="feedback-type" ng-model="feedbackData.selectType">
-		<option ng-repeat="typeObj in feedbackData.type" ng-value="typeObj.Id" ng-bind="typeObj.Type"></option>
-		</select>
+		<i class="feedback-type-select-icon f-r fa fa-sort-desc" ng-click="modalSheet.visible=true" aria-hidden="true"></i>
+		<span class="feedback-type-select-span f-r" id="feedback-type" ng-bind="feedbackData.selected.TypeName" ng-click="modalSheet.visible=true">
+		</span>
+
+		<div app-modal-sheet select="clickToSelectType(Id, Type)" list="feedbackData.type" visible="modalSheet.visible"></div>
 	</div>
 
 	<textarea class="feedback-advise"
@@ -14,7 +15,6 @@
 	          ng-model="feedbackData.advise">
 	</textarea>
 
-	<!-- TODO 上传图片的样式要如何实现？ -->
 	<div class="feedback-pic">
 		<label>上传图片</label>
 		<input id="feedback-pic" type="file"/>

@@ -16,6 +16,11 @@
 @import 'myOrder.less';
 @import 'redPackage.less';
 @import 'hotTopicArticleDetail.less';
+@import 'overallDecoration.less';
+@import 'furnitureRepair.less';
+@import 'myOrderDetail.less';
+@import 'myOrderDetail.state.less';
+@import 'myOrderDetail.detail.less';
 @import 'template/head.less';
 @import 'template/foot.less';
 @import 'template/banner.less';
@@ -29,6 +34,7 @@
 @import 'template/meHead.less';
 @import 'template/meList.less';
 @import 'template/footCopyright.less';
+@import 'template/modalSheet.less';
 
 
 .ng-enter {
@@ -41,51 +47,51 @@
 }
 
 .fs(@px) {
-  font-size: unit(@px / 36, rem);
+  font-size: unit(@px / 100, rem);
 }
 
 .w(@px) {
-  width: unit(@px / 36, rem);
+  width: unit(@px / 100, rem);
 }
 
 .h(@px) {
-  height: unit(@px / 36, rem);
+  height: unit(@px / 100, rem);
 }
 
 .lh(@px) {
-  line-height: unit(@px / 36, rem);
+  line-height: unit(@px / 100, rem);
 }
 
 .mt(@px) {
-  margin-top: unit(@px / 36, rem);
+  margin-top: unit(@px / 100, rem);
 }
 
 .ml(@px) {
-  margin-left: unit(@px / 36, rem);
+  margin-left: unit(@px / 100, rem);
 }
 
 .mr(@px) {
-  margin-right: unit(@px / 36, rem);
+  margin-right: unit(@px / 100, rem);
 }
 
 .mb(@px) {
-  margin-bottom: unit(@px / 36, rem);
+  margin-bottom: unit(@px / 100, rem);
 }
 
 .pt(@px) {
-  padding-top: unit(@px / 36, rem);
+  padding-top: unit(@px / 100, rem);
 }
 
 .pl(@px) {
-  padding-left: unit(@px / 36, rem);
+  padding-left: unit(@px / 100, rem);
 }
 
 .pr(@px) {
-  padding-right: unit(@px / 36, rem);
+  padding-right: unit(@px / 100, rem);
 }
 
 .pb(@px) {
-  padding-bottom: unit(@px / 36, rem);
+  padding-bottom: unit(@px / 100, rem);
 }
 
 html,
@@ -98,7 +104,7 @@ body {
 
 body {
   background-color: @bodyBgColor;
-  .fs(16);
+  .fs(28);
 }
 
 button {

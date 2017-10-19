@@ -1,0 +1,27 @@
+<section class="my-order-detail-state">
+	<!-- TODO 将img的重复改写为动态重复而不写死-->
+	<div class="f-l my-order-detail-state-img">
+		<img ng-src="/images/order/ticket-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+		<img ng-src="/images/order/dian-.png" alt="">
+	</div>
+
+	<ul class="f-l my-order-detail-state-text">
+		<li ng-repeat="record in orderDetail.records">
+			<span ng-bind="record.Introduction" class="f-l"></span>
+			<span ng-bind="record.FinishTime" class="f-r finish-time"></span>
+		</li>
+	</ul>
+
+	<div class="order-cancel-btn f-l">
+		<button ng-click="orderCancel()">取消订单</button>
+	</div>
+</section>
+
+

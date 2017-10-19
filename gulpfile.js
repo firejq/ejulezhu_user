@@ -69,10 +69,10 @@ gulp.task('serve', ['build'], function() {
 	$.connect.server({
 		root: [app.prdPath],
 		livereload: true,
-		port: 9000
+		port: 80
 	});
 
-	open('http://localhost:9000');
+	open('http://localhost:80');
 
 	gulp.watch('bower_components/**/*', ['lib']);
 	gulp.watch(app.srcPath + '**/*.html', ['html']);

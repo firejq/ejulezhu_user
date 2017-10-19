@@ -1,0 +1,46 @@
+<ul class="my-order-detail-detail">
+	<li class="my-order-detail-detail-field">订单状态
+		<span class="f-r my-order-detail-detail-value t-o" ng-bind="'下单成功'"></span>
+	</li>
+	<li class="my-order-detail-detail-field">系统估价
+		<span class="f-r my-order-detail-detail-value t-o" ng-bind="orderDetail.Price|currency:'￥':1"></span>
+	</li>
+	<li class="my-order-detail-detail-field">确认报价
+		<span class="f-r my-order-detail-detail-value t-o" ng-bind="orderDetail.Masterprice|currency:'￥':1"></span>
+	</li>
+	<li class="my-order-detail-detail-field">维修类型
+		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Fixtype"></span>
+	</li>
+	<li class="my-order-detail-detail-field">下单时间
+		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.OrderTime|date:'yyyy-MM-dd HH:mm:ss'"></span>
+	</li>
+	<li class="my-order-detail-detail-field">预约时间
+		<span class="f-r my-order-detail-detail-value t-o" ng-bind=""></span>
+	</li>
+	<li class="my-order-detail-detail-field">支付记录
+		<span class="f-r my-order-detail-detail-value">查看 &gt;</span>
+	</li>
+	<li class="my-order-detail-detail-title">联系人</li>
+	<li class="my-order-detail-detail-field">姓名
+		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Contactname"></span>
+	</li>
+	<li class="my-order-detail-detail-field">手机号码
+		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Contactphone"></span>
+	</li>
+	<li class="my-order-detail-detail-field">所在区域
+		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Region"></span>
+	</li>
+	<li class="my-order-detail-detail-field">联系地址
+		<span class="f-r my-order-detail-detail-value" ng-bind="orderDetail.Contactaddr"></span>
+	</li>
+	<li class="my-order-detail-detail-title">维修信息</li>
+	<li class="my-order-detail-detail-field">维修图片
+		<span class="f-r my-order-detail-detail-value" ng-bind=""></span>
+	</li>
+	<li class="my-order-detail-detail-field">维修语音
+		<span class="f-r my-order-detail-detail-value" ng-bind=""></span>
+	</li>
+	<li class="my-order-detail-detail-field">维修说明
+		<span class="f-r my-order-detail-detail-value" ng-bind=""></span>
+	</li>
+</ul>

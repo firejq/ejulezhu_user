@@ -1,0 +1,47 @@
+.modal-sheet-list {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 101;//head是100
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  //TODO 弹出模态框时使用动画
+
+  ul {
+    z-index: 102;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    width: 9rem;
+    border-radius: 10px;
+    box-shadow: 1px 5px 30px #434343;
+
+
+    li {
+      background-color: white;
+      display: block;
+      height: 1.2rem;
+      line-height: 1.2rem;
+      width: 100%;
+
+      //margin: 0 auto;
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-weight: normal;
+
+
+
+    }
+
+  }
+
+}

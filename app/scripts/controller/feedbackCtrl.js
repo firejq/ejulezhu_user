@@ -8,7 +8,10 @@ angular.module('app').controller('feedbackCtrl', ['$scope', '$http', 'cache', '$
 	// 初始化数据
 	$scope.feedbackData = {
 		type: [],//用于存放所有可选类型
-		selectType: 1,//用户反馈类型，预设为第1项
+		selected: {
+			TypeId: 1,//已选用户反馈类型Id
+			TypeName: ''//已选用户反馈类型名，获取反馈类型后赋值
+		},
 		advise: ''//用户反馈信息内容
 	};
 	var imgInfoList = [];//已上传到服务器的所有图片的信息列表
@@ -23,12 +26,29 @@ angular.module('app').controller('feedbackCtrl', ['$scope', '$http', 'cache', '$
 		//console.log(response);
 		if (response.data.status === 0) {
 			$scope.feedbackData.type = response.data.records;
+			//将已选类型预设为第一种类型
+			$scope.feedbackData.selected.TypeName = response.data.records[0].Type;
+			$scope.feedbackData.selected.TypeId = response.data.records[0].Id;
+
+			//console.log($scope.feedbackData.type);
 		} else {
 
 		}
 	}, function (response) {
 		console.log('fail! ' + response);
 	});
+
+
+	/**
+	 * 反馈类型选择的回调函数，参数名必须与传入对象的字段名相对应，否则会出错
+	 * @param Id
+	 * @param Type
+	 */
+	$scope.clickToSelectType = function (Id, Type) {
+		console.log(Id  + ' ' + Type);
+		$scope.feedbackData.selected.TypeName = Type;
+		$scope.feedbackData.selected.TypeId = Id;
+	};
 
 
 	// TODO 点击按钮就上传图片，久之导致服务器积累大量无用的图片，待改善，如点击提交反馈才一次性上传全部图片
@@ -97,6 +117,11 @@ angular.module('app').controller('feedbackCtrl', ['$scope', '$http', 'cache', '$
 	 */
 	$scope.feedbackSubmit = function () {
 
+		if ($scope.feedbackData.advise === '') {
+			$scope.global.msg('意见反馈不能为空~');
+			return;
+		}
+
 		var imageIds = '';
 		for (var i = 0, len = imgInfoList.length; i < len; i ++) {
 			if (i === 0) {
@@ -109,7 +134,7 @@ angular.module('app').controller('feedbackCtrl', ['$scope', '$http', 'cache', '$
 		var feedback_form = new FormData();
 		feedback_form.append('Mobileno', cache.get('Mobileno'));
 		feedback_form.append('Feedback', $scope.feedbackData.advise);
-		feedback_form.append('Feedbacktype', $scope.feedbackData.selectType);
+		feedback_form.append('Feedbacktype', $scope.feedbackData.selected.TypeId);
 		feedback_form.append('Imageid', imageIds);
 		$http({
 			url: $scope.global.url + 'feedback',

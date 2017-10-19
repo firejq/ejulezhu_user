@@ -2,24 +2,37 @@
 <html lang="zh" ng-app="app">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>易居乐筑e家修</title>
+
+
   <link rel="stylesheet" href="/css/index.css">
   <!--用于 foot 图标-->
   <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!--用于首页 banner 滚动图片，angular-ui-router 依赖-->
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
-  <!-- weui -->
-  <!--<link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">-->
+
+
+  <!--设置rem html font-size值-->
+  <script>
+		(function (doc, win) {
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+					var clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					docEl.style.fontSize = clientWidth / 7.5 + 'px';
+				};
+
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+		})(document, window);
+  </script>
 
 </head>
 <body>
   <ui-view></ui-view>
-
-  <script>
-    document.getElementsByTagName('html')[0].style.fontSize =
-      window.screen.width / 10 + 'px';
-  </script>
 
   <!-- layer begin-->
   <!-- jQuery (layer依赖) -->
@@ -54,7 +67,7 @@
   <!-- weui end -->
 
   <!-- crypto-js -->
-  <script src="https://cdn.bootcss.com/crypto-js/3.1.9/crypto-js.min.js"></script>
+  <!--<script src="https://cdn.bootcss.com/crypto-js/3.1.9/crypto-js.min.js"></script>-->
 
   <!--customize script-->
   <script src="js/index.js" charset="utf-8"></script>

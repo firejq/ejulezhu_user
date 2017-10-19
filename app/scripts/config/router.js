@@ -112,6 +112,29 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/redPackage',
 				templateUrl: 'view/redPackage.html',
 				controller: 'redPackageCtrl'
+			})
+			.state('furnitureRepair', {
+				url: '/furnitureRepair',
+				templateUrl: 'view/furnitureRepair.html',
+				controller: 'furnitureRepairCtrl'
+			})
+			.state('overallDecoration', {
+				url: '/overallDecoration',
+				templateUrl: 'view/overallDecoration.html',
+				controller: 'overallDecorationCtrl'
+			})
+			.state('myOrderDetail', {
+				url: '/myOrderDetail/:orderId/:orderNo',
+				templateUrl: 'view/myOrderDetail.html',
+				controller: 'myOrderDetailCtrl'
+			})
+			.state('myOrderDetail.state', {
+				url: '/state',
+				templateUrl: 'view/myOrderDetail.state.html'
+			})
+			.state('myOrderDetail.detail', {
+				url: '/detail',
+				templateUrl: 'view/myOrderDetail.detail.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

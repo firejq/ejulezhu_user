@@ -4,29 +4,12 @@
 <div ng-if="!myOrderList.length" app-developing content="你还没订单哦，赶紧去下单吧~"></div>
 
 <!--若订单数不为零，显示订单列表-->
-<!--TODO-->
-<ul ng-if="myOrderList.length" class="my-order" style="padding-left: 0;list-style-type:none">
-	<li ng-repeat="order in orderList">
-		<div style="width: 100vw;height: 19.7vw; border-style: solid;border-width: 0 0 1px 0;float: left">
-			<div style="float: left" >
-				<img ng-src="{{order.Img}} " style="width:23.2vw ;height: 15.45vw;margin:2.13vw 2.4vw;">
-			</div>
-			<div style="float: left ;width: 58vw;height: 100%">
-				<div style="margin-top: 4.27vw;">
-					<label style="color: #404040;font-size: 4vw;margin-bottom: 0;">维修类型：{{order.Fixtype}}</label>
-				</div>
-				<div style="margin-top: 5.6vw ">
-					<label style="font-size:3.2vw;color: #838383;margin-bottom: 0;position: relative;bottom: 3.73vw">
-						下单时间：{{order.Ordertime}}
-					</label>
-				</div>
-			</div>
-			<div style="float: right ;width: 12vw;height: 100%">
-				<label style="font-size: 3.2vw;margin-top: 13.2vw;color:#ff8b16">
-					{{order.Status}}
-				</label>
-			</div>
-		</div>
-		<!--<hr style="size:1px;color:#5151A2;padding:0;margin:0;">-->
+<ul class="pt-90 my-order-list" ng-if="myOrderList.length">
+	<li class="f-l" ng-repeat="order in myOrderList" ui-sref="myOrderDetail({orderId: order.Orderid, orderNo: order.Orderno})">
+		<img class="f-l" ng-src="{{order.Img}}">
+		<span class="f-l my-order-list-type" ng-bind="order.Fixtype"></span>
+
+		<span class="f-l my-order-list-time" ng-bind="order.Ordertime"></span>
+		<span class="f-l my-order-list-status" ng-bind="order.Status"></span>
 	</li>
 </ul>

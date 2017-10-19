@@ -1,0 +1,38 @@
+.order-detail-tab {
+  display: block;
+  position: fixed;
+  top: .85rem;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 1rem;
+  z-index: 100;
+  background-color: white;
+  ul {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      width: 50%;
+      height: 1rem;
+      line-height: 1rem;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      float: left;
+
+      &.select {
+        border-bottom: 1.5px solid @headBgColor;
+      }
+    }
+
+  }
+
+
+}
