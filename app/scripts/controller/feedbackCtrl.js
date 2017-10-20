@@ -51,10 +51,12 @@ angular.module('app').controller('feedbackCtrl', ['$scope', '$http', 'cache', '$
 	};
 
 
-	// TODO 点击按钮就上传图片，久之导致服务器积累大量无用的图片，待改善，如点击提交反馈才一次性上传全部图片
+
+
+
+
 	// TODO 图片选中后如何删除？取消选中？
-
-
+	// TODO 抽象出上传功能为指令
 	//监听上传按钮，选中文件即触发
 	$("#feedback-pic").on("change", function(e){
 		if (typeof e.target.files[0] !== 'undefined') {

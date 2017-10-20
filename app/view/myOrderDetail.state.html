@@ -16,7 +16,7 @@
 	<ul class="f-l my-order-detail-state-text">
 		<li ng-repeat="record in orderDetail.records">
 			<span ng-bind="record.Introduction" ng-class="'f-l '+(record.FinishTime!==''?'finished-state-style':'')"></span>
-			<span ng-bind="record.Index===5||record.Index===8||record.Index===9?'>':record.FinishTime" class="f-r finish-time" ui-sref="{{(record.Index===5||record.Index===8||record.Index===9)&&(record.Next===1)?(href[record.Index](orderDetail.Orderid)):''}}"></span>
+			<span ng-bind="record.Index===5||record.Index===8||record.Index===9?'>':record.FinishTime" class="f-r finish-time" ui-sref="{{(record.Index===5||record.Index===8||record.Index===9)&&(record.Next===1)?(href[record.Index](orderDetail.Orderid, orderDetail.Orderno)):''}}"></span>
 		</li>
 	</ul>
 

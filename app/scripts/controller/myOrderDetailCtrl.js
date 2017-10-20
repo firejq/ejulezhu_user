@@ -13,8 +13,8 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 	var tokenCookie = cache.get('Token');
 	$scope.orderDetail = {};
 	$scope.href = {
-		5: function (orderId) {
-			return 'confirmMasterPrice({orderId: ' + orderId + '})';
+		5: function (orderId, orderNo) {
+			return 'confirmMasterPrice({orderId: ' + orderId + ', orderNo: ' + orderNo + '})';
 		},
 		8: '',
 		9: ''

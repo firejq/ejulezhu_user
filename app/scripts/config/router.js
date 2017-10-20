@@ -142,9 +142,14 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				templateUrl: 'view/orderPayRecords.html'
 			})
 			.state('confirmMasterPrice', {
-				url: '/confirmMasterPrice/:orderId',
+				url: '/confirmMasterPrice/:orderId/:orderNo',
 				controller: 'confirmMasterPriceCtrl',
 				templateUrl: 'view/confirmMasterPrice.html'
+			})
+			.state('continueQueryPrice', {
+				url: '/continueQueryPrice/:orderId/:orderNo',
+				controller: 'continueQueryPriceCtrl',
+				templateUrl: 'view/continueQueryPrice.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

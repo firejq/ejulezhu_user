@@ -1,0 +1,16 @@
+<div app-head text="继续询价" has-back="true"></div>
+<form class="pt-90 continue-query-price">
+	<label class="continue-query-price-type-label f-l">原因</label>
+
+	<textarea class="continue-query-price-reason"
+	          placeholder="请描述你的原因...">
+	</textarea>
+
+	<div class="continue-query-price-pic">
+		<label>上传图片</label>
+		<input id="continue-query-price-pic" type="file"/>
+		<label id="continue-query-price-pic-insert-label" for="continue-query-price-pic" class="continue-query-price-pic-insert-label"><img class="continue-query-price-pic-insert-btn" ng-src="/images/upload.png"></label>
+	</div>
+
+	<button class="continue-query-price-submit" ng-click="continueQueryPriceSubmit()">确定</button>
+</form>
