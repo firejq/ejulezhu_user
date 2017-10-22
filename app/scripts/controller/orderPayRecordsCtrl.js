@@ -10,7 +10,7 @@ angular.module('app').controller('orderPayRecordsCtrl', ['$scope', '$http', 'cac
 	var tokenCookie = cache.get('Token');
 
 	/**
-	 * 获取
+	 * 获取支付记录列表
 	 */
 	$http({
 		method: 'GET',
@@ -26,6 +26,13 @@ angular.module('app').controller('orderPayRecordsCtrl', ['$scope', '$http', 'cac
 		//console.log(response);
 		if (response.data.status === 0) {
 			$scope.payRecords = response.data.records;
+
+			//格式化时间，原格式：2017-10-21T14:07:10+08:00，目标格式：2017-10-21 14:07:10
+			for (var i = 0, len = $scope.payRecords.length; i < len; i++) {
+				var time = $scope.payRecords[i].CreateTime;
+				$scope.payRecords[i].CreateTime = time.substring(0, 10) + ' ' + time.substring(11, 19);
+			}
+
 			console.log($scope.payRecords);
 		} else {
 			$scope.global.msg('获取支付信息出错');

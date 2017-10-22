@@ -16,12 +16,23 @@
 	<ul class="f-l my-order-detail-state-text">
 		<li ng-repeat="record in orderDetail.records">
 			<span ng-bind="record.Introduction" ng-class="'f-l '+(record.FinishTime!==''?'finished-state-style':'')"></span>
-			<span ng-bind="record.Index===5||record.Index===8||record.Index===9?'>':record.FinishTime" class="f-r finish-time" ui-sref="{{(record.Index===5||record.Index===8||record.Index===9)&&(record.Next===1)?(href[record.Index](orderDetail.Orderid, orderDetail.Orderno)):''}}"></span>
+
+			<span ng-bind="record.Index===5||record.Index===8||record.Index===9?(record.FinishTime!==''?record.FinishTime:'>'):record.FinishTime"
+			      class="f-r finish-time"
+			      ui-sref="{{(record.Index===5||record.Index===8||record.Index===9)&&(record.Next===1)?href[record.Index]():''}}"
+			      ng-click="(record.Index===8&&record.Next===1)?checkProject():''">
+			</span>
 		</li>
 	</ul>
 
-	<div class="order-cancel-btn f-l">
-		<button ng-click="orderCancel()">取消订单</button>
+	<div class="my-order-btn f-l">
+		<button ng-if="!orderDetail.isConfirmedMasterPrice"
+		        ng-click="orderCancel()"
+		        class="order-cancel-btn">取消订单</button>
+
+		<button ng-if="orderDetail.isConfirmedMasterPrice"
+		        ui-sref="payProgressPayment({orderId: orderDetail.Orderid, orderNo: orderDetail.Orderno})"
+		        class="order-pay-btn">支付进度款</button>
 	</div>
 </section>
 

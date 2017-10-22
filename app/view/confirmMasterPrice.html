@@ -1,9 +1,8 @@
 <div app-head text="师傅报价" has-back="true"></div>
 <div class="confirm-master-price pt-90">
 	<ul>
-		<!--TODO 系统估价字段未对接-->
 		<li class="confirm-master-price-item">系统估价
-			<span ng-bind="999|currency:'￥':1"></span></li>
+			<span ng-bind="systemPrice|currency:'￥':1"></span></li>
 		<li class="confirm-master-price-item master-price">师傅报价(确认报价时以师傅报价为准)
 			<span ng-bind="masterPriceRecords[0].Price|currency:'￥':2"></span></li>
 		<li class="confirm-master-price-item confirm-master-price-title">师傅咨询信息</li>

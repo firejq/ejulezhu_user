@@ -1,0 +1,23 @@
+<div app-head text="装修预约" has-back="true"></div>
+<div class="decoration-booking-select pt-90">
+	<span class="title">测试测试测试</span>
+	<img ng-src="{{Sampleimg}}" alt="">
+	<form class="decoration-type-select">
+		<div class="decoration-type-item" ng-repeat="decorationType in decorationTypes">
+			<input id="{{'type-select-item-'+decorationType.Id}}"
+			       type="radio"
+			       name="selectedDecorationTypeId"
+			       class="input-style"
+			       ng-model="submitData.selectedDecorationTypeId"
+			       value="{{decorationType.Id}}"/>
+			<label for="{{'type-select-item-'+decorationType.Id}}"></label>
+			<label for="{{'type-select-item-'+decorationType.Id}}"
+			       ng-bind="decorationType.Introduction"></label>
+			<label for="{{'type-select-item-'+decorationType.Id}}"
+			       class="t-r">约{{decorationType.Price}}/m<sup>2</sup></label>
+		</div>
+	</form>
+
+	<button class="decoration-booking-select-btn"
+	        ui-sref="overallDecorationSubmit({styleId: submitData.styleId, stylePriceId: submitData.selectedDecorationTypeId})">提交预约</button>
+</div>

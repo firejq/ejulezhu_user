@@ -12,6 +12,7 @@ angular.module('app').controller('confirmMasterPriceCtrl', ['$scope', '$http', '
 	$scope.orderId = $state.params.orderId;
 	$scope.orderNo = $state.params.orderNo;
 
+
 	/**
 	 * 获取师傅报价信息
 	 */
@@ -42,10 +43,41 @@ angular.module('app').controller('confirmMasterPriceCtrl', ['$scope', '$http', '
 			console.log('fail! ' + response);
 		});
 
+	/**
+	 * 获取系统估价
+	 */
+	$http({
+		method: 'GET',
+		url: $scope.global.url + 'order/status',
+		params: {
+			Mobileno: mobilenoCookie,
+			Token: tokenCookie,
+			Usertype: 1,
+			Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
+			Orderid: $state.params.orderId,
+			Orderno: $state.params.orderNo
+		}
+	}).then(function (response) {
+		console.log(response);
+		if (response.data.Status === 0) {
+			//将订单详情赋值到$scope.payProgressPaymentData中
+			$scope.systemPrice = response.data.Price;
+
+			console.log($scope.orderDetail);
+		} else {
+			$scope.global.msg('获取信息出错');
+		}
+
+	}, function (response) {
+		console.log('fail! ' + response);
+	});
+
+
+
+
 
 	/**
-	 * 取消订单
-	 * TODO 用不用向不接受师傅报价的接口发送？
+	 * 取消订单回调函数
 	 */
 	$scope.orderCancel = function () {
 		$http({
@@ -75,7 +107,7 @@ angular.module('app').controller('confirmMasterPriceCtrl', ['$scope', '$http', '
 
 
 	/**
-	 * 确认师傅报价
+	 * 确认师傅报价回调函数
 	 */
 	$scope.masterPriceConfirm = function () {
 		$http({
@@ -89,13 +121,13 @@ angular.module('app').controller('confirmMasterPriceCtrl', ['$scope', '$http', '
 				Orderno: $state.params.orderNo,
 				Orderid: $state.params.orderId,
 				Accepted: 1,
-				Reason: $scope.masterPriceRecords[0].Reason,//TODO 哪里可以填？是不是这个？
+				Reason: $scope.masterPriceRecords[0].Reason,
 				Image: $scope.masterPriceRecords[0].Image
 			}
 		}).then(function (response) {
 			//console.log(response);
 			if (response.data.status === 0) {
-				$scope.global.msg('确认报价成功');
+				$scope.global.msg('确认成功');
 				$state.go('myOrder');
 			} else {
 				$scope.global.msg('确认报价出错');

@@ -12,12 +12,20 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
 	$scope.orderDetail = {};
+
 	$scope.href = {
-		5: function (orderId, orderNo) {
-			return 'confirmMasterPrice({orderId: ' + orderId + ', orderNo: ' + orderNo + '})';
+		//返回 “确认报价” 路由
+		5: function () {
+			return 'confirmMasterPrice({orderId: ' + $state.params.orderId + ', orderNo: \'' + $state.params.orderNo + '\'})';
 		},
-		8: '',
-		9: ''
+		// 返回 “验收” 路由
+		8: function () {
+		},
+		// 返回 “客户支付” 路由
+		9: function () {
+			//TODO 若去掉路由参数中的单引号，会导致number类型的orderNo过大而溢出，+运算不会自动转换成string类型？
+			return 'finishProjectPay({orderId: ' + $state.params.orderId + ', orderNo: \'' + $state.params.orderNo + '\'})';
+		}
 	};
 
 
@@ -36,6 +44,7 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 			Orderid: $state.params.orderId
 		}
 	}).then(function (response) {
+		//console.log(response);
 		if (response.data.Status === 0) {
 			//将订单详情赋值到$scope.orderDetail中
 			$scope.orderDetail = response.data;
@@ -46,8 +55,22 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 			time = $scope.orderDetail.Appointmenttime;
 			$scope.orderDetail.Appointmenttime = time.substring(0, 4) + '-' + time.substring(4, 6) + '-' + time.substring(6, 8) + ' ' + time.substring(8, 10) + ':' + time.substring(10, 12) + ':' + time.substring(12, 14);
 
+			//将图片地址补充完整
 			for (var i = 0, len = $scope.orderDetail.ImageList.length; i < len; i ++) {
 				$scope.orderDetail.ImageList[i] = $scope.global.ip + $scope.orderDetail.ImageList[i];
+			}
+
+			//若“确认报价”状态已完成，则将“取消订单”的按钮换成“支付进度款”
+			if ($scope.orderDetail.records[4].FinishTime !== '') {
+				$scope.orderDetail.isConfirmedMasterPrice = true;
+			}
+
+			//当前状态
+			for (var i = 0, len = $scope.orderDetail.records.length; i < len; i ++) {
+				if ($scope.orderDetail.records[i].FinishTime === '') {
+					$scope.orderDetail.nowStateIntroduction = $scope.orderDetail.records[i-1].Introduction;
+					break;
+				}
 			}
 
 
@@ -60,6 +83,8 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 	}, function (response) {
 		console.log('fail! ' + response);
 	});
+
+
 
 
 
@@ -92,6 +117,52 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 
 	};
 
+
+	/**
+	 * 验收回调函数
+	 */
+	$scope.checkProject = function () {
+		layer.open({
+			content: '温馨提示<br><br>验收',
+			btn: ['确认', '取消'],
+			yes: function (index) {
+				//console.log('yes');
+
+				/**
+				 * 客户确定验收
+				 */
+				$http({
+					method: 'GET',
+					url: $scope.global.url + 'order/checkandaccept',
+					params: {
+						Mobileno: mobilenoCookie,
+						Token: tokenCookie,
+						Usertype: 1,
+						Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
+						Orderno: $state.params.orderNo,
+						Orderid: $state.params.orderId
+					}
+				}).then(function (response) {
+					//console.log(response);
+					if (response.data.status === 0) {
+						$scope.global.msg('验证成功~');
+					} else {
+						$scope.global.msg('验证出错~');
+					}
+				}, function (response) {
+					console.log('fail! ' + response);
+				});
+
+
+				layer.close(index);
+				location.reload();
+			},
+			no: function (index) {
+				//console.log('no');
+				layer.close(index);
+			}
+		});
+	};
 
 
 }]);

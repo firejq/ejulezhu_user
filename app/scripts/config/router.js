@@ -150,6 +150,26 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/continueQueryPrice/:orderId/:orderNo',
 				controller: 'continueQueryPriceCtrl',
 				templateUrl: 'view/continueQueryPrice.html'
+			})
+			.state('payProgressPayment', {
+				url: '/payProgressPayment/:orderId/:orderNo',
+				controller: 'payProgressPaymentCtrl',
+				templateUrl: 'view/payProgressPayment.html'
+			})
+			.state('finishProjectPay', {
+				url: '/finishProjectPay/:orderId/:orderNo',
+				controller: 'finishProjectPayCtrl',
+				templateUrl: 'view/finishProjectPay.html'
+			})
+			.state('decorationBooking', {
+				url: '/decorationBooking/:styleId',
+				controller: 'decorationBookingCtrl',
+				templateUrl: 'view/decorationBooking.html'
+			})
+			.state('overallDecorationSubmit', {
+				url: '/overallDecorationSubmit/:styleId/:stylePriceId',
+				controller: 'overallDecorationSubmitCtrl',
+				templateUrl: 'view/overallDecorationSubmit.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

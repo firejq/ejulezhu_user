@@ -1,0 +1,92 @@
+.decoration-booking-select {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding-left: .1rem;
+  padding-right: .1rem;
+  text-align: center;
+
+  .title {
+    display: block;
+    text-align: left;
+
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 25vh;
+  }
+
+  .decoration-type-select {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+
+    .decoration-type-item {
+      height: 1rem;
+      line-height: 1rem;
+      border-bottom: 1px solid #e6e6e6;
+
+      label {
+        font-weight: normal;
+        margin: 0;
+      }
+
+      .input-style {
+        display: none;
+      }
+
+      //TODO 单选框样式与后边的label不对齐
+      .input-style + label {
+        text-align: center;
+        background-color: #FFFFFF;
+        border: 1px solid black;
+        border-radius: 2px;
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        margin: 3% 1% 1% 1%;
+        height: 33%;
+        width: 4.5%;
+      }
+
+      .input-style:checked + label {
+        background-color: red;
+        border: none;
+        color: #ffffff;
+      }
+
+      .input-style:checked + label:after {
+        content: '\2714';
+        font-size: .3rem;
+        position: absolute;
+        top: -.36rem;
+        left: .05rem;
+        color: white;
+
+      }
+
+
+    }
+
+
+  }
+
+  .decoration-booking-select-btn {
+    height: @btnHeight;
+    width: @btnWidth;
+    background-color: red;
+    color: white;
+    position: absolute;
+    bottom: .3rem;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    margin: auto;
+  }
+
+
+
+}

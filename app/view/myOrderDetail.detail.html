@@ -1,6 +1,6 @@
 <ul class="my-order-detail-detail">
 	<li class="my-order-detail-detail-field">订单状态
-		<span class="f-r my-order-detail-detail-value t-o" ng-bind="'下单成功'"></span>
+		<span class="f-r my-order-detail-detail-value t-o" ng-bind="orderDetail.nowStateIntroduction"></span>
 	</li>
 	<li class="my-order-detail-detail-field">系统估价
 		<span class="f-r my-order-detail-detail-value t-o" ng-bind="orderDetail.Price|currency:'￥':1"></span>
@@ -18,7 +18,6 @@
 		<span class="f-r my-order-detail-detail-value t-o" ng-bind="orderDetail.Appointmenttime"></span>
 	</li>
 	<li class="my-order-detail-detail-field">支付记录
-		<!--TODO 支付记录-->
 		<span class="f-r my-order-detail-detail-value" ui-sref="orderPayRecords({orderNo: orderDetail.Orderno})">查看 &gt;</span>
 	</li>
 	<li class="my-order-detail-detail-title">联系人</li>
