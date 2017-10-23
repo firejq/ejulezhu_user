@@ -1,4 +1,65 @@
 <div app-head text="整体装修"  has-back="true"></div>
-<ul class="pt-90 overall-decoration-submit">
-	<li></li>
+<ul class="pt-90 overall-decoration-submit-ul">
+	<li><span class="title">已选择类型</span><span class="t-o" ng-bind="bookingSubmitData.styleTitle+' '+bookingSubmitData.stylePriceTitle"></span></li>
+	<li class="item-2"><span class="title">整体装修</span></li>
 </ul>
+
+<form class="overall-decoration-submit-form">
+	<input id="address"
+	       type="text"
+	       placeholder="请输入地址"
+	       ng-model="bookingSubmitData.address">
+	<label ui-sref="manageAddr">&gt;</label>
+	<input id="appointmentTime"
+	       type="datetime-local"
+	       placeholder="请选择预约服务时间"
+	       ng-model="bookingSubmitData.appointmentTime">
+	<label for="appointmentTime">&gt;</label>
+	<input id="roomArea"
+	       type="number"
+	       placeholder="请输入房屋的面积"
+	       ng-model="bookingSubmitData.roomArea">
+	<label style="font-size: small">m<sup>2</sup></label>
+
+	<div class="room-number">
+		<input id="bedRoomNum" type="number"
+		       ng-model="bookingSubmitData.roomNum[0].value"
+		       readonly>室
+		<label for="bedRoomNum" ng-click="add(0)">＋</label>
+		<label for="bedRoomNum" ng-click="minu(0)">－</label>
+	</div>
+	<div class="room-number">
+		<input id="livingRoomNum"
+		       type="number"
+		       ng-model="bookingSubmitData.roomNum[1].value"
+		       readonly>厅
+		<label for="livingRoomNum" ng-click="add(1)">＋</label>
+		<label for="livingRoomNum" ng-click="minu(1)">－</label>
+	</div>
+	<div class="room-number">
+		<input id="kitchenRoomNum" type="number"
+		       ng-model="bookingSubmitData.roomNum[2].value"
+		       readonly>厨
+		<label for="kitchenRoomNum" ng-click="add(2)">＋</label>
+		<label for="kitchenRoomNum" ng-click="minu(2)">－</label>
+	</div>
+	<div class="room-number">
+		<input id="bathRoomNum" type="number"
+		       ng-model="bookingSubmitData.roomNum[3].value"
+		       readonly>卫
+		<label for="bathRoomNum" ng-click="add(3)">＋</label>
+		<label for="bathRoomNum" ng-click="minu(3)">－</label>
+	</div>
+
+	<label class="img-btn"><i class="fa fa-picture-o" aria-hidden="true"></i><span>现场图片</span></label>
+	<label class="voice-btn"><i class="fa fa-volume-off" aria-hidden="true"></i><span>语音留言</span></label>
+
+	<!--<li>现场图片</li>-->
+	<!--<li>语音留言</li>-->
+	<!--<li>图片上传</li>-->
+	<!--<li>合计：待报价</li>-->
+	<!--<li>装修估价</li>-->
+
+	<button class="booking-submit-btn">提交预约</button>
+</form>
+

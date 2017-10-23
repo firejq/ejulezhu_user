@@ -1,6 +1,145 @@
-.overall-decoration-submit {
-  height: 100%;
+.overall-decoration-submit-ul {
   width: 100%;
   margin: 0;
+  padding-left: 0;
+  li {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    border-bottom: 1px solid #dadada;
+    padding-left: .15rem;
 
+    .title {
+      width: 30%;
+      height: 100%;
+      line-height: 100%;
+      border-left: 3px solid black;
+      padding: 0 .2rem;
+
+    }
+  }
+  .item-2 {
+    border: none;
+  }
+}
+
+.overall-decoration-submit-form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  
+  input,
+  label {
+    background-color: rgb(246, 245, 245);
+    height: 1rem;
+    line-height: 1rem;
+    border: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+  }
+
+  input {
+    margin: .1rem 0 .15rem .15rem;
+    padding-left: .15rem;
+    width: 81%;
+  }
+
+  label {
+    width: 15%;
+    text-align: center;
+    font-size: larger;
+    font-weight: normal;
+
+    margin: .1rem .1rem 0 0;
+
+  }
+
+  .room-number {
+    width: 46%;
+    height: 1rem;
+    line-height: 1rem;
+    background-color: rgb(246, 245, 245);
+    margin: .15rem;
+    padding: 0;
+    float: left;
+    display: inline-block;
+    text-align: left;
+    overflow: hidden;
+
+    input {
+      background-color: transparent;
+      width: 15%;
+      height: 100%;
+      line-height: 100%;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      float: left;
+    }
+
+    label {
+      float: right;
+      //margin: 0;
+      padding: 0;
+      background-color: transparent;
+      border: 1.3px solid @headBgColor;
+      color: @headBgColor;
+      text-align: center;
+      font-size: xx-large;
+      font-weight: bold;
+      width: 20%;
+      height: .7rem;
+      line-height: .7rem;
+      border-radius: 5px;
+      margin: .15rem .1rem;
+    }
+
+  }
+
+  .img-btn,
+  .voice-btn {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    margin: 0;
+    border-bottom: 1px solid #dadada;
+    background-color: @headBgColor;
+    //padding: .15rem .2rem;
+    color: white;
+    font-weight: normal;
+
+    i {
+      height: 100%;
+      width: 40%;
+      display: inline-block;
+
+    }
+
+    span {
+      height: 100%;
+      width: 60%;
+      display: inline-block;
+
+    }
+
+  }
+
+
+
+  .booking-submit-btn {
+    height: @btnHeight;
+    line-height: @btnHeight;
+    width: @btnWidth;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: .5rem;
+  }
+  
 }

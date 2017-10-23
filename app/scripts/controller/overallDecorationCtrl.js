@@ -5,6 +5,9 @@
 
 angular.module('app').controller('overallDecorationCtrl', ['$scope', '$http', 'cache', '$state', function ($scope, $http, cache, $state) {
 
+	/**
+	 * 获取所有装修风格
+	 */
 	$http({
 		url: $scope.global.url + 'style',
 		method: 'GET'

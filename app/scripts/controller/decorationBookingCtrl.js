@@ -24,12 +24,8 @@ angular.module('app').controller('decorationBookingCtrl', ['$scope', '$http', 'c
 		//console.log(response);
 		if (response.data.status === 0) {
 			$scope.decorationTypes = response.data.records;
-
-
 			//console.log($scope.decorationTypes);
 		}
-
-
 	}, function (response) {
 		console.log('fail! ' + response);
 	});
