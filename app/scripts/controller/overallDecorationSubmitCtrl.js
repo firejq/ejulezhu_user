@@ -8,8 +8,13 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 	//初始化变量
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
+
 	$scope.bookingSubmitData = {
+		stylePrice: 0,//每平方价格
+		stylePriceTitle: '',//费用类型
+		styleTitle: '',//风格名称
 		address: '',//地址
+		addrId: 0,//地址Id
 		appointmentTime: '',//预约服务时间
 		roomArea: '',//房屋面积
 		roomNum: [//房间数量
@@ -29,7 +34,10 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 				name: 'bathRoomNum',
 				value: 0
 			}
-		]
+		],
+		imgInfoList: [],//上传图片信息
+		voiceId: '',//语音文件id
+		total: ''//装修估价
 	};
 
 
@@ -41,6 +49,14 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 			$scope.bookingSubmitData.roomNum[valIndex].value--;
 		}
 	};
+	$scope.evaluate = function () {
+		if ($scope.bookingSubmitData.roomArea === '') {
+			$scope.global.msg('请输入房屋面积');
+			return;
+		}
+		$scope.bookingSubmitData.total = $scope.bookingSubmitData.roomArea * $scope.bookingSubmitData.stylePrice;
+	};
+
 
 
 	/**
@@ -83,7 +99,9 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 			//console.log(response.data.records);
 			for (var i = 0, len = response.data.records.length; i < len; i ++) {
 				if (response.data.records[i].Id.toString() === $state.params.stylePriceId) {
+					//console.log(response.data.records[i]);
 					$scope.bookingSubmitData.stylePriceTitle = response.data.records[i].Introduction;
+					$scope.bookingSubmitData.stylePrice = response.data.records[i].Price;
 					break;
 				}
 			}
@@ -111,7 +129,9 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 		if (response.data.status === 0) {
 			for (var i = 0; i < response.data.records.length; i ++) {
 				if (response.data.records[i].IsDefaultaddr === 1) {
+					//console.log(response.data.records[i]);
 					$scope.bookingSubmitData.address = response.data.records[i].Region + response.data.records[i].Contactaddr;
+					$scope.bookingSubmitData.addrId = response.data.records[i].Id;
 					break;
 				}
 			}
@@ -125,6 +145,166 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 	});
 
 
+	/**
+	 * 图片上传按钮事件监听
+	 */
+	//监听上传按钮，选中文件即触发
+	$("#img-upload").on("change", function(e){
+		if (typeof e.target.files[0] !== 'undefined') {
+			var file = e.target.files[0]; //获取图片资源
+			var reader = new FileReader();
+			reader.readAsDataURL(file); // 读取文件
+			// 渲染文件
+			reader.onload = function(arg) {
+				var img = '<img class="img-upload-preview" src="' + arg.target.result + '" alt="preview"/>';
+				$("#img-upload-insert-label").before(img);
+			};
+
+			//上传图片
+			var img_form = new FormData();
+			img_form.append('File', file);
+			img_form.append('Mobileno', cache.get('Mobileno'));
+			img_form.append('Token', cache.get('Token'));
+			img_form.append('Reqtime', Math.round(new Date().getTime()/1000));
+
+			$http({
+				url: $scope.global.url + 'image/upload',
+				method: 'POST',
+				data: img_form,
+				headers: {
+					'Content-Type': undefined
+				},
+				transformRequest: angular.identity
+			}).then(function (response) {
+
+				//console.log(response);
+				if (response.data.Status === 0) {
+					//console.log('upload successfully');
+					//获取服务器回调信息：图片Id和外链地址，并存储到 imgInfoList 中
+					$scope.bookingSubmitData.imgInfoList.push({
+						Id: response.data.Id,
+						Url: $scope.global.ip + response.data.Url
+					});
+
+					//若选择图片数量到达4张，不再允许添加图片
+					if ($scope.bookingSubmitData.imgInfoList.length >= 4) {
+						document.getElementById('img-upload-insert-label').style.display='none';
+					}
+
+				} else {
+					$scope.global.msg('图片上传出错');
+				}
+			}, function (response) {
+				console.log('fail! ' + response);
+				$scope.global.msg('连接超时');
+			});
+		}
+	});
+
+	/**
+	 * 语音文件上传
+	 */
+	$("#voice-upload").on("change", function(e) {
+		if (typeof e.target.files[0] !== 'undefined') {
+			var file = e.target.files[0]; //获取语音文件资源
+
+			//上传语音文件
+			var voice_form = new FormData();
+			voice_form.append('File', file);
+			voice_form.append('Mobileno', cache.get('Mobileno'));
+			voice_form.append('Token', cache.get('Token'));
+			voice_form.append('Reqtime', Math.round(new Date().getTime() / 1000));
+
+			$http({
+				url: $scope.global.url + 'voice/upload',
+				method: 'POST',
+				data: voice_form,
+				headers: {
+					'Content-Type': undefined
+				},
+				transformRequest: angular.identity
+			}).then(function (response) {
+				console.log(response);
+				if (response.data.Status === 0) {
+					//console.log('upload successfully');
+					//获取服务器回调信息：将语音id存储到 $scope.bookingSubmitData.voiceId 中
+					$scope.bookingSubmitData.voiceId = response.data.Id;
+
+				} else {
+					$scope.global.msg('语音上传出错');
+				}
+			}, function (response) {
+				console.log('fail! ' + response);
+				$scope.global.msg('连接超时');
+			});
+		}
+	});
+
+
+	/**
+	 * 提交预约
+	 */
+	$scope.bookingSubmit = function () {
+
+		if ($scope.bookingSubmitData.appointmentTime === '') {
+			$scope.global.msg('请输入预约时间');
+			return;
+		}
+
+
+		//格式化图片id字符串
+		var imageIds = '';
+		for (var i = 0, len = $scope.bookingSubmitData.imgInfoList.length; i < len; i ++) {
+			if (i === 0) {
+				imageIds += $scope.bookingSubmitData.imgInfoList[i].Id;
+				continue;
+			}
+			imageIds += ',' + $scope.bookingSubmitData.imgInfoList[i].Id;
+		}
+
+
+		/**
+		 * 提交预约
+		 */
+		$http({
+			url: $scope.global.url + 'order/place',
+			method: 'GET',
+			params: {
+				Mobileno: mobilenoCookie,
+				Token: tokenCookie,
+				Usertype: 1,
+				Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
+				Type: 1,
+				ImageId: imageIds,//图片文件id
+				VoiceId: '',//语音文件id TODO
+				TotalPrice: $scope.bookingSubmitData.total,
+				AddrId: $scope.bookingSubmitData.addrId,//维修地址id
+				AppintmentTime: (new Date($scope.bookingSubmitData.appointmentTime).getTime())/1000,//unix时间戳
+				Attact: '',//留言 TODO 确定有没有？
+				Room: $scope.bookingSubmitData.roomNum[0].value,
+				Hall: $scope.bookingSubmitData.roomNum[1].value,
+				Kitchen: $scope.bookingSubmitData.roomNum[2].value,
+				Toilet: $scope.bookingSubmitData.roomNum[3].value,
+				Size: $scope.bookingSubmitData.roomArea,
+				StyleId: $state.params.styleId,
+				StylePriceId: $state.params.stylePriceId
+			}
+		}).then(function (response) {
+
+			console.log(response);
+			if (response.data.Status === 0) {
+				$scope.global.msg('您的订单已提交成功，我们将尽快与您取得联系~');
+				window.history.back();
+			} else {
+				$scope.global.msg('提交预约出错');
+			}
+		}, function (response) {
+			console.log('fail! ' + response);
+			$scope.global.msg('连接超时');
+		});
+
+
+	};
 
 
 

@@ -57,7 +57,7 @@ angular.module('app').controller('continueQueryPriceCtrl', ['$scope', '$http', '
 					});
 
 					//若选择图片数量到达4张，不再允许添加图片
-					if (imgInfoList.length >= 10) {
+					if (imgInfoList.length >= 4) {
 						document.getElementById('continue-query-price-pic-insert-label').style.display='none';
 					}
 

@@ -48,6 +48,7 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 		if (response.data.Status === 0) {
 			//将订单详情赋值到$scope.orderDetail中
 			$scope.orderDetail = response.data;
+			//console.log($scope.orderDetail);
 
 			//格式化下单时间，原格式：20171014092816，格式化为2017-10-14 09:28:16
 			var time = $scope.orderDetail.OrderTime;
@@ -60,18 +61,30 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 				$scope.orderDetail.ImageList[i] = $scope.global.ip + $scope.orderDetail.ImageList[i];
 			}
 
-			//若“确认报价”状态已完成，则将“取消订单”的按钮换成“支付进度款”
-			if ($scope.orderDetail.records[4].FinishTime !== '') {
-				$scope.orderDetail.isConfirmedMasterPrice = true;
+			//若只有一条状态记录，说明该订单已被取消
+			if ($scope.orderDetail.records.length === 1) {
+				$scope.orderDetail.isCanceled = 1;
+
+				$scope.orderDetail.nowStateIntroduction = '已取消';
+			} else {
+				//若不止有一条记录，说明订单没被取消
+				$scope.orderDetail.isCanceled = 0;
+				//若“确认报价”状态已完成，则将“取消订单”的按钮换成“支付进度款”
+				if ($scope.orderDetail.records[4].FinishTime !== '') {
+					$scope.orderDetail.isConfirmedMasterPrice = true;
+				}
+				//当前状态
+				for (var i = 0, len = $scope.orderDetail.records.length; i < len; i ++) {
+					if ($scope.orderDetail.records[i].FinishTime === '') {
+						$scope.orderDetail.nowStateIntroduction = $scope.orderDetail.records[i-1].Introduction;
+						break;
+					}
+				}
+
 			}
 
-			//当前状态
-			for (var i = 0, len = $scope.orderDetail.records.length; i < len; i ++) {
-				if ($scope.orderDetail.records[i].FinishTime === '') {
-					$scope.orderDetail.nowStateIntroduction = $scope.orderDetail.records[i-1].Introduction;
-					break;
-				}
-			}
+
+
 
 
 

@@ -51,15 +51,32 @@
 		<label for="bathRoomNum" ng-click="minu(3)">－</label>
 	</div>
 
-	<label class="img-btn"><i class="fa fa-picture-o" aria-hidden="true"></i><span>现场图片</span></label>
-	<label class="voice-btn"><i class="fa fa-volume-off" aria-hidden="true"></i><span>语音留言</span></label>
+	<!--图片上传按钮（不可按）-->
+	<div class="img-btn">
+		<i class="fa fa-picture-o" aria-hidden="true"></i>
+		<span>现场图片</span>
+	</div>
+	<!--语音文件上传按钮（可按）-->
+	<label class="voice-btn" for="voice-upload">
+		<input id="voice-upload" type="file" accept="audio/mpeg"/>
+		<i class="fa fa-volume-off" aria-hidden="true"></i><span>语音留言</span>
+	</label>
 
-	<!--<li>现场图片</li>-->
-	<!--<li>语音留言</li>-->
-	<!--<li>图片上传</li>-->
-	<!--<li>合计：待报价</li>-->
-	<!--<li>装修估价</li>-->
+	<!--图片上传区域-->
+	<div class="img-upload">
+		<input id="img-upload" type="file"/>
+		<label id="img-upload-insert-label"
+		       for="img-upload"
+		       class="img-upload-insert-label">
+			<img class="img-upload-insert-btn" ng-src="/images/upload-img.png">
+		</label>
+	</div>
 
-	<button class="booking-submit-btn">提交预约</button>
+	<div class="total">合计：<span class="t-r" ng-bind="(bookingSubmitData.total==='')?'待报价':(bookingSubmitData.total|currency:'￥':1)"></span>
+		<button ng-click="evaluate()">装修估价</button>
+	</div>
+
+
+	<button class="booking-submit-btn" ng-click="bookingSubmit()">提交预约</button>
 </form>
 

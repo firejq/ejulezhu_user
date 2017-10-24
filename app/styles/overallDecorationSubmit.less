@@ -55,6 +55,7 @@
     font-weight: normal;
 
     margin: .1rem .1rem 0 0;
+    padding-left: .4rem;
 
   }
 
@@ -103,33 +104,121 @@
 
   .img-btn,
   .voice-btn {
-    width: 50%;
+    width: 30vw;
+    height: .5rem;
     display: inline-block;
     float: left;
-    margin: 0;
-    border-bottom: 1px solid #dadada;
     background-color: @headBgColor;
-    //padding: .15rem .2rem;
+    padding: 0;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
     color: white;
     font-weight: normal;
 
     i {
-      height: 100%;
-      width: 40%;
-      display: inline-block;
-
+      margin: 0;
+      padding: 0;
+      float: left;
+      height: .5rem;
+      line-height: .5rem;
+      width: 35%;
+      //display: inline-block;
     }
 
     span {
-      height: 100%;
-      width: 60%;
+      float: left;
+      margin: 0;
+      //padding-left: .15rem;
+      padding-right: .3rem;
+      height: .5rem;
+      line-height: .5rem;
+      width: 65%;
       display: inline-block;
+      font-size: .23rem;
+      font-weight: lighter;
+      text-align: center;
 
+    }
+
+  }
+  .img-btn {
+    margin-left: 5vw;
+    margin-right: 15vw;
+  }
+  .voice-btn {
+    margin-right: 5vw;
+    margin-left: 15vw;
+    input {
+      display: none;
     }
 
   }
 
 
+  .img-upload {
+    background-color: transparent;
+    display: block;
+    border-radius: 3px;
+    border-top: 1px solid rgb(213, 212, 212);
+    border-bottom: 1px solid rgb(213, 212, 212);
+    width: 100%;
+    height: 1.7rem;
+    //margin: auto;
+    padding: .1rem;
+    padding-bottom: .22rem;
+    overflow: hidden;
+
+    input {
+      display: none;
+    }
+    .img-upload-insert-label {
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+    }
+    .img-upload-preview,
+    .img-upload-insert-btn {
+      display: inline-block;
+      padding: 0;
+      margin: .1rem;
+      border: none;
+      width: 1rem;
+      height: 1rem;
+      float: left;
+    }
+    .img-upload-insert-btn {
+      border: 1.2px solid rgb(213, 212, 212);
+    }
+  }
+
+  .total {
+    text-align: left;
+    height: 1rem;
+    width: 100%;
+    padding: .1rem .2rem .2rem .15rem;
+
+    span {
+      display: inline-block;
+      //float: left;
+      height: .7rem;
+      line-height: .7rem;
+    }
+
+    button {
+      background-color: red;
+      color: white;
+      display: inline-block;
+      height: .7rem;
+      line-height: .7rem;
+      width: 20%;
+      border-radius: 2px;
+      float: right;
+      padding: 0;
+      margin: 0;
+      font-size: small;
+
+    }
+  }
 
   .booking-submit-btn {
     height: @btnHeight;
@@ -138,8 +227,8 @@
     color: white;
     background-color: red;
     border-radius: 5px;
-    margin: auto;
-    margin-top: .5rem;
+    //margin: auto;
+    margin: .5rem auto;
   }
   
 }

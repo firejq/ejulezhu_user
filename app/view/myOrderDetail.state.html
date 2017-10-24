@@ -1,4 +1,4 @@
-<section class="my-order-detail-state">
+<section ng-show="!orderDetail.isCanceled" class="my-order-detail-state">
 	<!-- TODO 此部分写法应优化-->
 	<div class="f-l my-order-detail-state-img">
 		<img ng-src="{{orderDetail.records[0].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
