@@ -1,0 +1,317 @@
+.repair-booking-form {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+
+  #title-introduction {
+    height: 1rem;
+    line-height: 1rem;
+    width: 100%;
+    color: red;
+    background-color: rgb(239, 239, 239);
+    font-weight: normal;
+    padding-left: .15rem;
+  }
+
+  #selected-type-label {
+    height: 1rem;
+    line-height: 1rem;
+    width: 27%;
+    font-weight: normal;
+    float: left;
+    margin: 0;
+    border-bottom: 1px solid @borderColor;
+
+    img {
+      text-align: center;
+      height: 26%;
+      margin: 0 5%;
+    }
+  }
+  #selected-type-label+input {
+    width: 73%;
+    height: 1rem;
+    line-height: 1rem;
+    border: none;
+    border-bottom: 1px solid @borderColor;
+    float: left;
+    margin: 0;
+  }
+
+  .form-item {
+    margin: 0;
+    padding: 0;
+    height: 1rem;
+    line-height: 1rem;
+    width: 100%;
+    display: block;
+    float: left;
+    border-bottom: 1px solid @borderColor;
+
+    label {
+      display: inline-block;
+      height: 100%;
+      width: 30%;
+      font-weight: normal;
+      margin: 0;
+      float: left;
+      padding-left: .15rem;
+
+
+    }
+
+    .form-item-value {
+      display: inline-block;
+      height: 100%;
+      width: 62%;
+      border: none;
+      text-align: right;
+      float: left;
+
+    }
+    .form-item-arrow {
+      display: inline-block;
+      height: 100%;
+      width: 8%;
+      float: left;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAABECAYAAADtAUf/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEUzMTE3Q0RCOTIyMTFFNjhERkJCNTNEQjc1MDE4RjEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MEUzMTE3Q0VCOTIyMTFFNjhERkJCNTNEQjc1MDE4RjEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowRTMxMTdDQkI5MjIxMUU2OERGQkI1M0RCNzUwMThGMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowRTMxMTdDQ0I5MjIxMUU2OERGQkI1M0RCNzUwMThGMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuZisjoAAAFCSURBVHja7NrLEYIwEAbg4FAAJdiBloAVaAfiOcV44Q52YAdSAiVQAlagl90ZZocMCAnZTdzLD+SS+ciDAZKyLBWpPWSnNiit9ej1nWJa6eC4gKwgb5C1j46xFsuJlDKc138xEGvg+AF55SAnalYqDnIixFjJiRJjISdSzKucaDEql0GeXcoFIUblcI89kPY7ZEsyXrEeMjfI4Rh8QZ6WyAUltolckGJO5YIWcyLHViwZeXdhq7KJHaIfymmt2+jFVslFLbZILop1bG59THcvupV/amzhin8k7e/hjsF+VqbcpKIcY6ukohL7SSrqJ1irUkGLOZEKUsypVJBilUEKq1gjFZQYSl0M7fhF+GmjY6LFKjJ2TFK1zY6JFPMiJVLMq5QoMRZSIsRyTlIixBoi8/8bau6sRBkU7Hx2jK3YV4ABAGFwZZXzooRiAAAAAElFTkSuQmCC");
+      background-size: 20%;
+      background-repeat: no-repeat;
+      background-position-y: 50%;
+      background-position-x: 70%;
+    }
+  }
+
+
+  .form-item-time,
+  .form-item-addr {
+    float: left;
+    height: 1rem;
+    width: 100%;
+
+
+    .form-item-span {
+      height: 1rem;
+      line-height: 1rem;
+      margin: 0;
+      padding-left: .15rem;
+      display: inline-block;
+      width: 30%;
+      float: left;
+      border-bottom: 1px solid @borderColor;
+    }
+
+    input {
+      display: inline-block;
+      text-align: right;
+      border: none;
+      height: 1rem;
+      margin: 0;
+      padding: 0;
+      color: rgb(155, 155, 155);
+      width: 62%;
+      float: left;
+      border-bottom: 1px solid @borderColor;
+    }
+
+    label {
+      display: inline-block;
+      font-weight: normal;
+      color: rgb(155, 155, 155);
+      text-align: right;
+      height: 1rem;
+      margin: 0;
+      padding: 0;
+      float: left;
+    }
+
+    .form-item-arrow {
+      display: inline-block;
+      height: 100%;
+      width: 8%;
+      float: left;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAABECAYAAADtAUf/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEUzMTE3Q0RCOTIyMTFFNjhERkJCNTNEQjc1MDE4RjEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MEUzMTE3Q0VCOTIyMTFFNjhERkJCNTNEQjc1MDE4RjEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowRTMxMTdDQkI5MjIxMUU2OERGQkI1M0RCNzUwMThGMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowRTMxMTdDQ0I5MjIxMUU2OERGQkI1M0RCNzUwMThGMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuZisjoAAAFCSURBVHja7NrLEYIwEAbg4FAAJdiBloAVaAfiOcV44Q52YAdSAiVQAlagl90ZZocMCAnZTdzLD+SS+ciDAZKyLBWpPWSnNiit9ej1nWJa6eC4gKwgb5C1j46xFsuJlDKc138xEGvg+AF55SAnalYqDnIixFjJiRJjISdSzKucaDEql0GeXcoFIUblcI89kPY7ZEsyXrEeMjfI4Rh8QZ6WyAUltolckGJO5YIWcyLHViwZeXdhq7KJHaIfymmt2+jFVslFLbZILop1bG59THcvupV/amzhin8k7e/hjsF+VqbcpKIcY6ukohL7SSrqJ1irUkGLOZEKUsypVJBilUEKq1gjFZQYSl0M7fhF+GmjY6LFKjJ2TFK1zY6JFPMiJVLMq5QoMRZSIsRyTlIixBoi8/8bau6sRBkU7Hx2jK3YV4ABAGFwZZXzooRiAAAAAElFTkSuQmCC");
+      background-size: 20%;
+      background-repeat: no-repeat;
+      background-position-y: 50%;
+      background-position-x: 70%;
+      border-bottom: 1px solid @borderColor;
+    }
+  }
+
+
+  .form-item-addr {
+    margin-top: .3rem;
+    border-top: 1px solid @borderColor;
+  }
+
+  .img-btn,
+  .voice-btn {
+    width: 30vw;
+    height: .5rem;
+    display: inline-block;
+    float: left;
+    background-color: @headBgColor;
+    padding: 0;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    color: white;
+    font-weight: normal;
+
+    i {
+      margin: 0;
+      padding: 0;
+      float: left;
+      height: .5rem;
+      line-height: .5rem;
+      width: 35%;
+      padding-left: .3rem;
+      //display: inline-block;
+    }
+
+    span {
+      float: left;
+      margin: 0;
+      //padding-left: .15rem;
+      padding-right: .3rem;
+      height: .5rem;
+      line-height: .5rem;
+      width: 65%;
+      display: inline-block;
+      font-size: .23rem;
+      font-weight: lighter;
+      text-align: center;
+
+    }
+
+  }
+  .img-btn {
+    margin-left: 5vw;
+    margin-right: 15vw;
+  }
+  .voice-btn {
+    margin-right: 5vw;
+    margin-left: 15vw;
+    input {
+      display: none;
+    }
+
+  }
+
+
+  .img-upload {
+    background-color: transparent;
+    display: block;
+    border-radius: 3px;
+    border-top: 1px solid @borderColor;
+    border-bottom: 1px solid @borderColor;
+    width: 100%;
+    height: 1.7rem;
+    //margin: auto;
+    padding: .1rem;
+    padding-bottom: .22rem;
+    overflow: hidden;
+
+    input {
+      display: none;
+    }
+    .img-upload-insert-label {
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+    }
+    .img-upload-preview,
+    .img-upload-insert-btn {
+      display: inline-block;
+      padding: 0;
+      margin: .1rem;
+      border: none;
+      width: 1rem;
+      height: 1rem;
+      float: left;
+    }
+    .img-upload-insert-btn {
+      border: 1.2px solid rgb(213, 212, 212);
+    }
+  }
+
+
+
+  .total {
+    text-align: left;
+    height: 1rem;
+    width: 100%;
+    padding: .1rem .3rem .2rem .15rem;
+    border-bottom: 1px solid @borderColor;
+
+    span {
+      display: inline-block;
+      //float: left;
+      height: .7rem;
+      line-height: .7rem;
+    }
+
+    button {
+      background-color: red;
+      color: white;
+      display: inline-block;
+      height: .6rem;
+      line-height: .6rem;
+      width: 28%;
+      border-radius: 5px;
+      box-shadow: 1px 1px 2px grey;
+      float: right;
+      padding: 0;
+      margin: 0;
+      font-size: small;
+
+    }
+  }
+
+
+
+  .custom-message {
+    width: 100%;
+    height: 2rem;
+    border-bottom: 1px solid @borderColor;
+    border-top: 1px solid @borderColor;
+    float: left;
+    margin-top: .3rem;
+    padding: .15rem;
+
+    .form-item-span {
+      height: 100%;
+      width: 20%;
+      float: left;
+    }
+
+    textarea {
+      resize: none;
+      border: none;
+      height: 100%;
+      width: 80%;
+      float: left;
+
+    }
+
+  }
+
+
+
+  .repair-booking-submit {
+    width: 100%;
+    text-align: center;
+    display: block;
+
+    button {
+      background-color: red;
+      color: white;
+      width: @btnWidth;
+      height: @btnHeight;
+      padding: 0;
+      border-radius: 5px;
+      margin: .2rem auto;
+    }
+
+  }
+}

@@ -1,29 +1,40 @@
 <div app-head text="维修类型" has-back="true"></div>
 <form class="pt-90 furniture-repair-type-select">
-	<input id="fix-type-wall" type="checkbox">
-	<label for="fix-type-wall">墙面糊裱类</label>
-	<input id="fix-type-light" type="checkbox">
-	<label for="fix-type-light">照明灯具类</label>
-	<input id="fix-type-hot-water" type="checkbox">
-	<label for="fix-type-hot-water">水暖器材</label>
-	<input id="fix-type-ceiling" type="checkbox">
-	<label for="fix-type-ceiling">天花吊顶类</label>
-	<input id="fix-type-computer" type="checkbox">
-	<label for="fix-type-computer">电脑智能类</label>
-	<input id="fix-type-soft-finishes" type="checkbox">
-	<label for="fix-type-soft-finishes">软饰类</label>
-	<input id="fix-type-door" type="checkbox">
-	<label for="fix-type-door">门锁类</label>
-	<input id="fix-type-wooden-finishes" type="checkbox">
-	<label for="fix-type-wooden-finishes">木饰面类</label>
-	<input id="fix-type-floor" type="checkbox">
-	<label for="fix-type-floor">地面类</label>
-	<input id="fix-type-pipeline-dredge" type="checkbox">
-	<label for="fix-type-pipeline-dredge">管道疏通类</label>
-	<input id="fix-type-waterproof-trap" type="checkbox">
-	<label for="fix-type-waterproof-trap">防水补漏类</label>
-	<input id="fix-type-wire-switch" type="checkbox">
-	<label for="fix-type-wire-switch">电线开关类</label>
+	<input id="fix-type-wall" type="checkbox" ng-model="fixTypes[0].value">
+	<label for="fix-type-wall" ng-class="fixTypes[0].value?'label-pressed':''">墙面糊裱类</label>
+
+	<input id="fix-type-light" type="checkbox" ng-model="fixTypes[1].value">
+	<label id="fix-type-light-label" for="fix-type-light" ng-class="fixTypes[1].value?'label-pressed':''">照明灯具类</label>
+
+	<input id="fix-type-hot-water" type="checkbox" ng-model="fixTypes[2].value">
+	<label for="fix-type-hot-water" ng-class="fixTypes[2].value?'label-pressed':''">水暖器材</label>
+
+	<input id="fix-type-ceiling" type="checkbox" ng-model="fixTypes[3].value">
+	<label for="fix-type-ceiling" ng-class="fixTypes[3].value?'label-pressed':''">天花吊顶类</label>
+
+	<input id="fix-type-computer" type="checkbox" ng-model="fixTypes[4].value">
+	<label for="fix-type-computer" ng-class="fixTypes[4].value?'label-pressed':''">电脑智能类</label>
+
+	<input id="fix-type-soft-finishes" type="checkbox" ng-model="fixTypes[5].value">
+	<label for="fix-type-soft-finishes" ng-class="fixTypes[5].value?'label-pressed':''">软饰面类</label>
+
+	<input id="fix-type-door" type="checkbox" ng-model="fixTypes[6].value">
+	<label for="fix-type-door" ng-class="fixTypes[6].value?'label-pressed':''">门锁类</label>
+
+	<input id="fix-type-wooden-finishes" type="checkbox" ng-model="fixTypes[7].value">
+	<label for="fix-type-wooden-finishes" ng-class="fixTypes[7].value?'label-pressed':''">木饰面类</label>
+
+	<input id="fix-type-floor" type="checkbox" ng-model="fixTypes[8].value">
+	<label for="fix-type-floor" ng-class="fixTypes[8].value?'label-pressed':''">地面类</label>
+
+	<input id="fix-type-pipeline-dredge" type="checkbox" ng-model="fixTypes[9].value">
+	<label for="fix-type-pipeline-dredge" ng-class="fixTypes[9].value?'label-pressed':''">管道疏通类</label>
+
+	<input id="fix-type-waterproof-trap" type="checkbox" ng-model="fixTypes[10].value">
+	<label for="fix-type-waterproof-trap" ng-class="fixTypes[10].value?'label-pressed':''">防水补漏类</label>
+
+	<input id="fix-type-wire-switch" type="checkbox" ng-model="fixTypes[11].value">
+	<label for="fix-type-wire-switch" ng-class="fixTypes[11].value?'label-pressed':''">电线开关类</label>
 
 
 	<button class="repair-booking-submit-btn" ng-click="repairBookingSubmit()">预约维修</button>

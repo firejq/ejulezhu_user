@@ -170,6 +170,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/overallDecorationSubmit/:styleId/:stylePriceId',
 				controller: 'overallDecorationSubmitCtrl',
 				templateUrl: 'view/overallDecorationSubmit.html'
+			})
+			.state('repairBooking', {
+				url: '/repairBooking/:types',
+				controller: 'repairBookingCtrl',
+				templateUrl: 'view/repairBooking.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

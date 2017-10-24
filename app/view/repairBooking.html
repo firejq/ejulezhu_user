@@ -1,0 +1,92 @@
+<div app-head text="维修预约" has-back="true"></div>
+<form class="pt-90 repair-booking-form">
+	<label id="title-introduction">注：带*号的为必填项,其他可不填</label>
+
+	<label id="selected-type-label">
+		<img ng-src="/images/home_icon_block.png" alt="">已选择维修
+	</label>
+	<input class="t-o"
+	       type="text"
+	       ng-model="furnitureRepairSubmitData.fixType"
+	       readonly
+	       title="fixType"/>
+
+	<div class="form-item">
+		<label>维修材料费</label>
+		<span class="t-o form-item-value"
+		      ng-bind="furnitureRepairSubmitData.materialprices|currency:'￥':0">
+		</span>
+		<span class="form-item-arrow"></span>
+	</div>
+
+	<div class="form-item">
+		<label>维修人工费</label>
+		<span class="t-o form-item-value"
+		      ng-bind="furnitureRepairSubmitData.labourprices|currency:'￥':0">
+		</span>
+		<span class="form-item-arrow"></span>
+	</div>
+
+	<div class="form-item-time">
+		<span class="form-item-span"><span class="t-r">*</span>上门时间</span>
+		<input id="appoint-time"
+		       type="datetime-local"
+		       ng-model="furnitureRepairSubmitData.appointTime"
+		       title="appointTime"/>
+		<!--<label for="appoint-time">预约师傅上门时间</label>-->
+		<span class="form-item-arrow"></span>
+	</div>
+
+	<div class="form-item-addr">
+		<span class="form-item-span"><span class="t-r">*</span>维修地址</span>
+		<input id="address"
+		       type="text"
+		       ng-model="furnitureRepairSubmitData.address"
+		       title="address"
+		       placeholder="请输入地址"
+		       ui-sref="manageAddr"
+		       readonly/>
+		<span class="form-item-arrow" ui-sref="manageAddr"></span>
+	</div>
+
+	<!--图片上传按钮（不可按）-->
+	<div class="img-btn">
+		<i class="fa fa-picture-o" aria-hidden="true"></i>
+		<span>现场图片</span>
+	</div>
+	<!--语音文件上传按钮（可按）-->
+	<label class="voice-btn" for="voice-upload">
+		<input id="voice-upload"
+		       type="file"
+		       accept="audio/mpeg"/>
+		<i class="fa fa-volume-off" aria-hidden="true"></i><span>语音留言</span>
+	</label>
+
+	<!--图片上传区域-->
+	<div class="img-upload">
+		<input id="img-upload" type="file"/>
+		<label id="img-upload-insert-label"
+		       for="img-upload"
+		       class="img-upload-insert-label">
+			<img class="img-upload-insert-btn" ng-src="/images/upload-img.png">
+		</label>
+	</div>
+
+	<!--获取暂估价区域-->
+	<div class="total">合计：<span class="t-r" ng-bind="furnitureRepairSubmitData.total|currency:'￥':0"></span>
+		<button ng-click="evaluate()">获取暂估价</button>
+	</div>
+
+	<!--客户留言区域-->
+	<div class="custom-message">
+		<span class="form-item-span"><span class="t-r">*</span>客户留言</span>
+		<textarea id="message"
+		          ng-model="furnitureRepairSubmitData.attact"
+		          placeholder="请输入对维修的简单描述(50字内)">
+		</textarea>
+	</div>
+
+	<div class="repair-booking-submit">
+		<button>提交订单</button>
+	</div>
+</form>

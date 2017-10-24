@@ -11,12 +11,74 @@
     display: none;
   }
 
-
   label {
     background-color: rgb(172, 172, 172);
     color: white;
     font-weight: normal;
+    height: .57rem;
+    line-height: .57rem;
+    display: inline-block;
+    margin: 0;
+    padding-left: .15rem;
+    padding-right: .15rem;
+    border-radius: 3px;
+    position: absolute;
   }
+
+  .label-pressed {
+    background-color: @headBgColor;
+  }
+
+  #fix-type-wall+label {
+    top: 2.54rem;
+    left: .86rem;
+  }
+  #fix-type-light+label {
+    top: 2.54rem;
+    left: 2.7rem;
+  }
+  #fix-type-hot-water+label {
+    top: 2.54rem;
+    right: 1.28rem;
+  }
+  #fix-type-ceiling+label {
+    top: 3.5rem;
+    left: .86rem;
+  }
+  #fix-type-computer+label {
+    top: 3.5rem;
+    right: 1.28rem;
+  }
+  #fix-type-soft-finishes+label {
+    top: 4.3rem;
+    right: .38rem;
+  }
+  #fix-type-door+label {
+    top: 5.1rem;
+    right: .38rem;
+  }
+  #fix-type-wooden-finishes+label {
+    top: 5.9rem;
+    left: .4rem;
+  }
+  #fix-type-floor+label {
+    top: 6.8rem;
+    left: .4rem;
+  }
+  #fix-type-pipeline-dredge+label {
+    top: 6.8rem;
+    left: 1.9rem;
+  }
+  #fix-type-waterproof-trap+label {
+    top: 6.8rem;
+    left: 3.75rem;
+  }
+  #fix-type-wire-switch+label {
+    top: 6.8rem;
+    left: 5.65rem;
+  }
+
+
 
 
 
@@ -27,14 +89,12 @@
     right: 0;
     padding: 0;
     margin: auto;
-
     border-radius: 5px;
     box-shadow: 1px 1px 2px #909090;
     background-color: red;
     color: white;
     width: @btnWidth;
     height: @btnHeight;
-
   }
 
 }

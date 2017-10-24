@@ -40,7 +40,10 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 		total: ''//装修估价
 	};
 
-
+	/**
+	 * 加减按钮触发函数
+	 * @param valIndex
+	 */
 	$scope.add = function (valIndex) {
 		$scope.bookingSubmitData.roomNum[valIndex].value++;
 	};
@@ -49,6 +52,9 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 			$scope.bookingSubmitData.roomNum[valIndex].value--;
 		}
 	};
+	/**
+	 * 总价估价按钮触发函数
+	 */
 	$scope.evaluate = function () {
 		if ($scope.bookingSubmitData.roomArea === '') {
 			$scope.global.msg('请输入房屋面积');
@@ -202,7 +208,7 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 	});
 
 	/**
-	 * 语音文件上传
+	 * 语音文件上传监听事件
 	 */
 	$("#voice-upload").on("change", function(e) {
 		if (typeof e.target.files[0] !== 'undefined') {
@@ -276,11 +282,11 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 				Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
 				Type: 1,
 				ImageId: imageIds,//图片文件id
-				VoiceId: '',//语音文件id TODO
+				VoiceId: '',//语音文件id
 				TotalPrice: $scope.bookingSubmitData.total,
-				AddrId: $scope.bookingSubmitData.addrId,//维修地址id
+				AddrId: $scope.bookingSubmitData.addrId,//维修地址Id
 				AppintmentTime: (new Date($scope.bookingSubmitData.appointmentTime).getTime())/1000,//unix时间戳
-				Attact: '',//留言 TODO 确定有没有？
+				Attact: '',//留言
 				Room: $scope.bookingSubmitData.roomNum[0].value,
 				Hall: $scope.bookingSubmitData.roomNum[1].value,
 				Kitchen: $scope.bookingSubmitData.roomNum[2].value,
