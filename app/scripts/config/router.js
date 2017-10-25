@@ -175,6 +175,14 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/repairBooking/:types',
 				controller: 'repairBookingCtrl',
 				templateUrl: 'view/repairBooking.html'
+			})
+			.state('repairBooking.materialPrice', {
+				url: '/materialPrice',
+				templateUrl: 'view/repairBooking.materialPrice.html'
+			})
+			.state('repairBooking.labourPrice', {
+				url: '/labourPrice',
+				templateUrl: 'view/repairBooking.labourPrice.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

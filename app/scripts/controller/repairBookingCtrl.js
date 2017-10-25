@@ -11,9 +11,11 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 
 
 	$scope.furnitureRepairSubmitData = {
-		fixType: '',//维修类型，多个用逗号分隔
-		materialprices: 0,//维修材料费
-		labourprices: 0,//维修人工费
+		fixType: '',//已选择维修类型，多个用逗号分隔
+		materialPrices: [],//已选择类型对应的所有维修材料，每一种材料包括描述、单价、Id、单位
+		labourPrices: [],//已选择类型对应的所有人工费，每一种人工费包括描述、单价、Id
+		selectedMaterial: [],//已选择的维修材料（Id和数量)，如[{materialId:1,number:2}, {materialId:2,number:1}]
+		selectedLabour: [],//已选择的维修人工费（Id和数量），如[{labourId:1,number:2}, {labourId:2,number:1}]
 		appointTime: '',//上门时间
 		addrId: 0,//地址Id
 		address: '',//地址
@@ -22,16 +24,81 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 		total: '',//装修估价
 		attact: '',//用户留言
 	};
-	//格式化“维修类型”，原格式：xxx,xxx 目标格式：xxx xxx
+	//格式化“维修类型”，用于在页面显示，原格式：xxx,xxx 目标格式：xxx xxx
 	for (var i = 0, len = $state.params.types.split(',').length; i < len; i++) {
 		$scope.furnitureRepairSubmitData.fixType += $state.params.types.split(',')[i] + ' ';
 	}
+
+
 	/**
 	 * 总价估价按钮触发函数
 	 */
 	$scope.evaluate = function () {
 		//TODO
 	};
+
+
+
+	/**
+	 * 获取指定维修类型的详细报价信息：物料、人力单价
+	 */
+	$http({
+		url: $scope.global.url + 'price/request',
+		method: 'GET',
+		params: {
+			Fixtype: $state.params.types//维修类型，多个用英文逗号分隔，注意不能有空格
+		}
+	}).then(function (response) {
+		//console.log(response);
+		if (response.data.status === 0) {
+
+			//遍历各个类型对应的工种价格信息，为设计好的数据结构赋值
+			for (var keyName in response.data) {
+				if (keyName !== 'status') {
+
+					$scope.furnitureRepairSubmitData.materialPrices.push({
+						typeName: keyName,//维修类型名称
+						kinds: []//该类型拥有的所有种类
+					});
+					//计算数组的最后一项的索引，即当前 keyName 对应的项
+					var lastIndexOfMaterial = $scope.furnitureRepairSubmitData.materialPrices.length - 1;
+					for (var i = 0, len = response.data[keyName].materialprices.length; i < len; i++) {
+						$scope.furnitureRepairSubmitData.materialPrices[lastIndexOfMaterial].kinds.push({
+							describe: response.data[keyName].materialprices[i].Desc,
+							id: response.data[keyName].materialprices[i].Id,
+							price: response.data[keyName].materialprices[i].Price,
+							unit: response.data[keyName].materialprices[i].Unit
+						});
+					}
+
+
+					$scope.furnitureRepairSubmitData.labourPrices.push({
+						typeName: keyName,//维修类型名称
+						kinds: []//该类型拥有的所有种类
+					});
+					//计算数组的最后一项的索引，即当前 keyName 对应的项
+					var lastIndexOfLabour = $scope.furnitureRepairSubmitData.labourPrices.length - 1;
+					for (var i = 0, len = response.data[keyName].labourprices.length; i < len; i++) {
+						$scope.furnitureRepairSubmitData.labourPrices[lastIndexOfLabour].kinds.push({
+							describe: response.data[keyName].labourprices[i].Desc,
+							id: response.data[keyName].labourprices[i].Id,
+							price: response.data[keyName].labourprices[i].Price
+						});
+					}
+				}
+			}
+
+
+			console.log($scope.furnitureRepairSubmitData);
+
+		} else {
+			$scope.global.msg('获取信息出错');
+		}
+
+	}, function (response) {
+		console.log('fail! ' + response);
+	});
+
 
 
 
@@ -168,26 +235,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 
 
 
-	/**
-	 * 获取指定维修类型的详细报价信息：物料、人力单价
-	 */
-	$http({
-		url: $scope.global.url + 'price/request',
-		method: 'GET',
-		params: {
-			Fixtype: $state.params.types//维修类型，多个用英文逗号分隔，注意不能有空格
-		}
-	}).then(function (response) {
-		//console.log(response);
-		if (response.data.status === 0) {
-			console.log(response.data);
-		} else {
-			$scope.global.msg('获取信息出错');
-		}
 
-	}, function (response) {
-		console.log('fail! ' + response);
-	});
 
 }]);
 

@@ -14,17 +14,19 @@
 	<div class="form-item">
 		<label>维修材料费</label>
 		<span class="t-o form-item-value"
-		      ng-bind="furnitureRepairSubmitData.materialprices|currency:'￥':0">
+		      ng-bind="furnitureRepairSubmitData.materialprices|currency:'￥':0"
+		      ui-sref="repairBooking.materialPrice">
 		</span>
-		<span class="form-item-arrow"></span>
+		<span class="form-item-arrow" ui-sref="repairBooking.materialPrice"></span>
 	</div>
 
 	<div class="form-item">
 		<label>维修人工费</label>
 		<span class="t-o form-item-value"
-		      ng-bind="furnitureRepairSubmitData.labourprices|currency:'￥':0">
+		      ng-bind="furnitureRepairSubmitData.labourprices|currency:'￥':0"
+		      ui-sref="repairBooking.labourPrice">
 		</span>
-		<span class="form-item-arrow"></span>
+		<span class="form-item-arrow" ui-sref="repairBooking.labourPrice"></span>
 	</div>
 
 	<div class="form-item-time">
@@ -90,3 +92,6 @@
 		<button>提交订单</button>
 	</div>
 </form>
+
+<!--维修材料费 和 维修人工费 的子视图-->
+<ui-view></ui-view>
