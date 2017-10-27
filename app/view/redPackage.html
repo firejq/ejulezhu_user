@@ -1,0 +1,71 @@
+<div app-head text="抢红包" has-back="true"></div>
+<div class="red-package-page pt-90">
+
+	<img id="rule-img"
+	     ng-src="/images/redpackage/public_btn_rule.png"
+	     ng-click="showRule()"
+	     alt="">
+	<span id="rule-text" ng-click="showRule()">规则</span>
+
+	<div id="anticipate" class="main" ng-show="redPackageData.visible.anticipate">
+		<img class="red-doll"
+		     ng-src="/images/redpackage/public_img_anticipate.png"
+		     alt="">
+		<img id="grab-redpackage-btn"
+		     ng-src="/images/redpackage/public_btn_redenvelope.png"
+		     ng-click="grabRedPackage()"
+		     alt="">
+	</div>
+
+	<div id="happy" class="main" ng-show="redPackageData.visible.happy">
+		<img ng-src="/images/redpackage/public_img_happy.png"
+		     class="red-doll"
+		     alt="">
+		<span class="introduction"
+		      ng-bind="'抢到'+redPackageData.score+'积分'" ></span>
+		<img class="continue-grab"
+		     ng-src="/images/redpackage/public_btn_goon.png"
+		     ng-click="grabRedPackage()"
+		     alt="">
+		<img class="go-share"
+		     ng-src="/images/redpackage/public_btn_share1.png"
+		     ng-click="share()"
+		     alt="">
+	</div>
+
+	<div id="sad" class="main" ng-show="redPackageData.visible.sad">
+		<img ng-src="/images/redpackage/public_img_sad.png"
+		     class="red-doll"
+		     alt="">
+		<span class="introduction"
+		      ng-bind="'啥都没有...'" ></span>
+		<img class="continue-grab"
+		     ng-src="/images/redpackage/public_btn_goon.png"
+		     ng-click="grabRedPackage()"
+		     alt="">
+		<img class="go-share"
+		     ng-src="/images/redpackage/public_btn_share1.png"
+		     ng-click="share()"
+		     alt="">
+	</div>
+
+	<div id="rule" ng-show="redPackageData.visible.rule">
+		<div id="background" ng-click="hideRule()"></div>
+		<div id="rule-article">
+			<header>
+				<span id="rule-title">活动规则</span>
+				<span id="cancel-btn" ng-click="hideRule()">×</span>
+			</header>
+			<div id="rule-content">
+				1) 注册用户后，可抢一次红包;<br>
+				2) 分享好友或分享到朋友圈可增加一次抢红包的机会;<br>
+				3) 抢红包工会则的最终解释权归易居乐筑e家修所有;<br>
+				4) 禁止作弊，在软件中如存在违规行为，易居乐筑e家修将取消您的奖励并撤销相关红包记录，并依照易居乐筑e家修相关规则对您进行处罚;<br>
+				5) 软件使用过程中，如遭遇自然灾害、网络攻击或系统故障等不可抗拒因素导致软件功能出问题的，易居乐筑无须承担赔偿责任或进行补偿;<br>
+				<span class="t-r footer">由广州市易居乐筑信息技术有限公司e家修提供</span>
+			</div>
+		</div>
+	</div>
+
+
+</div>

@@ -1,3 +1,31 @@
 <div class="repair-booking-labour-price">
 	<div app-head text="维修人工费" has-back="true"></div>
+	<ul id="repair-booking-labour-price-ul" class="pt-90">
+		<li ng-repeat="labourPrice in furnitureRepairSubmitData.labourPrices"
+		    ng-click="showModalOfLabour(labourPrice)">
+			<span ng-bind="labourPrice.typeName"></span>
+			<span class="form-item-arrow"></span>
+		</li>
+		<li class="t-r total" ng-bind="'合计：'+furnitureRepairSubmitData.labourPricesTotal"></li>
+	</ul>
+
+
+
+	<div id="{{'modal-'+currentLabourPrice.$$hashKey[7]}}"
+	     class="repair-booking-modal-sheet-list ng-hide">
+		<div class="background" ng-click="hideModalOfLabour(currentLabourPrice)"></div>
+		<div class="select-form">
+			<ul>
+				<li ng-repeat="kind in currentLabourPrice.kinds"
+				    ng-bind="kind.describe+kind.price"
+				    ng-click="labourPriceConfirm(kind.id)">
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!--<button class="labour-price-complete" ng-click="labourPriceComplete()">完成</button>-->
+
+
+
 </div>
