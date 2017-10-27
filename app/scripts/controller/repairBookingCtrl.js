@@ -15,9 +15,11 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 		fixTypeSubmit: $state.params.types,//已选择维修类型，多个用逗号分隔
 		materialPrices: [],//已选择类型对应的所有维修材料，每一种材料包括描述、单价、Id、单位
 		labourPrices: [],//已选择类型对应的所有人工费，每一种人工费包括描述、单价、Id
-		selectedMaterial: '',//已选择的维修材料（Id和数量)，格式为：materialId:number,如 1:1,2:5
+		//selectedMaterial:[],//已选择的维修材料，格式：[{id:1,selectedNum:1,price:100},{...}]
+		selectedMaterialSubmit: '',//已选择的维修材料（Id和数量)，格式为：materialId:number,如 1:1,2:5
 		materialPricesTotal: 0,//维修材料费合计
-		selectedLabour: '',//已选择的维修人工费（Id和数量），如[{labourId:1,number:2}, {labourId:2,number:1}]
+		//selectedLabour:[],//已选择的维修材料，格式：[{id:1,selectedNum:1,price:100},{...}]
+		selectedLabourSubmit: '',//已选择的维修人工费（Id和数量），如[{labourId:1,number:2}, {labourId:2,number:1}]
 		labourPricesTotal: 0,//人工费合计
 		appointTime: '',//上门时间
 		addrId: 0,//地址Id
@@ -37,7 +39,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 	 * 点击维修人工费按钮的跳转函数
 	 */
 	$scope.labourPricesLink = function () {
-		console.log($scope.furnitureRepairSubmitData.materialPricesTotal);
+		//console.log($scope.furnitureRepairSubmitData.materialPricesTotal);
 		if ($scope.furnitureRepairSubmitData.materialPricesTotal === 0) {
 			$scope.global.msg('请先选择维修材料费');
 		} else {
@@ -105,7 +107,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 					}
 				}
 			}
-			console.log($scope.furnitureRepairSubmitData);
+			//console.log($scope.furnitureRepairSubmitData);
 
 		} else {
 			$scope.global.msg('获取信息出错');
@@ -249,7 +251,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 
 
 	/****************************************************
-   * 维修材料费明细子页面的控制代码
+	 * 维修材料费明细子页面的控制代码
 	 ****************************************************/
 
 	/**
@@ -262,6 +264,13 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 			newObj[i] = shallowClone(myObj[i]);
 		}
 		return newObj;
+	};
+	/**
+	 * 替换指定位置的字符
+	 */
+	var replacePos = function (strObj, pos, replaceText)
+	{
+		return strObj.substr(0, pos - 1) + replaceText + strObj.substring(pos, strObj.length);
 	};
 
 	/**
@@ -286,17 +295,67 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 	 */
 	$scope.materialPriceConfirm = function () {
 
+		//console.log($scope.currentMaterialPrice);
+
 		//将修改后的值赋值到显示信息中
 		for (var i = 0, lenI = $scope.furnitureRepairSubmitData.materialPrices.length; i < lenI; i ++) {
 			if ($scope.furnitureRepairSubmitData.materialPrices[i].$$hashKey === $scope.currentMaterialPrice.$$hashKey) {
 				for (var kind in $scope.currentMaterialPrice.kinds) {
-					if ($scope.currentMaterialPrice.kinds[kind].selected > 0) {
+					//console.log('there');
+					//console.log($scope.furnitureRepairSubmitData.materialPrices);
+					if ($scope.currentMaterialPrice.kinds[kind].selected.toString() !== $scope.furnitureRepairSubmitData.materialPrices[i].kinds[kind].selected.toString()) {
+						//console.log('kind-'+kind+' 的数量发生了改变');
 						$scope.furnitureRepairSubmitData.materialPrices[i].kinds[kind].selected = $scope.currentMaterialPrice.kinds[kind].selected;
+
+						var exitFlag = 0,//标志该kind是否已存在
+							numChangedFlag = 0;//标志数量是否发生了变化
 						//格式化提交预约的数据,格式为：materialId:number,如 1:1,2:5
-						if ($scope.furnitureRepairSubmitData.selectedMaterial === '') {
-							$scope.furnitureRepairSubmitData.selectedMaterial = $scope.currentMaterialPrice.kinds[kind].id + ':' + $scope.currentMaterialPrice.kinds[kind].selected;
+						if ($scope.furnitureRepairSubmitData.selectedMaterialSubmit === '') {
+							//console.log('首次提交');
+
+							//若首次提交
+							numChangedFlag = 1;
+							$scope.furnitureRepairSubmitData.selectedMaterialSubmit = $scope.currentMaterialPrice.kinds[kind].id + ':' + $scope.currentMaterialPrice.kinds[kind].selected;
 						} else {
-							$scope.furnitureRepairSubmitData.selectedMaterial += ',' + $scope.currentMaterialPrice.kinds[kind].id + ':' + $scope.currentMaterialPrice.kinds[kind].selected;
+							//若不是首次提交
+							//console.log('非首次提交');
+							var itemKeyAndValues = $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',');
+							for (var index in itemKeyAndValues) {
+								if (itemKeyAndValues[index].split(':')[0].toString() === $scope.currentMaterialPrice.kinds[kind].id.toString()) {
+									//console.log('该kind已在string中存在');
+									//该kind已存在
+									exitFlag = 1;
+									if (itemKeyAndValues[index].split(':')[1].toString() !== $scope.currentMaterialPrice.kinds[kind].selected.toString()) {
+										//若该kind的数量发生了变化，则执行数量更新，否则不执行操作
+										numChangedFlag = 1;
+										if ($scope.currentMaterialPrice.kinds[kind].selected !== 0) {
+											//若更新后值不为0
+											$scope.furnitureRepairSubmitData.selectedMaterialSubmit = $scope.furnitureRepairSubmitData.selectedMaterialSubmit.replace($scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[0] + ':' + $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[1], $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[0]+':'+$scope.currentMaterialPrice.kinds[kind].selected);
+										} else {
+											//若更新后值为0 删除此字段
+											if ($scope.furnitureRepairSubmitData.selectedMaterialSubmit.indexOf(',' + $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[0] + ':' + $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[1]) !== -1) {
+												//若此字段前有逗号，一并删除
+												$scope.furnitureRepairSubmitData.selectedMaterialSubmit = $scope.furnitureRepairSubmitData.selectedMaterialSubmit.replace(',' + $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[0] + ':' + $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[1], '');
+											} else {
+												//若此字段前没有逗号
+												$scope.furnitureRepairSubmitData.selectedMaterialSubmit = $scope.furnitureRepairSubmitData.selectedMaterialSubmit.replace($scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[0] + ':' + $scope.furnitureRepairSubmitData.selectedMaterialSubmit.split(',')[index].split(':')[1], '');
+											}
+
+
+										}
+
+
+									}
+									break;
+								}
+							}
+							if (exitFlag === 0) {
+								//该kind未存在，插入一条新纪录
+								//console.log('此kind未在string中存在');
+								numChangedFlag = 1;
+								$scope.furnitureRepairSubmitData.selectedMaterialSubmit += ',' + $scope.currentMaterialPrice.kinds[kind].id + ':' + $scope.currentMaterialPrice.kinds[kind].selected;
+							}
+
 						}
 
 					}
@@ -305,14 +364,30 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 			}
 		}
 
-		//计算维修材料费明细的合计
+
+
+		//console.log($scope.furnitureRepairSubmitData.materialPrices);
+		//若材料数量发生了变化，重新计算维修材料费明细的合计，否则不重新计算
+		//if (numChangedFlag === 1) {
+		//console.log('再次计算');
+		$scope.furnitureRepairSubmitData.materialPricesTotal = 0;
 		for (var i = 0, lenI = $scope.furnitureRepairSubmitData.materialPrices.length; i < lenI; i ++) {
 			for (var j = 0, lenJ = $scope.furnitureRepairSubmitData.materialPrices[i].kinds.length; j < lenJ; j ++) {
 				if ($scope.furnitureRepairSubmitData.materialPrices[i].kinds[j].selected > 0) {
 					$scope.furnitureRepairSubmitData.materialPricesTotal += $scope.furnitureRepairSubmitData.materialPrices[i].kinds[j].price * $scope.furnitureRepairSubmitData.materialPrices[i].kinds[j].selected;
+
 				}
 			}
 		}
+		//}
+
+
+		//删除字符串头部多余的逗号
+		if ($scope.furnitureRepairSubmitData.selectedMaterialSubmit[0] === ',') {
+			$scope.furnitureRepairSubmitData.selectedMaterialSubmit = replacePos($scope.furnitureRepairSubmitData.selectedMaterialSubmit, 1, '');
+		}
+		//console.log($scope.furnitureRepairSubmitData.selectedMaterialSubmit);
+
 
 		//隐藏modal层
 		$('#modal-'+$scope.currentMaterialPrice.$$hashKey[7]).addClass('ng-hide');
@@ -354,10 +429,10 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 			if ($scope.furnitureRepairSubmitData.labourPrices[i].$$hashKey === $scope.currentLabourPrice.$$hashKey) {
 				$scope.furnitureRepairSubmitData.labourPrices[i].selectedLabourId = labourPriceId;
 				//格式化提交预约的数据,格式为：labourId:number,如 1:1,2:5
-				if ($scope.furnitureRepairSubmitData.selectedLabour === '') {
-					$scope.furnitureRepairSubmitData.selectedLabour = labourPriceId + ':1';
+				if ($scope.furnitureRepairSubmitData.selectedLabourSubmit === '') {
+					$scope.furnitureRepairSubmitData.selectedLabourSubmit = labourPriceId + ':1';
 				} else {
-					$scope.furnitureRepairSubmitData.selectedLabour += ',' + labourPriceId + ':1';
+					$scope.furnitureRepairSubmitData.selectedLabourSubmit += ',' + labourPriceId + ':1';
 				}
 				break;
 			}
@@ -424,8 +499,8 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 				AppintmentTime: (new Date($scope.furnitureRepairSubmitData.appointTime).getTime())/1000,//unix时间戳
 				Attact: $scope.furnitureRepairSubmitData.attact,//留言
 				FixType: $scope.furnitureRepairSubmitData.fixTypeSubmit,//维修类型
-				LabourId: $scope.furnitureRepairSubmitData.selectedLabour,//人工Id
-				MaterialId: $scope.furnitureRepairSubmitData.selectedMaterial//材料Id
+				LabourId: $scope.furnitureRepairSubmitData.selectedLabourSubmit,//人工Id
+				MaterialId: $scope.furnitureRepairSubmitData.selectedMaterialSubmit//材料Id
 
 			}
 		}).then(function (response) {

@@ -40,9 +40,9 @@
 				<li ng-repeat="kind in currentMaterialPrice.kinds">
 					<span class="introduction" ng-bind="kind.describe+kind.price+'/'+kind.unit"></span>
 					<span class="number-operate">
-						<span class="number-operate-minus" ng-click="kind.selected=kind.selected-1;"></span>
+						<span class="number-operate-minus" ng-click="kind.selected>0?(kind.selected=kind.selected-1):''"></span>
 						<span class="number-operate-value t-r" ng-bind="kind.selected"></span>
-						<span class="number-operate-add" ng-click="kind.selected=kind.selected+1;"></span>
+						<span class="number-operate-add" ng-click="kind.selected=kind.selected+1"></span>
 					</span>
 				</li>
 			</ul>
