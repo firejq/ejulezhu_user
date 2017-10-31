@@ -88,7 +88,7 @@ angular.module('app')
 				}
 			}
 		}, function (transition, state) {
-				if (cache.get('Token') === '' || cache.get('Mobileno') === '') {
+				if (typeof cache.get('Token') === 'undefined' || typeof cache.get('Mobileno') === 'undefined') {
 					return $state.target('login');
 				}
 

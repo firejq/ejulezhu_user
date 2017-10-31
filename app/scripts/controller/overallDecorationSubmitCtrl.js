@@ -143,7 +143,7 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 			}
 			//console.log($scope.bookingSubmitData.address);
 		} else {
-			$scope.global.cancel('获取地址失败');
+			$scope.global.msg('获取地址失败');
 		}
 
 	}, function (response) {
