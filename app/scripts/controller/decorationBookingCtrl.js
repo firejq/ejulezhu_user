@@ -23,6 +23,8 @@ angular.module('app').controller('decorationBookingCtrl', ['$scope', '$http', 'c
 	}).then(function (response) {
 		//console.log(response);
 		if (response.data.status === 0) {
+			//console.log(response.data.records);
+			$scope.describe = response.data.Desc;
 			$scope.decorationTypes = response.data.records;
 			//console.log($scope.decorationTypes);
 		}

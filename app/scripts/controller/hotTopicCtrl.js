@@ -98,12 +98,12 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 
 				if ("undefined" === typeof $scope.items[id]) {
 					// 若是第一次请求
-					console.log('first request')
+					//console.log('first request');
 					$scope.items[id] = response.data.records;
 					$scope.total = response.data.Total;
 				} else {
 					// 若不是第一次请求
-					console.log("not first request");
+					//console.log("not first request");
 					for (var i = 0; i < response.data.records.length; i++) {
 						$scope.items[id].push(response.data.records[i]);
 					}

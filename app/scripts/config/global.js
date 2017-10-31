@@ -43,7 +43,7 @@ angular.module('app')
 	 */
 	.run(['$transitions', function ($transitions) {
 		$transitions.onEnter({entering: 'hotTopic'}, function (transition, state) {
-			//console.log(state);
+			//console.log(state.name);
 			document.getElementsByTagName('body')[0].style.height='auto';
 		});
 
@@ -88,7 +88,7 @@ angular.module('app')
 				}
 			}
 		}, function (transition, state) {
-				if (cache.get('Token') !== '' && cache.get('Mobileno') !== '') {
+				if (cache.get('Token') === '' || cache.get('Mobileno') === '') {
 					return $state.target('login');
 				}
 

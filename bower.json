@@ -6,7 +6,7 @@
     "firejq"
   ],
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/firejq/ejulezhu_user",
   "ignore": [
     "**/.*",
     "node_modules",
