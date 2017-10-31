@@ -183,6 +183,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			.state('repairBooking.labourPrice', {
 				url: '/labourPrice',
 				templateUrl: 'view/repairBooking.labourPrice.html'
+			})
+			.state('repairValuation', {
+				url: '/repairValuation',
+				controller: 'repairValuationCtrl',
+				templateUrl: 'view/repairValuation.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);
