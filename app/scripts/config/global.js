@@ -9,12 +9,24 @@ angular.module('app')
  */
 	.run(['$rootScope', function ($rootScope) {
 		var ip = 'http://120.25.74.193';
+		/**
+		 * 存储全局变量和方法
+		 */
 		$rootScope.global = {
 			ip: ip,
 			url: ip + '/v1/',
 			cryptid: '123456',
 			Mobileno: '',
 			Token: '',
+
+			footer: {//底部导航栏控制变量
+				isShown: false//是否显示，默认不显示
+			},
+
+			/**
+			 * 信息提示
+			 * @param content
+			 */
 			msg: function (content) {
 				layer.open({
 					content: content,
@@ -22,6 +34,11 @@ angular.module('app')
 					time: 1
 				});
 			},
+
+			/**
+			 * 报错信息提示
+			 * @param content
+			 */
 			cancel: function (content) {
 				layer.open({
 					content: content,
@@ -107,9 +124,56 @@ angular.module('app')
 				}
 			}
 		}, function (transition, state) {
-				if (typeof cache.get('Token') === 'undefined' || typeof cache.get('Mobileno') === 'undefined') {
-					return $state.target('login');
-				}
+			if (typeof cache.get('Token') === 'undefined' || typeof cache.get('Mobileno') === 'undefined') {
+				return $state.target('login');
+			}
 
+		})
+
+	}])
+
+
+	/**
+	 * 监听路由的状态变化
+	 * 根据不同的路由控制是否显示底部导航栏
+	 */
+	.run(['$transitions', '$rootScope', function ($transitions, $rootScope) {
+		$transitions.onEnter({
+			to: function (state) {
+				var showFooterState = [
+					'main',
+					'case',
+					'knowledge',
+					'me'
+				];
+				for (var i = 0; i < showFooterState.length; i ++) {
+					if (state.name === showFooterState[i]) {
+						return true;
+					}
+				}
+			}
+		}, function (transition, state) {
+			$rootScope.global.footer.isShown = true;
 		});
+
+		$transitions.onExit({
+			from: function (state) {
+				var showFooterState = [
+					'main',
+					'case',
+					'knowledge',
+					'me'
+				];
+				for (var i = 0; i < showFooterState.length; i ++) {
+					if (state.name === showFooterState[i]) {
+						return true;
+					}
+				}
+			}
+		}, function (transition, state) {
+			$rootScope.global.footer.isShown = false;
+		});
+
 	}]);
+
+

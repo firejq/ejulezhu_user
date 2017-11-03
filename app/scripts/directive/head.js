@@ -10,8 +10,11 @@ angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
 		templateUrl: 'view/template/head.html',
 		scope: {
 			hasBack: '@',
-			text: '@'
-			//hasComplete: '@'
+			text: '@',
+			hasComplete: '@',
+			hasRepairValuation: '@',
+			hasMessageBox: '@',
+			hasShare: '@'
 		},
 		link: function($scope) {
 			$scope.back = function() {
