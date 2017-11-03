@@ -1,0 +1,30 @@
+<div class="repair-valuation-labour-price">
+	<div app-head text="维修人工费" has-back="true"></div>
+	<ul id="repair-valuation-labour-price-ul" class="pt-90">
+		<li ng-click="showModalOfLabour()">
+			<span ng-bind="selectedFixType"></span>
+			<span class="form-item-arrow"></span>
+		</li>
+		<li class="t-r total" ng-bind="'合计：'+repairValuationData.labourPricesTotal"></li>
+	</ul>
+
+
+
+	<div id="labour-modal"
+	     class="repair-valuation-modal-sheet-list ng-hide">
+		<div class="background" ng-click="hideModalOfLabour()"></div>
+		<div class="select-form">
+			<ul>
+				<li ng-repeat="kind in repairValuationData.labourPrices"
+				    ng-bind="kind.Desc+kind.Price"
+				    ng-click="labourPriceConfirm(kind.Price)">
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!--<button class="labour-price-complete" ng-click="labourPriceComplete()">完成</button>-->
+
+
+
+</div>

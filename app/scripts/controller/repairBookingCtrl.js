@@ -255,31 +255,12 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 	 ****************************************************/
 
 	/**
-	 * 执行对象的浅复制
-	 */
-	var shallowClone = function (myObj) {
-		if(typeof(myObj) !== 'object' || myObj === null) return myObj;
-		var newObj = {};
-		for(var i in myObj){
-			newObj[i] = shallowClone(myObj[i]);
-		}
-		return newObj;
-	};
-	/**
-	 * 替换指定位置的字符
-	 */
-	var replacePos = function (strObj, pos, replaceText)
-	{
-		return strObj.substr(0, pos - 1) + replaceText + strObj.substring(pos, strObj.length);
-	};
-
-	/**
 	 * 点击维修材料的回调函数：显示模态框
 	 */
 	$scope.showModalOfMaterial = function (materialPrice) {
 
 		//对象的浅复制
-		$scope.currentMaterialPrice = shallowClone(materialPrice);
+		$scope.currentMaterialPrice = $scope.global.shallowClone(materialPrice);
 
 		$('#modal-'+materialPrice.$$hashKey[7]).removeClass('ng-hide');
 
@@ -384,7 +365,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 
 		//删除字符串头部多余的逗号
 		if ($scope.furnitureRepairSubmitData.selectedMaterialSubmit[0] === ',') {
-			$scope.furnitureRepairSubmitData.selectedMaterialSubmit = replacePos($scope.furnitureRepairSubmitData.selectedMaterialSubmit, 1, '');
+			$scope.furnitureRepairSubmitData.selectedMaterialSubmit = $scope.global.replacePos($scope.furnitureRepairSubmitData.selectedMaterialSubmit, 1, '');
 		}
 		//console.log($scope.furnitureRepairSubmitData.selectedMaterialSubmit);
 
@@ -454,10 +435,13 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 		$('#modal-'+$scope.currentLabourPrice.$$hashKey[7]).addClass('ng-hide');
 	};
 
-
-
-
 	/******************************************************/
+
+
+
+
+
+
 
 
 	/**
@@ -518,20 +502,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 			console.log('fail! ' + response);
 			$scope.global.msg('连接超时');
 		});
-
-
-
-
-
-
-
 	};
-
-
-
-
-
-
 
 
 

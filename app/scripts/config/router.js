@@ -188,6 +188,14 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/repairValuation',
 				controller: 'repairValuationCtrl',
 				templateUrl: 'view/repairValuation.html'
+			})
+			.state('repairValuation.materialPrice', {
+				url: '/materialPrice',
+				templateUrl: 'view/repairValuation.materialPrice.html'
+			})
+			.state('repairValuation.labourPrice', {
+				url: '/labourPrice',
+				templateUrl: 'view/repairValuation.labourPrice.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

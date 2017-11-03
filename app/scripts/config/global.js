@@ -32,8 +32,27 @@ angular.module('app')
 						layer.close(index);
 					}
 				});
+			},
+
+			/**
+			 * 执行对象的浅复制
+			 */
+			shallowClone: function (myObj) {
+				if(typeof(myObj) !== 'object' || myObj === null) return myObj;
+				var newObj = {};
+				for(var i in myObj){
+					newObj[i] = $rootScope.global.shallowClone(myObj[i]);
+				}
+				return newObj;
+			},
+
+			/**
+			 * 替换指定位置的字符
+			 */
+			replacePos: function (strObj, pos, replaceText) {
+				return strObj.substr(0, pos - 1) + replaceText + strObj.substring(pos, strObj.length);
 			}
-		};
+		}
 	}])
 
 	/**

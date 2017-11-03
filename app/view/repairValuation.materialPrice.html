@@ -1,0 +1,30 @@
+<div class="repair-valuation-material-price">
+	<div app-head text="维修材料费明细" has-back="true"></div>
+
+	<ul id="repair-valuation-material-price-ul" class="pt-90">
+		<li ng-click="showModalOfMaterial()">
+			<span ng-bind="selectedFixType"></span>
+			<span class="form-item-arrow"></span>
+		</li>
+		<li class="t-r total" ng-bind="'合计：'+repairValuationData.materialPricesTotal"></li>
+	</ul>
+
+	<div id="material-modal" class="repair-valuation-modal-sheet-list ng-hide">
+		<div class="background" ng-click="hideModalOfMaterial()"></div>
+		<div class="select-form">
+			<ul>
+				<li ng-repeat="kind in tmpMaterialPrice">
+					<span class="introduction" ng-bind="kind.Desc+kind.Price+'/'+kind.Unit"></span>
+					<span class="number-operate">
+						<span class="number-operate-minus" ng-click="kind.SelectedNum>0?(kind.SelectedNum=kind.SelectedNum-1):''"></span>
+						<span class="number-operate-value t-r" ng-bind="kind.SelectedNum"></span>
+						<span class="number-operate-add" ng-click="kind.SelectedNum=kind.SelectedNum+1"></span>
+					</span>
+				</li>
+			</ul>
+		</div>
+		<button class="submit" ng-click="materialPriceConfirm()">确认</button>
+	</div>
+
+
+</div>

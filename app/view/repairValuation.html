@@ -1,51 +1,55 @@
 <div app-head text="维修估价" has-back="true"></div>
 
 <div class="pt-90 repair-valuation">
-
 	<div class="repair-valuation-item">
 		<label class="repair-valuation-label">
 			<img id="selected-type-img" ng-src="/images/home_icon_block.png" alt="">已选择维修
 		</label>
 		<span class="repair-valuation-item-value"
-		      ng-bind="'电脑智能类'"
-		      ng-click="">
+		      ng-bind="selectedFixType"
+		      ng-click="isModalShown=true">
 		</span>
-		<span class="repair-valuation-item-arrow" ng-click=""></span>
+		<span class="repair-valuation-item-arrow" ng-click="isModalShown=true"></span>
 	</div>
-
-
+	
 	<div class="repair-valuation-item">
 		<label class="repair-valuation-label">维修材料费</label>
 		<span class="t-r repair-valuation-item-value"
-		      ng-bind="0|currency:'￥':0"
-		      ng-click="">
+		      ng-bind="repairValuationData.materialPricesTotal|currency:'￥':0"
+		      ui-sref="repairValuation.materialPrice">
 		</span>
-		<span class="repair-valuation-item-arrow" ng-click=""></span>
+		<span class="repair-valuation-item-arrow" ui-sref="repairValuation.materialPrice"></span>
 	</div>
 
 	<div class="repair-valuation-item">
 		<label class="repair-valuation-label">维修人工费</label>
 		<span class="t-r repair-valuation-item-value"
-		      ng-bind="0|currency:'￥':0"
-		      ng-click="">
+		      ng-bind="repairValuationData.labourPricesTotal|currency:'￥':0"
+		      ui-sref="repairValuation.labourPrice">
 		</span>
-		<span class="repair-valuation-item-arrow" ng-click=""></span>
+		<span class="repair-valuation-item-arrow" ui-sref="repairValuation.labourPrice"></span>
 	</div>
 
 	<div id="repair-valuation-btn">
-		<button ng-click="">维修估价</button>
+		<button ng-click="totalValuation()">维修估价</button>
 	</div>
-
-
+	
 	<div class="repair-valuation-item">
 		<label class="repair-valuation-label">合计金额</label>
 		<span id="total" class="t-r repair-valuation-item-value"
-		      ng-bind="0|currency:'￥':0"
-		      ng-click="">
+		      ng-bind="repairValuationData.total|currency:'￥':0">
 		</span>
 	</div>
-
-
+	
 	<button id="go-to-booking-btn" ui-sref="furnitureRepair">去预约</button>
 </div>
+
+<div ng-show="isModalShown" class="repair-valuation-modal">
+	<div class="background" ng-click="isModalShown=false"></div>
+	<ul class="repair-valuation-modal-list">
+		<li class="repair-valuation-modal-list-item" ng-repeat="fixType in fixTypes" ng-bind="fixType" ng-click="selectType(fixType)"></li>
+	</ul>
+</div>
+
+<ui-view></ui-view>
 
