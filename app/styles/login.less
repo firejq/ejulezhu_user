@@ -17,16 +17,20 @@
       border: none;
     }
 
-    .img-head{
-      position: relative;
-      margin-top: 4.8%;
-      margin-bottom: 10.6%;
-      margin-left: 36%;
-      margin-right: 36%;
-      width: 28%;
-      border-radius: 100px;
-      border: none;
+    .head-img {
+      width: 100%;
+      height: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        height: 12vh;
+        width: 21.3vw;
+        border-radius: 100px;
+        border: none;
+      }
     }
+
 
   }
 
@@ -34,22 +38,51 @@
     margin: 0 12px;
     border: none;
 
-    span {
+    .input-item {
+      height: 1rem;
+      line-height: 1rem;
+      width: 100%;
+      display: block;
+    }
+
+    .input-span {
+      display: inline-block;
       color: #404040;
-      font-size: 4.27vw;
-      background-color: #ffffff;
-      height:100%;
-      border: none;
-      border-bottom: 1px solid #eaeaea;
+      font-size: 3.75vw;
+      height: 100%;
+      width: 15%;
+      border-bottom: .5px solid #eaeaea;
+      float: left;
+      padding-left: .15rem;
+      margin-left: .25rem;
 
     }
-    input {
-      color: #a8a8a8;
-      font-size: 3.47vw;
-      height:12.3vw;
+    .input-area {
+      color: #7c7c7c;
+      font-size: 3.75vw;
+      height: 100%;
+      width: 78%;
       border: none;
-      border-bottom: 1px solid #eaeaea;
+      border-bottom: .5px solid #eaeaea;
+      float: left;
+      margin: 0;
+      padding-left:.15rem;
 
+      &:focus {
+        background-color: transparent;
+        outline: none;
+      }
+      &::placeholder {
+        color: #7c7c7c;
+      }
+
+    }
+    //去除chrome中表单自动填充导致出现的黄色背景
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+      box-shadow: 0 0 0 50px white inset;
+      -webkit-text-fill-color: #333;
     }
 
     .login-submit {
