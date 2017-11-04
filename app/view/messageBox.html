@@ -1,0 +1,18 @@
+<div app-head text="消息" has-back="true"></div>
+<ul class="pt-90 message-box">
+	<li class="message-box-item" ui-sref="messageBox.orderMessage">
+		<img id="order-message-img" class="message-img" ng-src="/images/message_form.png" alt="">
+		<i ng-show="messageData.orderMessage.unReadNum>0"></i>
+		<span class="message-box-item-title">订单消息</span>
+		<!--TODO 字数超过自动变成省略号-->
+		<span class="message-box-item-content" ng-bind="messageData.orderMessage.records.length>0?messageData.orderMessage.records[0].Title:'暂无订单消息'"></span>
+	</li>
+	<li class="message-box-item" ui-sref="messageBox.systemMessage">
+		<img id="system-message-img" class="message-img" ng-src="/images/message_s.png" alt="">
+		<i ng-show="messageData.systemMessage.unReadNum>0"></i>
+		<span class="message-box-item-title">系统消息</span>
+		<span class="message-box-item-content" ng-bind="messageData.systemMessage.records.length>0?messageData.systemMessage.records[0].Title:'暂无系统消息'"></span>
+	</li>
+</ul>
+
+<ui-view></ui-view>

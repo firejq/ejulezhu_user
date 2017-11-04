@@ -115,7 +115,8 @@ angular.module('app')
 					'redPackage',
 					'repairBooking',
 					'repairBooking.materialPrice',
-					'repairBooking.labourPrice'
+					'repairBooking.labourPrice',
+					'messageBox'
 				];
 				for (var i = 0; i < redirectState.length; i++) {
 					if (state.name === redirectState[i]) {

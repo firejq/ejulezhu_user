@@ -5,6 +5,7 @@
 
 angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', '$state', function ($scope, cache, $http, $state) {
 
+	//初始化变量
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
 

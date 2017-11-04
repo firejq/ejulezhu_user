@@ -1,0 +1,11 @@
+<div app-head text="订单消息" has-back="true"></div>
+<div ng-show="!messageData.orderMessage.records.length>0" app-developing content="暂无订单消息~"></div>
+
+<ul ng-show="messageData.orderMessage.records.length>0" class="pt-90 message-box-order-message-list">
+	<li class="message-box-order-message-item" ng-repeat="orderMessage in messageData.orderMessage.records" ui-sref="myOrderDetail({orderId: orderMessage.Orderid, orderNo: orderMessage.Orderno})">
+		<span id="order-message-title" class="t-o" ng-bind="'系统分配订单成功'"></span>
+		<span id="order-message-time" ng-bind="orderMessage.CreateTime"></span>
+		<span id="order-message-content" ng-bind="orderMessage.Message"></span>
+		<span id="order-message-no" ng-bind="'订单号:'+orderMessage.Orderno"></span>
+	</li>
+</ul>

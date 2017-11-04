@@ -196,6 +196,19 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			.state('repairValuation.labourPrice', {
 				url: '/labourPrice',
 				templateUrl: 'view/repairValuation.labourPrice.html'
+			})
+			.state('messageBox', {
+				url: '/messageBox',
+				controller: 'messageBoxCtrl',
+				templateUrl: 'view/messageBox.html'
+			})
+			.state('messageBox.orderMessage', {
+				url: '/orderMessage',
+				templateUrl: 'view/messageBox.orderMessage.html'
+			})
+			.state('messageBox.systemMessage', {
+				url: '/systemMessage',
+				templateUrl: 'view/messageBox.systemMessage.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

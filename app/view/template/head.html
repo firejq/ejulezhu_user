@@ -16,8 +16,9 @@
 	<span id="complete" class="head-right" ng-show="{{hasComplete}}" ng-click="test()">完成</span>
 
 	<!--右边“消息”按钮，用于首页-->
-	<span id="envelope" class="head-right" ng-show="{{hasMessageBox}}">
+	<span id="envelope" class="head-right" ng-show="{{hasMessageBox}}" ui-sref="messageBox">
 		<i class="fa fa-envelope-o" aria-hidden="true"></i>
+		<i id="message-unread-red-dot" class="ng-hide"></i>
 	</span>
 
 	<!--右边“分享”按钮，用于抢红包页面-->

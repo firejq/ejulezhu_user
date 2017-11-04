@@ -14,6 +14,7 @@ angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
 			hasComplete: '@',
 			hasRepairValuation: '@',
 			hasMessageBox: '@',
+			//hasMessageUnread: '@',
 			hasShare: '@'
 		},
 		link: function($scope) {

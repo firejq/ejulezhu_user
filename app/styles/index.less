@@ -34,6 +34,9 @@
 @import 'repairValuation.less';
 @import 'repairValuation.materialPrice.less';
 @import 'repairValuation.labourPrice.less';
+@import 'messageBox.less';
+@import 'messageBox.orderMessage.less';
+@import 'messageBox.systemMessage.less';
 @import 'template/head.less';
 @import 'template/foot.less';
 @import 'template/banner.less';
@@ -144,5 +147,22 @@ body {
 
 ul {
   list-style: none;
+}
+
+input,
+textarea {
+  //去除input被focus时出现的橙色border
+  &:focus {
+    background-color: transparent;
+    outline: none;
+  }
+}
+
+//去除chrome中表单自动填充导致出现的黄色背景
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 50px white inset;
+  -webkit-text-fill-color: #333;
 }
 

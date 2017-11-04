@@ -68,22 +68,12 @@
       margin: 0;
       padding-left:.15rem;
 
-      &:focus {
-        background-color: transparent;
-        outline: none;
-      }
       &::placeholder {
         color: #7c7c7c;
       }
 
     }
-    //去除chrome中表单自动填充导致出现的黄色背景
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus {
-      box-shadow: 0 0 0 50px white inset;
-      -webkit-text-fill-color: #333;
-    }
+
 
     .login-submit {
       width: 100%;
