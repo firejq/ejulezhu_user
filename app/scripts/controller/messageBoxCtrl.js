@@ -168,6 +168,7 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 	 */
 	$scope.seeOrderMessageDetail = function (orderMessage) {
 
+		//TODO 详情页面？
 
 		//消息已阅读
 		messageRead(orderMessage.Readid);
@@ -185,6 +186,7 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 	 */
 	$scope.seeSystemMessageDetail = function (systemMessage) {
 
+		//TODO 详情页面？
 		/**
 		 * 获取消息详细内容
 		 */

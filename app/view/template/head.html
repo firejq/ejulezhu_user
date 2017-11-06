@@ -22,9 +22,12 @@
 	</span>
 
 	<!--右边“分享”按钮，用于抢红包页面-->
-	<!--TODO 分享有个弹框还没写-->
+	<!--TODO 分享有个弹框还没写，分享功能也还没实现--qq、微信分享，对sdk -->
 	<span id="share" class="head-right" ng-show="{{hasShare}}">
 		<i class="fa fa-share-alt" aria-hidden="true"></i>
 	</span>
+
+	<!--TODO 支付记录需要参数才能跳转过去，怎么在指令这里拿到参数？-->
+	<span id="paymentRecord" class="head-right" ng-show="{{hasPaymentRecord}}" ui-sref="orderPayRecords({})">支付记录</span>
 
 </div>

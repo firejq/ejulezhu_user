@@ -15,7 +15,8 @@ angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
 			hasRepairValuation: '@',
 			hasMessageBox: '@',
 			//hasMessageUnread: '@',
-			hasShare: '@'
+			hasShare: '@',
+			hasPaymentRecord: '@'
 		},
 		link: function($scope) {
 			$scope.back = function() {
