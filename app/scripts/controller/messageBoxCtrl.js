@@ -123,6 +123,8 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 		if (response.data.status === 0) {
 			//console.log(response.data);
 			$scope.messageData.systemMessage.records = response.data.records;
+
+			console.log($scope.messageData);
 		} else {
 			$scope.global.msg('获取用户消息出错');
 		}
@@ -131,59 +133,96 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 	});
 
 
+	/**
+	 * 消息已阅读抽象函数
+	 * @param readId
+	 */
+	var messageRead = function (readId) {
 
-	///**
-	// * 获取用消息详细内容 TODO 用在哪？
-	// */
-	//$http({
-	//	method: 'GET',
-	//	url: $scope.global.url + 'message/detail',
-	//	params: {
-	//		Mobileno: mobilenoCookie,
-	//		Usertype: 1,
-	//		Token: tokenCookie,
-	//		Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
-	//		Id: 0//消息Id，从获取用户消息列表的结果获得
-	//	}
-	//}).then(function (response) {
-	//	//console.log(response);
-	//	if (response.data.status === 0) {
-	//		console.log(response.data);
-	//
-	//
-	//	} else {
-	//		$scope.global.msg('获取用户消息出错');
-	//	}
-	//}, function (response) {
-	//	console.log('fail! ' + response);
-	//});
+		$http({
+			method: 'GET',
+			url: $scope.global.url + 'message/read',
+			params: {
+				Mobileno: mobilenoCookie,
+				Usertype: 1,
+				Token: tokenCookie,
+				Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
+				Readid: readId//消息Id，从获取用户消息列表的结果获得
+			}
+		}).then(function (response) {
+			//console.log(response);
+			if (response.data.status === 0) {
+				//console.log(response.data);
+			} else {
+				$scope.global.msg('获取消息出错');
+			}
+		}, function (response) {
+			console.log('fail! ' + response);
+		});
+
+	};
+
+	/**
+	 * 订单消息查看更多回调函数
+	 * @param orderMessage
+	 */
+	$scope.seeOrderMessageDetail = function (orderMessage) {
 
 
-	///**
-	// * 消息已阅读
-	// */
-	//$http({
-	//	method: 'GET',
-	//	url: $scope.global.url + 'message/',//TODO 接口地址有问题
-	//	params: {
-	//		Mobileno: mobilenoCookie,
-	//		Usertype: 1,
-	//		Token: tokenCookie,
-	//		Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
-	//		Readid: 0//消息Id，从获取用户消息列表的结果获得
-	//	}
-	//}).then(function (response) {
-	//	//console.log(response);
-	//	if (response.data.status === 0) {
-	//		console.log(response.data);
-	//
-	//
-	//	} else {
-	//		$scope.global.msg('获取用户消息出错');
-	//	}
-	//}, function (response) {
-	//	console.log('fail! ' + response);
-	//});
+		//消息已阅读
+		messageRead(orderMessage.Readid);
+
+		//路由跳转到订单状态页面
+		$state.go('myOrderDetail', {orderId: orderMessage.Orderid, orderNo: orderMessage.Orderno});
+
+	};
+
+
+
+	/**
+	 * 系统消息查看更多回调函数
+	 * @param systemMessage
+	 */
+	$scope.seeSystemMessageDetail = function (systemMessage) {
+
+		/**
+		 * 获取消息详细内容
+		 */
+		$http({
+			method: 'GET',
+			url: $scope.global.url + 'message/detail',
+			params: {
+				Mobileno: mobilenoCookie,
+				Usertype: 1,
+				Token: tokenCookie,
+				Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
+				Id: systemMessage.Id//消息Id，从获取用户消息列表的结果获得
+			}
+		}).then(function (response) {
+			//console.log(response);
+			if (response.data.status === 0) {
+				console.log(response.data);
+
+
+			} else {
+				$scope.global.msg('获取消息出错');
+			}
+		}, function (response) {
+			console.log('fail! ' + response);
+		});
+
+
+		//消息已阅读
+		messageRead(systemMessage.Readid);
+
+
+
+	};
+
+
+
+
+
 
 
 

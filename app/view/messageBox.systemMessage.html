@@ -3,3 +3,20 @@
 
 
 
+<ul ng-show="messageData.systemMessage.records.length>0" class="pt-90 message-box-system-message-list">
+	<li class="message-box-system-message-item"
+	    ng-repeat="systemMessage in messageData.systemMessage.records">
+		<span class="message-box-system-message-time"
+		      ng-bind="systemMessage.CreateTime"></span>
+		<span class="message-box-system-message-title"
+		      ng-bind="systemMessage.Title"></span>
+		<span class="message-box-system-message-content"
+		      ng-bind="systemMessage.Message"></span>
+		<span class="message-box-system-message-see-more"
+		      ng-bind="'查看更多'"
+		      ng-click="seeSystemMessageDetail(systemMessage)"></span>
+		<span class="message-box-system-message-item-arrow"
+		      ng-click="seeSystemMessageDetail(systemMessage)"></span>
+	</li>
+
+</ul>
