@@ -80,13 +80,7 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 						break;
 					}
 				}
-
 			}
-
-
-
-
-
 
 			console.log($scope.orderDetail);
 		} else {

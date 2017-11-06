@@ -1,5 +1,7 @@
 # ejulezhu_user
 
+Single page web app based on [AngularJS 1.6.6](https://code.angularjs.org/1.6.6/docs/api).
+
 ## Install Dependances
 
 Enter the project root directory and then type the code in the command or powershell as bellow:
