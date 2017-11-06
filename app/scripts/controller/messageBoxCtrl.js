@@ -183,7 +183,6 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 	//});
 
 
-	console.log($scope.messageData);
 
 
 
