@@ -112,11 +112,20 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 
 			case 'weixin': {
 				console.log('进入微信支付');
+
+				if($scope.global.code === null) {//TODO
+					// https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_4
+					// https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
+					//跳转到微信授权页面
+					location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8f87a4579e561e2f&redirect_uri=http%3a%2f%2fapi.firejq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+					return;
+				}
+
 				/**
 				 * 获取微信支付部分支付请求参数
 				 */
 				$http({
-					url: $scope.global.url + 'webchatpay/getpartialpay',
+					url: $scope.global.url + 'pubpay/getpartialpay',
 					method: 'GET',
 					params: {
 						Mobileno: mobilenoCookie,
@@ -124,12 +133,13 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 						Usertype: 1,
 						Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
 						Orderno: $state.params.orderNo,
-						Fee: $scope.payProgressPaymentData.userPayFee//金额
+						Fee: $scope.payProgressPaymentData.userPayFee,//金额
+						Openid: 1234//微信平台获取的openid TODO
 					}
 				}).then(function (response) {
-					//console.log(response);
+					console.log(response);
 					if (response.data.status === 0) {
-						//console.log(response.data);
+						console.log(response.data);
 						$scope.payProgressPaymentData.weChatPayParams = response.data.Payparam;
 						console.log('获取支付参数：' + JSON.stringify($scope.payProgressPaymentData.weChatPayParams));
 
@@ -201,6 +211,7 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 
 						wx.ready(function() {
 							console.log('接口config验证成功');
+							alert('接口config验证成功');
 
 							wx.chooseWXPay({
 								timestamp: $scope.payProgressPaymentData.weChatPayParams.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符

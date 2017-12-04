@@ -238,7 +238,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 					//console.log('upload successfully');
 					//获取服务器回调信息：将语音id存储到 $scope.bookingSubmitData.voiceId 中
 					$scope.furnitureRepairSubmitData.voiceId = response.data.Id;
-
+					//console.log($scope.furnitureRepairSubmitData.voiceId);
 				} else {
 					$scope.global.msg('语音上传出错');
 				}
@@ -477,7 +477,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 				Usertype: 1,
 				Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
 				ImageId: imageIds,//图片文件id
-				VoiceId: '',//语音文件id
+				VoiceId: $scope.furnitureRepairSubmitData.voiceId,//语音文件id
 				TotalPrice: $scope.furnitureRepairSubmitData.total,
 				AddrId: $scope.furnitureRepairSubmitData.addrId,//维修地址Id
 				AppintmentTime: (new Date($scope.furnitureRepairSubmitData.appointTime).getTime())/1000,//unix时间戳

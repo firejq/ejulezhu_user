@@ -18,6 +18,7 @@ angular.module('app')
 			cryptid: '123456',
 			Mobileno: '',
 			Token: '',
+			code: '',//微信授权code
 
 			footer: {//底部导航栏控制变量
 				isShown: false//是否显示，默认不显示
@@ -68,6 +69,20 @@ angular.module('app')
 			 */
 			replacePos: function (strObj, pos, replaceText) {
 				return strObj.substr(0, pos - 1) + replaceText + strObj.substring(pos, strObj.length);
+			},
+
+			/**
+			 * 获取URL参数，name为参数名
+			 * @param name
+			 * @returns {null}
+			 */
+			getQueryString: function getQueryString(name) {
+				var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+				var r = window.location.search.substr(1).match(reg);
+				if (r !== null) {
+					return unescape(r[2]);
+				}
+				return null;
 			}
 		}
 	}])

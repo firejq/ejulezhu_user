@@ -37,7 +37,7 @@
 	<li class="my-order-detail-detail-field">维修图片
 		<span class="f-r my-order-detail-detail-value"></span>
 	</li>
-	<li class="my-order-detail-detail-field repair-img">
+	<li ng-show="orderDetail.ImageList.length" class="my-order-detail-detail-field repair-img">
 		<ul>
 			<!--TODO 点击图片弹出模态框 查看大图 -->
 			<li ng-repeat="imgAddress in orderDetail.ImageList">
@@ -45,9 +45,11 @@
 			</li>
 		</ul>
 	</li>
-	<!-- TODO 语音还没做-->
+	<!-- TODO 语音文件如何处理?-->
 	<li class="my-order-detail-detail-field">维修语音
-		<span class="f-r my-order-detail-detail-value" ng-bind=""></span>
+		<span class="f-r my-order-detail-detail-value">
+			<i ng-class="'fa fa-volume-up '+(orderDetail.Voiceidlist.length>0?'voice-icon-green':'')" aria-hidden="true"></i>
+		</span>
 	</li>
 	<li class="my-order-detail-detail-field repair-description">维修说明
 		<span class="f-r repair-description-value" ng-bind="orderDetail.Attact"></span>

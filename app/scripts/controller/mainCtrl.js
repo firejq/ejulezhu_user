@@ -9,6 +9,8 @@ angular.module('app').controller('mainCtrl', ['$scope', '$http', 'cache', functi
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
 
+	$scope.global.code = $scope.global.getQueryString('code');//微信授权code
+	//alert($scope.global.code);
 
 	/**
 	 * 获取首页 banner 滚动图片
@@ -59,7 +61,7 @@ angular.module('app').controller('mainCtrl', ['$scope', '$http', 'cache', functi
 
 
 	/**
-	 * 若已登录，获取用户消息状态 TODO 要按是否有未读信息显示小红点
+	 * 若已登录，获取用户消息状态
 	 */
 	if (typeof mobilenoCookie !== 'undefined' && typeof tokenCookie !== 'undefined') {
 		$http({

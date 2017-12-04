@@ -23,7 +23,7 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 		},
 		// 返回 “客户支付” 路由
 		9: function () {
-			//TODO 若去掉路由参数中的单引号，会导致number类型的orderNo过大而溢出，+运算不会自动转换成string类型？
+			//若去掉路由参数中的单引号，会导致number类型的orderNo过大而溢出，+运算不会自动转换成string类型
 			return 'finishProjectPay({orderId: ' + $state.params.orderId + ', orderNo: \'' + $state.params.orderNo + '\'})';
 		}
 	};
@@ -60,6 +60,7 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 			for (var i = 0, len = $scope.orderDetail.ImageList.length; i < len; i ++) {
 				$scope.orderDetail.ImageList[i] = $scope.global.ip + $scope.orderDetail.ImageList[i];
 			}
+
 
 			//若只有一条状态记录，说明该订单已被取消
 			if ($scope.orderDetail.records.length === 1) {

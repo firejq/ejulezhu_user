@@ -230,11 +230,12 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 				},
 				transformRequest: angular.identity
 			}).then(function (response) {
-				console.log(response);
+				//console.log(response);
 				if (response.data.Status === 0) {
 					//console.log('upload successfully');
 					//获取服务器回调信息：将语音id存储到 $scope.bookingSubmitData.voiceId 中
 					$scope.bookingSubmitData.voiceId = response.data.Id;
+					//console.log($scope.bookingSubmitData.voiceId);
 
 				} else {
 					$scope.global.msg('语音上传出错');
@@ -282,7 +283,7 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 				Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
 				Type: 1,
 				ImageId: imageIds,//图片文件id
-				VoiceId: '',//语音文件id
+				VoiceId: $scope.bookingSubmitData.voiceId,//语音文件id
 				TotalPrice: $scope.bookingSubmitData.total,
 				AddrId: $scope.bookingSubmitData.addrId,//维修地址Id
 				AppintmentTime: (new Date($scope.bookingSubmitData.appointmentTime).getTime())/1000,//unix时间戳
