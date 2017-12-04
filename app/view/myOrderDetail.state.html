@@ -1,5 +1,4 @@
 <section ng-show="!orderDetail.isCanceled" class="my-order-detail-state">
-	<!-- TODO 此部分写法应优化-->
 	<div class="f-l my-order-detail-state-img">
 		<img ng-src="{{orderDetail.records[0].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
 		<img ng-src="{{orderDetail.records[1].FinishTime!==''?'/images/order/ticket-.png':'/images/order/dian-.png'}}" alt="">
@@ -30,7 +29,7 @@
 		        ng-click="orderCancel()"
 		        class="order-cancel-btn">取消订单</button>
 
-		<button ng-if="orderDetail.isConfirmedMasterPrice"
+		<button ng-if="orderDetail.isConfirmedMasterPrice&&!orderDetail.isOrderFinished"
 		        ui-sref="payProgressPayment({orderId: orderDetail.Orderid, orderNo: orderDetail.Orderno})"
 		        class="order-pay-btn">支付进度款</button>
 	</div>

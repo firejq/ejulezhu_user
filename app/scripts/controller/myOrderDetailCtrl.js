@@ -74,6 +74,9 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 				if ($scope.orderDetail.records[4].FinishTime !== '') {
 					$scope.orderDetail.isConfirmedMasterPrice = true;
 				}
+				if ($scope.orderDetail.records[8].FinishTime !== '') {
+					$scope.orderDetail.isOrderFinished = true;
+				}
 				//当前状态
 				for (var i = 0, len = $scope.orderDetail.records.length; i < len; i ++) {
 					if ($scope.orderDetail.records[i].FinishTime === '') {

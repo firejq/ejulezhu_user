@@ -5,27 +5,6 @@
 		    ng-click="showModalOfMaterial(materialPrice)">
 			<span ng-bind="materialPrice.typeName"></span>
 			<span class="form-item-arrow"></span>
-
-			<!--TODO 为什么将modal层移动到这里就display:none会无效？-->
-			<!--TODO 为什么使用ng-show="visable"的话，visable=true会显示，false还是会显示？-->
-			<!--<div id="{{'modal-'+materialPrice.$$hashKey[7]}}"-->
-			     <!--class="repair-booking-modal-sheet-list"-->
-			     <!--style="display: none;"-->
-			     <!--ng-click="hideModalOfMaterial(materialPrice)">-->
-				<!--<div class="select-form">-->
-					<!--<ul>-->
-						<!--<li ng-repeat="kind in materialPrice.kinds">-->
-							<!--<span class="introduction" ng-bind="kind.describe+kind.price+'/'+kind.unit"></span>-->
-							<!--<span class="number-operate">-->
-						<!--<span class="number-operate-minus" ng-click="kind.selected=kind.selected-1;"></span>-->
-						<!--<span class="number-operate-value t-r" ng-bind="kind.selected"></span>-->
-						<!--<span class="number-operate-add" ng-click="kind.selected=kind.selected+1;"></span>-->
-					<!--</span>-->
-						<!--</li>-->
-					<!--</ul>-->
-				<!--</div>-->
-				<!--<button class="submit" ng-click="">确认</button>-->
-			<!--</div>-->
 		</li>
 		<li class="t-r total" ng-bind="'合计：'+furnitureRepairSubmitData.materialPricesTotal"></li>
 	</ul>

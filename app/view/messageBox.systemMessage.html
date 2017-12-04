@@ -21,16 +21,14 @@
 
 </ul>
 <script>
-
-	//TODO 怎么在js指向完后再触发
-	document.querySelector('.message-box-system-message-list').addEventListener('ready', function (event) {
-		var contents = document.querySelectorAll('.message-box-system-message-content');
-		var innerHtml = '';
-		for (var i = 0; i < contents.length; i ++) {
-			innerHtml = contents[i].innerText;
-			console.log(innerHtml);
-			contents[i].innerHTML = innerHtml;
-		}
-	});
+		window.onload = function () {
+			var contents = document.querySelectorAll('.message-box-system-message-content');
+			var innerHtml = '';
+			for (var i = 0; i < contents.length; i ++) {
+				innerHtml = contents[i].innerText;
+				console.log(innerHtml);
+				contents[i].innerHTML = innerHtml;
+			}
+		};
 
 </script>
