@@ -117,12 +117,14 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 	 */
 	$scope.showRule = function () {
 		$scope.redPackageData.visible.rule = true;
+		document.getElementById('rule-article').style.bottom = 0;
 	};
 	/**
 	 * 隐藏规则页面
 	 */
 	$scope.hideRule = function () {
 		$scope.redPackageData.visible.rule = false;
+		document.getElementById('rule-article').style.bottom = '-33vh';
 	};
 
 
