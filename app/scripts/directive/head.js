@@ -18,10 +18,18 @@ angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
 			hasShare: '@',
 			hasPaymentRecord: '@'
 		},
-		link: function($scope) {
-			$scope.back = function() {
+		link: function(scope, elem, attrs) {
+			scope.back = function() {
 				window.history.back();
 			};
+
+			//在“支付进度款”页面，为“支付记录”路由传递参数
+			if (typeof scope.$parent.orderDetail !== 'undefined') {
+				scope.paymentRecordOrderNo = function () {
+					return scope.$parent.orderDetail.Orderno;
+				};
+			}
+
 		}
 	};
 }]);
