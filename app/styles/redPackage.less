@@ -41,7 +41,7 @@
 
     #grab-redpackage-btn {
       position: absolute;
-      top: 48vh;
+      top: 38vh;
       left: 28vw;
       height: 10vh;
       width: 25vh;
@@ -82,11 +82,11 @@
     transition: 1s ease;
 
 
-    #background {
+    #rule-background {
       height: 100%;
       width: 100%;
       position: fixed;
-      z-index: 103;
+      z-index: 202;
       top: 0;
       bottom: 0;
       left: 0;
@@ -101,7 +101,7 @@
       width: 100%;
       height: 33vh;
       background-color: white;
-      z-index: 104;
+      z-index: 203;
       overflow: hidden;
       header {
         position: absolute;
@@ -153,6 +153,106 @@
           width: 100%;
         }
       }
+
+
+    }
+
+
+  }
+
+
+  #share {
+    height: 100%;
+    width: 100%;
+    transition: .5s ease;
+
+    #share-background {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      z-index: 202;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, .5);
+
+    }
+    #share-panel {
+      transition: .5s ease;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 25vh;
+      margin: 0;
+      padding: 0;
+      z-index: 203;
+      background-color: #fff;
+      text-align: center;
+
+      header {
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: 100%;
+        height: 7vh;
+        text-align: center;
+
+
+        h1 {
+          line-height: 7vh;
+          margin: 0;
+          padding: 0;
+          font-size: .3rem;
+          font-weight: normal;
+        }
+      }
+      #share-panel-btns {
+        margin: 0;
+        padding: 0;
+        //background-color: #00a000;
+        width: 100%;
+        height: 12vh;
+        .share-panel-btn {
+          display: inline-block;
+          float: left;
+          width: 33.33%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+          .share-panel-btn-img {
+            display: inline-block;
+            height: 6vh;
+          }
+          .share-panel-btn-title {
+            display: block;
+            height: 6vh;
+            line-height: 5vh;
+            font-size: .25rem;
+
+          }
+
+        }
+
+
+
+      }
+      #share-panel-cancel {
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 0;
+        border-top: 1px solid #dddddd;
+        display: block;
+        background-color: transparent;
+        height: 6vh;
+        line-height: 6vh;
+        width: 96%;
+        text-align: center;
+      }
+
 
 
     }

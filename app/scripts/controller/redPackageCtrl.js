@@ -15,37 +15,16 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 			anticipate: true,//默认显示抢红包图案
 			sad: false,//伤心页默认不显示
 			happy: false,//高兴页默认不显示
-			rule: false//规则页面默认不显示
-		},
-	};
-
-	/**
-	 * 分享次数加1，增加一次抢红包机会
-	 */
-	$scope.share = function () {
-		$http({
-			method: 'GET',
-			url: $scope.global.url + 'redpackage/share',
-			params: {
-				Mobileno: mobilenoCookie,
-				Token: tokenCookie,
-				Reqtime: Math.round(new Date().getTime()/1000),
-				Usertype: 1,
-				Channel: 'weixin' //分享渠道，如weixin
-			}
-		}).then(function (response) {
-			if (response.data.status === 0) {
-				//TODO 分享的页面还没做
-				//console.log('Shared! Add chance successfully');
-			}
-		}, function (response) {
-			console.log('fail! ' + response);
-		});
+			rule: false,//规则页面默认不显示
+			share: false//分享页面默认不显示
+		}
 	};
 
 
+
+
 	/**
-	 * 抢红包
+	 * 抢红包操作
 	 */
 	$scope.grabRedPackage = function () {
 		//获取当前还有多少次机会抢红包
@@ -125,6 +104,154 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 	$scope.hideRule = function () {
 		$scope.redPackageData.visible.rule = false;
 		document.getElementById('rule-article').style.bottom = '-33vh';
+	};
+
+
+
+	/**
+	 * 分享次数加1，增加一次抢红包机会
+	 */
+	var addChance = function () {
+		$http({
+			method: 'GET',
+			url: $scope.global.url + 'redpackage/share',
+			params: {
+				Mobileno: mobilenoCookie,
+				Token: tokenCookie,
+				Reqtime: Math.round(new Date().getTime()/1000),
+				Usertype: 1,
+				Channel: 'weixin'//分享渠道，暂时写死
+			}
+		}).then(function (response) {
+			//console.log(response);
+			if (response.data.status === 0) {
+				console.log('add Chance success!')
+			} else {
+				console.log('add Chance Fail!')
+			}
+		}, function (response) {
+			console.log('fail! ' + response);
+		});
+	};
+
+
+	/**
+	 * 获取微信sdk参数
+	 * 注册分享监听事件
+	 */
+	$http({
+		method: 'GET',
+		url: $scope.global.url + 'wxjssdk/config',
+		params: {
+			Mobileno: mobilenoCookie,
+			Token: tokenCookie,
+			Reqtime: Math.round(new Date().getTime()/1000),
+			Usertype: 1,
+			Url: location.href.split('#')[0]//调用jssdk的URL路径
+		}
+	}).then(function (response) {
+		//console.log(response);
+		if (response.data.status === 0) {
+			console.log(response.data.config);
+
+			wx.config({
+				debug: false,
+				appId: 'wx8f87a4579e561e2f', // 必填，公众号的唯一标识
+				timestamp: response.data.config.timestamp, // 必填，生成签名的时间戳
+				nonceStr: response.data.config.noncestr, // 必填，生成签名的随机串
+				signature: response.data.config.signature,// 必填，签名，见附录1
+				jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+			});
+			wx.ready(function(){
+				//$scope.global.msg('wxsdk config 验证成功');
+
+				// 微信 JS 接口签名校验工具 https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign
+
+				//分享到微信好友
+				wx.onMenuShareAppMessage({
+					title: 'e家修', // 分享标题
+					desc: '', // 分享描述
+					link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: '', // 分享图标
+					type: '', // 分享类型,music、video或link，不填默认为link
+					dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+					trigger: function (res) {
+						// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+						//$scope.global.msg('click shared');
+					},
+					success: function () {
+						// 用户确认分享后执行的回调函数
+						addChance();
+						$scope.global.msg('分享成功，增加一次抢红包机会~');
+					},
+					cancel: function () {
+						// 用户取消分享后执行的回调函数
+					}
+				});
+				//分享到微信朋友圈
+				wx.onMenuShareTimeline({
+					title: 'e家修', // 分享标题
+					link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: '', // 分享图标
+					trigger: function (res) {
+						// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+						//$scope.global.msg('click shared');
+					},
+					success: function () {
+						// 用户确认分享后执行的回调函数
+						addChance();
+						$scope.global.msg('分享成功，增加一次抢红包机会~');
+					},
+					cancel: function () {
+						// 用户取消分享后执行的回调函数
+					}
+				});
+				//分享到QQ
+				wx.onMenuShareQQ({
+					title: 'e家修', // 分享标题
+					desc: '', // 分享描述
+					link: '', // 分享链接
+					imgUrl: '', // 分享图标
+					trigger: function (res) {
+						// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+						//$scope.global.msg('click shared');
+					},
+					success: function () {
+						// 用户确认分享后执行的回调函数
+						addChance();
+						$scope.global.msg('分享成功，增加一次抢红包机会~');
+					},
+					cancel: function () {
+						// 用户取消分享后执行的回调函数
+					}
+				});
+			});
+			wx.error(function(res){
+				console.log(JSON.stringify(res));
+				$scope.global.msg('wxsdk config 出现错误');
+			});
+		}
+	}, function (response) {
+		console.log('fail! ' + response);
+	});
+
+
+	/**
+	 * 显示分享页面
+	 */
+	$scope.showShare = function () {
+		//TODO 弹出提示：点右上角分享按钮进行分享
+		//$scope.redPackageData.visible.share = true;
+		//document.getElementById('share-panel').style.bottom = '0';
+
+	};
+
+	/**
+	 * 隐藏分享页面
+	 */
+	$scope.hideShare = function () {
+		$scope.redPackageData.visible.share = false;
+		document.getElementById('share-panel').style.bottom = '-25vh';
 	};
 
 

@@ -45,12 +45,12 @@
 		     alt="">
 		<img class="go-share"
 		     ng-src="/images/redpackage/public_btn_share1.png"
-		     ng-click="share()"
+		     ng-click="showShare()"
 		     alt="">
 	</div>
 
 	<div id="rule" ng-show="redPackageData.visible.rule">
-		<div id="background" ng-click="hideRule()"></div>
+		<div id="rule-background" ng-click="hideRule()"></div>
 		<div id="rule-article">
 			<header>
 				<span id="rule-title">活动规则</span>
@@ -66,6 +66,34 @@
 			</div>
 		</div>
 	</div>
+
+
+	<div id="share" ng-show="redPackageData.visible.share">
+		<div id="share-background" ng-click="hideShare()"></div>
+		<div id="share-panel">
+			<header>
+				<h1>分享到</h1>
+			</header>
+			<ul id="share-panel-btns">
+				<li class="share-panel-btn" ng-click="share('wechatFriends')">
+					<img ng-src="/images/share-wechat-friends.png" alt="" class="share-panel-btn-img">
+					<span class="share-panel-btn-title">微信好友</span>
+				</li>
+				<li class="share-panel-btn" ng-click="share('wechatComment')">
+					<img ng-src="/images/share-wechat-comment.png" alt="" class="share-panel-btn-img">
+					<span class="share-panel-btn-title">朋友圈</span>
+				</li>
+				<li class="share-panel-btn" ng-click="share('QQ')">
+					<img ng-src="/images/share-QQ.png" alt="" class="share-panel-btn-img">
+					<span class="share-panel-btn-title">QQ好友</span>
+				</li>
+			</ul>
+			<button id="share-panel-cancel" ng-click="hideShare()">取消</button>
+		</div>
+
+	</div>
+
+
 
 
 </div>

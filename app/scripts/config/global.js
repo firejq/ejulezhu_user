@@ -19,6 +19,7 @@ angular.module('app')
 			Mobileno: '',
 			Token: '',
 			code: '',//微信授权code
+			//domain: 'http://api.firejq.com/',//部署该web app的域名
 
 			footer: {//底部导航栏控制变量
 				isShown: false//是否显示，默认不显示
