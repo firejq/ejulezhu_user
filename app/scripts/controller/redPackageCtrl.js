@@ -170,14 +170,14 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 				//分享到微信好友
 				wx.onMenuShareAppMessage({
 					title: 'e家修', // 分享标题
-					desc: '', // 分享描述
-					link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-					imgUrl: '', // 分享图标
-					type: '', // 分享类型,music、video或link，不填默认为link
+					desc: '一款基于方便客户维修装修的APP，注册分享即可抢红包哦!', // 分享描述
+					link: 'http://120.25.74.193/v1/web/download', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: 'http://www.ejx88.com:9090/static/confimg/client_logo.png', // 分享图标
+					type: 'link', // 分享类型,music、video或link，不填默认为link
 					dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 					trigger: function (res) {
 						// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
-						//$scope.global.msg('click shared');
+						$scope.global.msg('click shared');
 					},
 					success: function () {
 						// 用户确认分享后执行的回调函数
@@ -191,8 +191,8 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 				//分享到微信朋友圈
 				wx.onMenuShareTimeline({
 					title: 'e家修', // 分享标题
-					link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-					imgUrl: '', // 分享图标
+					link: 'http://120.25.74.193/v1/web/download', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl: 'http://www.ejx88.com:9090/static/confimg/client_logo.png', // 分享图标
 					trigger: function (res) {
 						// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
 						//$scope.global.msg('click shared');
@@ -209,9 +209,9 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 				//分享到QQ
 				wx.onMenuShareQQ({
 					title: 'e家修', // 分享标题
-					desc: '', // 分享描述
-					link: '', // 分享链接
-					imgUrl: '', // 分享图标
+					desc: '一款基于方便客户维修装修的APP，注册分享即可抢红包哦!', // 分享描述
+					link: 'http://120.25.74.193/v1/web/download', // 分享链接
+					imgUrl: 'http://www.ejx88.com:9090/static/confimg/client_logo.png', // 分享图标
 					trigger: function (res) {
 						// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
 						//$scope.global.msg('click shared');
@@ -237,21 +237,10 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 
 
 	/**
-	 * 显示分享页面
+	 * 弹出提示：点击右上角分享按钮进行分享
 	 */
-	$scope.showShare = function () {
-		//TODO 弹出提示：点右上角分享按钮进行分享
-		//$scope.redPackageData.visible.share = true;
-		//document.getElementById('share-panel').style.bottom = '0';
-
-	};
-
-	/**
-	 * 隐藏分享页面
-	 */
-	$scope.hideShare = function () {
-		$scope.redPackageData.visible.share = false;
-		document.getElementById('share-panel').style.bottom = '-25vh';
+	$scope.showShareTip = function () {
+		$scope.global.msg('点击右上角分享按钮进行分享~', 3);
 	};
 
 

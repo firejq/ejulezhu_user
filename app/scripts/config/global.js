@@ -18,8 +18,7 @@ angular.module('app')
 			cryptid: '123456',
 			Mobileno: '',
 			Token: '',
-			code: '',//微信授权code
-			//domain: 'http://api.firejq.com/',//部署该web app的域名
+			code: '',//微信授权code，在main首页获取
 
 			footer: {//底部导航栏控制变量
 				isShown: false//是否显示，默认不显示
@@ -28,12 +27,14 @@ angular.module('app')
 			/**
 			 * 信息提示
 			 * @param content
+			 * @param time
 			 */
-			msg: function (content) {
+			msg: function (content, time) {
+				time = time || 1;//默认值为1s
 				layer.open({
 					content: content,
 					skin: 'msg',
-					time: 1
+					time: time
 				});
 			},
 

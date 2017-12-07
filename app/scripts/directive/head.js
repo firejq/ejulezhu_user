@@ -39,7 +39,7 @@ angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
 			 * “抢红包”页面的分享按钮回调函数
 			 */
 			scope.share = function () {
-				scope.$parent.showShare();
+				scope.$parent.showShareTip();
 			};
 
 
