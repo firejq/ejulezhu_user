@@ -171,7 +171,7 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 				wx.onMenuShareAppMessage({
 					title: 'e家修', // 分享标题
 					desc: '一款基于方便客户维修装修的APP，注册分享即可抢红包哦!', // 分享描述
-					link: 'http://120.25.74.193/v1/web/download', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					link: 'http://120.25.74.193/v1/web/download', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致 TODO 因此放到生产服务器上，这些设置才能生效
 					imgUrl: 'http://www.ejx88.com:9090/static/confimg/client_logo.png', // 分享图标
 					type: 'link', // 分享类型,music、video或link，不填默认为link
 					dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空

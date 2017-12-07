@@ -134,7 +134,7 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 						Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
 						Orderno: $state.params.orderNo,
 						Fee: $scope.payProgressPaymentData.userPayFee,//金额
-						Openid: 1234//微信平台获取的openid TODO
+						Openid: 1234 //微信平台获取的openid TODO
 					}
 				}).then(function (response) {
 					console.log(response);
