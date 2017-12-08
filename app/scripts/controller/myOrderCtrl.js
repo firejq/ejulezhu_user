@@ -50,27 +50,27 @@ angular.module('app').controller('myOrderCtrl', ['$scope', 'cache', '$http', fun
 	/**
 	 * 获取订单总数
 	 */
-	$http({
-		method: 'GET',
-		url: $scope.global.url + 'order/number',
-		params: {
-			Mobileno: mobilenoCookie,
-			Usertype: 1,
-			Token: tokenCookie,
-			Reqtime: Math.round(new Date().getTime()/1000)
-		}
-	}).then(function (response) {
-		//console.log(response);
-		if (response.data.status === 0) {
-			$scope.total = response.data.Number;
-			console.log($scope.total);
-
-		} else {
-			$scope.global.msg('请求出错');
-		}
-	}, function (response) {
-		console.log('fail! ' + response);
-	});
+	//$http({
+	//	method: 'GET',
+	//	url: $scope.global.url + 'order/number',
+	//	params: {
+	//		Mobileno: mobilenoCookie,
+	//		Usertype: 1,
+	//		Token: tokenCookie,
+	//		Reqtime: Math.round(new Date().getTime()/1000)
+	//	}
+	//}).then(function (response) {
+	//	//console.log(response);
+	//	if (response.data.status === 0) {
+	//		$scope.total = response.data.Number;
+	//		console.log($scope.total);
+	//
+	//	} else {
+	//		$scope.global.msg('请求出错');
+	//	}
+	//}, function (response) {
+	//	console.log('fail! ' + response);
+	//});
 
 
 	/**

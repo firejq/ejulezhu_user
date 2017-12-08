@@ -1,10 +1,27 @@
 <div app-head text="整体装修" has-back="true"></div>
-<ul class="pt-90 overall-decoration">
+<ul id="overall-decoration" class="pt-90 overall-decoration">
 	<li ng-repeat="styleRecord in styleRecords">
 		<img ng-src="{{styleRecord.Sampleimg}}" alt="">
 		<span class="title" ng-bind="styleRecord.Title"></span>
 		<button class="btn" ui-sref="decorationBooking({styleId: styleRecord.Id})">马上预约</button>
 		<span class="introduction" ng-bind="styleRecord.Introduction"></span>
 		<span class="amount t-o" ng-bind="'已有' + styleRecord.Totalbooking + '人预约'"></span>
+	</li>
+	<!--loading动画-->
+	<li id="load-more">
+		<div class="lds-spinner" style="height:100%">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
 	</li>
 </ul>

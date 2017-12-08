@@ -1,4 +1,4 @@
-<ul class="case f-l">
+<ul id="case" class="case f-l">
 	<li class="f-l" ng-repeat="sample in sampleList">
 		<img ng-src="{{sample.Img}}">
 		<div class="case-describe">
@@ -9,6 +9,23 @@
 				<label ng-bind="sample.HousingLayout"></label>
 				<label ng-bind="sample.HouseSize"></label>
 			</div>
+		</div>
+	</li>
+	<!--loading动画-->
+	<li id="load-more">
+		<div class="lds-spinner" style="height:100%">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
 		</div>
 	</li>
 </ul>
