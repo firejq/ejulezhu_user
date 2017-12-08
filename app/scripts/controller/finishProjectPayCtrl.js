@@ -4,6 +4,7 @@
 'use strict';
 
 angular.module('app').controller('finishProjectPayCtrl', ['$scope', '$http', 'cache', '$state', function ($scope, $http, cache, $state) {
+
 	//初始化变量
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
@@ -78,6 +79,10 @@ angular.module('app').controller('finishProjectPayCtrl', ['$scope', '$http', 'ca
 	}, function (response) {
 		console.log('fail! ' + response);
 	});
+
+
+
+	//TODO 客户支付还未实现
 
 
 }]);

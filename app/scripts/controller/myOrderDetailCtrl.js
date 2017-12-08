@@ -5,6 +5,10 @@
 
 angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache', '$state', function ($scope, $http, cache, $state) {
 
+	/**
+	 * TODO 目前进度：1. 支付进度款 2. 最后一步的客户支付
+	 */
+
 	//默认进入订单状态页面
 	$state.go('myOrderDetail.state');
 
@@ -46,6 +50,7 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 	}).then(function (response) {
 		//console.log(response);
 		if (response.data.Status === 0) {
+			//console.log(response.data);
 			//将订单详情赋值到$scope.orderDetail中
 			$scope.orderDetail = response.data;
 			//console.log($scope.orderDetail);
@@ -130,7 +135,7 @@ angular.module('app').controller('myOrderDetailCtrl', ['$scope', '$http', 'cache
 
 
 	/**
-	 * 验收回调函数
+	 * 验收 回调函数
 	 */
 	$scope.checkProject = function () {
 		layer.open({
