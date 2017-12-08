@@ -155,7 +155,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 
 
 	/**
-	 * 图片上传按钮事件监听
+	 * 图片上传按钮事件监听 TODO
 	 */
 	//监听上传按钮，选中文件即触发
 	$("#img-upload").on("change", function(e){
@@ -213,41 +213,43 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 	/**
 	 * 语音文件上传监听事件
 	 */
-	$("#voice-upload").on("change", function(e) {
-		if (typeof e.target.files[0] !== 'undefined') {
-			var file = e.target.files[0]; //获取语音文件资源
+		$("#voice-upload").on("change", function(e) {
+			if (typeof e.target.files[0] !== 'undefined') {
+				var file = e.target.files[0]; //获取语音文件资源
 
-			//上传语音文件
-			var voice_form = new FormData();
-			voice_form.append('File', file);
-			voice_form.append('Mobileno', cache.get('Mobileno'));
-			voice_form.append('Token', cache.get('Token'));
-			voice_form.append('Reqtime', Math.round(new Date().getTime() / 1000));
+				//上传语音文件
+				var voice_form = new FormData();
+				voice_form.append('File', file);
+				voice_form.append('Mobileno', cache.get('Mobileno'));
+				voice_form.append('Token', cache.get('Token'));
+				voice_form.append('Reqtime', Math.round(new Date().getTime() / 1000));
 
-			$http({
-				url: $scope.global.url + 'voice/upload',
-				method: 'POST',
-				data: voice_form,
-				headers: {
-					'Content-Type': undefined
-				},
-				transformRequest: angular.identity
-			}).then(function (response) {
-				//console.log(response);
-				if (response.data.Status === 0) {
-					//console.log('upload successfully');
-					//获取服务器回调信息：将语音id存储到 $scope.bookingSubmitData.voiceId 中
-					$scope.furnitureRepairSubmitData.voiceId = response.data.Id;
-					//console.log($scope.furnitureRepairSubmitData.voiceId);
-				} else {
-					$scope.global.msg('语音上传出错');
-				}
-			}, function (response) {
-				console.log('fail! ' + response);
-				$scope.global.msg('连接超时');
-			});
-		}
-	});
+				$http({
+					url: $scope.global.url + 'voice/upload',
+					method: 'POST',
+					data: voice_form,
+					headers: {
+						'Content-Type': undefined
+					},
+					transformRequest: angular.identity
+				}).then(function (response) {
+					//console.log(response);
+					if (response.data.Status === 0) {
+						//console.log('upload successfully');
+						//获取服务器回调信息：将语音id存储到 $scope.bookingSubmitData.voiceId 中
+						$scope.furnitureRepairSubmitData.voiceId = response.data.Id;
+						//console.log($scope.furnitureRepairSubmitData.voiceId);
+					} else {
+						$scope.global.msg('语音上传出错');
+					}
+				}, function (response) {
+					console.log('fail! ' + response);
+					$scope.global.msg('连接超时');
+				});
+			}
+		});
+
+
 
 
 	/****************************************************
@@ -258,12 +260,9 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 	 * 点击维修材料的回调函数：显示模态框
 	 */
 	$scope.showModalOfMaterial = function (materialPrice) {
-
 		//对象的浅复制
 		$scope.currentMaterialPrice = $scope.global.shallowClone(materialPrice);
-
 		$('#modal-'+materialPrice.$$hashKey[7]).removeClass('ng-hide');
-
 	};
 	/**
 	 * 点击模态框任意地方的回调函数，隐藏模态框

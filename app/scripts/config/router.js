@@ -63,7 +63,8 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			})
 			.state('about', {
 				url: '/about',
-				templateUrl: 'view/about.html'
+				templateUrl: 'view/about.html',
+				controller: 'aboutCtrl'
 			})
 			.state('aboutUs', {
 				url: '/aboutUs',

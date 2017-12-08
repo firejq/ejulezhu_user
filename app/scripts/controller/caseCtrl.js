@@ -5,13 +5,14 @@
 
 angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scope, $http) {
 	$scope.sampleList = [];
+	//TODO 按页获取！！
 	$http({
 		method: 'GET',
 		url: $scope.global.url + "projectsample/all"
 		// params:{
 		// }
 	}).then(function (response) {
-		//console.log(response);
+		console.log(response);
 		if(response.data.status === 0){
 			$scope.sampleList = response.data.records;
 			for (var i  =  0; i < response.data.records.length; i++) {

@@ -3,11 +3,8 @@
 	<li class="btn hot-topic-article-list-item"
 	    ng-repeat="item in items[id]"
 	    ui-sref="hotTopicArticleDetail({id: item.Id})">
-
 		<div class="d-ib item-left">
-
 			<div class="item-left-title" ng-bind="item.Title"></div>
-
 			<div class="item-left-other">
 				<span class="d-ib item-left-other-source" ng-bind="item.Source"></span>
 				<div class="d-ib item-left-other-view-number">
@@ -15,10 +12,25 @@
 					<span ng-bind="item.Clicks"></span>
 				</div>
 			</div>
-
 		</div>
-
 		<img ng-src="{{item.Img}}" class="f-r item-right">
 
+	</li>
+	<!--loading动画-->
+	<li id="load-more">
+		<div class="lds-spinner" style="height:100%">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
 	</li>
 </ul>

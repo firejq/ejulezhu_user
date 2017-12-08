@@ -59,24 +59,21 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 	 * @constructor
 	 */
 	$scope.GetItem = function (id, pageNum, recperPage){
+		recperPage = recperPage || 5;//默认值为每次加载5条记录
 
-		if (typeof recperPage === "undefined") {
-			recperPage = 5;
-		}
-
-		// 显示加载动画层
-		layer.open({
-			type: 2,
-			//time: 1,
-			//shade: 'background-color: rgba(0,0,0,.3)'
-		});
-
-
-		if("undefined" !== typeof $scope.items[id] && $scope.items[id].length === $scope.total) {
-			$scope.is_done = 1;//TODO 设置这个变量干啥？
+		if("undefined" !== typeof $scope.items[id] && $scope.items[id].length === $scope.total) {//若全部加载完毕，不再执行请求
+			$scope.is_done = 1;//标识已经全部加载完毕
 			layer.closeAll();
 			$scope.global.msg('没有更多了');
 			return;
+		}
+
+
+		if ("undefined" !== typeof $scope.items[id]) {//若不是第一次请求，触发显示加载更多提示
+			//console.log('运行到加载更多动画这里');
+			document.getElementById('load-more').style.display = 'block';
+			document.getElementById('load-more').scrollIntoView();
+
 		}
 
 		// 获取话题类型对应的条目
@@ -89,9 +86,14 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 				'Recperpage': recperPage
 			}
 		}).then(function (response) {
-			console.log(response.data.records);
+			//console.log(response.data.records);
 
 			if(response.data.status === 0) {
+				//console.log(response.data);
+				//请求成功，则隐藏"加载更多"层
+				document.getElementById('load-more').style.display = 'none';
+
+				//格式化图片链接
 				for (i = 0; i < response.data.records.length; i++) {
 					response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
 				}
@@ -116,10 +118,10 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 		layer.closeAll();
 	};
 
-	$scope.id = $state.params.id;
-	$scope.items = [];
+	$scope.id = $state.params.id;// 话题id
+	$scope.items = [];// 存放获取的记录
 	$scope.is_done = 0;// 标志是否加载完所有条目
-	$scope.pageNum = 1;
+	$scope.pageNum = 1;// 当前第几页
 	$scope.GetItem($scope.id, $scope.pageNum++);
 
 
@@ -127,12 +129,13 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 	 * 监听scroll事件，到底部加载更多
 	 */
 	window.onscroll = function () {
-		console.log('scroll is triggered');
+		//console.log('scroll is triggered');
 		//console.log(window.pageYOffset);
 		//console.log(window.innerHeight);
 		//console.log(document.getElementsByTagName('body')[0].scrollHeight);
 		if (window.pageYOffset + window.innerHeight >=
 			document.getElementsByTagName('body')[0].scrollHeight) {
+			//console.log('触发加载函数');
 			$scope.GetItem($scope.id, $scope.pageNum++);
 		}
 	};
