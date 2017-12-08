@@ -151,19 +151,93 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 	});
 
 
+
+	//存储当前放大预览的图片的id
+	$scope.currentPreviewImgId = '';
+	/**
+	 * 预览图片点击的回调函数
+	 * 全屏显示、显示删除按钮
+	 */
+	var previewImgClick = function (event) {
+		$scope.currentPreviewImgId = event.target.id;
+		$scope.showModal();//显示遮罩层
+
+	};
+
+	/**
+	 * 显示遮罩层同时放大图片
+	 */
+	$scope.showModal = function () {
+		document.getElementById('preview-img-modal').style.display = 'block';
+		document.getElementById($scope.currentPreviewImgId).classList.add('img-upload-preview-clicked');
+
+	};
+	/**
+	 * 隐藏遮罩层同时缩小图片
+	 */
+	$scope.hideModal = function () {
+		document.getElementById('preview-img-modal').style.display = 'none';
+		document.getElementById($scope.currentPreviewImgId).classList.remove('img-upload-preview-clicked');
+
+	};
+
+	/**
+	 * 取消上传图片
+	 */
+	$scope.cancelUploadImg = function () {
+		$scope.hideModal();
+		document.getElementById($scope.currentPreviewImgId).style.display = 'none';
+		for (var i = 0; i < $scope.bookingSubmitData.imgInfoList.length; i ++) {
+			if ($scope.bookingSubmitData.imgInfoList[i].ImgElementId === $scope.currentPreviewImgId) {
+
+				//删除服务器的对应图片
+				$http({
+					url: $scope.global.url + 'image/delete',
+					method: 'GET',
+					params: {
+						Mobileno: mobilenoCookie,
+						Token: tokenCookie,
+						Usertype: 1,
+						Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
+						Id: $scope.bookingSubmitData.imgInfoList[i].Id//图片id
+					}
+				}).then(function (response) {
+
+					if (response.data.status === 0) {
+						//console.log('成功删除');
+						$scope.bookingSubmitData.imgInfoList.splice(i, 1);//从数组中删除该元素
+						return;
+					}
+
+				},function (response) {
+					console.log('fail! ' + response);
+					$scope.global.msg('连接超时');
+				});
+
+				return;
+			}
+		}
+
+
+	};
+
+
 	/**
 	 * 图片上传按钮事件监听
 	 */
-	//监听上传按钮，选中文件即触发
 	$("#img-upload").on("change", function(e){
 		if (typeof e.target.files[0] !== 'undefined') {
 			var file = e.target.files[0]; //获取图片资源
+			var nameHash = $scope.global.hashCode(file.name);//根据文件名计算hash值
 			var reader = new FileReader();
 			reader.readAsDataURL(file); // 读取文件
 			// 渲染文件
 			reader.onload = function(arg) {
-				var img = '<img class="img-upload-preview" src="' + arg.target.result + '" alt="preview"/>';
+				var img = '<img id="' + nameHash + '-preview-img" class="img-upload-preview" src="' + arg.target.result + '" alt="preview"/>';
+				//插入到dom中
 				$("#img-upload-insert-label").before(img);
+				//注册点击回调
+				document.getElementById(nameHash + '-preview-img').addEventListener('click', previewImgClick);
 			};
 
 			//上传图片
@@ -188,6 +262,7 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 					//console.log('upload successfully');
 					//获取服务器回调信息：图片Id和外链地址，并存储到 imgInfoList 中
 					$scope.bookingSubmitData.imgInfoList.push({
+						ImgElementId: nameHash + '-preview-img',
 						Id: response.data.Id,
 						Url: $scope.global.ip + response.data.Url
 					});

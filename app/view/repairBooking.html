@@ -93,5 +93,13 @@
 	</div>
 </form>
 
+<!-- 放大预览图片时的遮罩层 -->
+<div id="preview-img-modal">
+	<header>
+		<span ng-click="hideModal()">&lt;</span>
+		<button ng-click="cancelUploadImg()">删除</button>
+	</header>
+</div>
+
 <!--维修材料费 和 维修人工费 的子视图-->
 <ui-view></ui-view>
