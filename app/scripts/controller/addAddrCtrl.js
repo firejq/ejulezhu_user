@@ -9,20 +9,41 @@ angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', '$s
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
 
+
 	//单个地址信息
 	$scope.addressInfo = {
-		Contactname: '',
+		Contactname: window.sessionStorage.getItem('Contactname')||'',//预加载上次填过的信息
 		Phone: mobilenoCookie,
-		Region: $state.params.regionid,
-		Contactaddr: '',
+		Region: sessionStorage.getItem('regionid')||'',
+		Contactaddr: window.sessionStorage.getItem('Contactaddr')||'',//预加载上次填过的信息
 		IsDefaultaddr: 0,
 
-		province: decodeURI($state.params.province),
-		city: decodeURI($state.params.city),
-		area: decodeURI($state.params.area)
-
+		province: decodeURI(sessionStorage.getItem('province')||''),
+		city: decodeURI(sessionStorage.getItem('city')||''),
+		area: decodeURI(sessionStorage.getItem('area')||'')
 	};
 
+	/**
+	 * 监听“联系人”的输入，存储到sessionStorage中，防止修改地址后再返回已填的信息丢失
+	 */
+	document.getElementById('contactName').addEventListener('change', function (event) {
+		window.sessionStorage.setItem('Contactname', event.target.value);
+		//console.log(window.sessionStorage);
+	});
+
+	/**
+	 * 监听“详细地址”的输入，存储到sessionStorage中，防止修改地址后再返回已填的信息丢失
+	 */
+	document.getElementById('contactAddr').addEventListener('change', function (event) {
+		window.sessionStorage.setItem('Contactaddr', event.target.value);
+		//console.log(window.sessionStorage);
+	});
+
+
+
+	/**
+	 * 添加新地址
+	 */
 	$scope.addAddrSubmit = function () {
 		$scope.addressInfo.IsDefaultaddr = $scope.addressInfo.IsDefaultaddr? 1 : 0;
 		var unix_time = Math.round(new Date().getTime()/1000);//10位unix时间戳
@@ -44,8 +65,21 @@ angular.module('app').controller('addAddrCtrl', ['$scope', 'cache', '$http', '$s
 		}).then(function (response) {
 			//console.log(response);
 			if (response.data.status === 0) {
+				//清除 sessionStorage 中的缓存
+				window.sessionStorage.removeItem('Contactname');
+				window.sessionStorage.removeItem('Contactaddr');
+
 				$scope.global.msg('添加成功');
-				$state.go('manageAddr');
+
+				//if (window.localStorage.getItem('manageAddrLength') !== null) {
+				//	var x = window.history.length - window.localStorage.getItem('manageAddrLength');
+				//	window.history.go(-x);
+				//} else {
+				//	$state.go('manageAddr'); //直接跳转会导致后退键混乱
+				//}
+
+				window.history.back();
+
 			} else {
 				$scope.global.msg('添加失败');
 			}

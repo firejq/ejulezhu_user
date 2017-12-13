@@ -26,7 +26,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 		address: '',//地址
 		imgInfoList: [],//上传图片信息
 		voiceId: '',//语音文件id
-		total: '',//装修估价
+		total: 0,//装修估价
 		attact: '',//用户留言
 	};
 	//格式化“维修类型”，用于在页面显示，原格式：xxx,xxx 目标格式：xxx xxx
@@ -96,6 +96,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 						kinds: [],//该类型拥有的所有种类
 						selectedLabourId: ''//该类型选择的人工费id，为空表示未选择
 					});
+
 					//计算数组的最后一项的索引，即当前 keyName 对应的项
 					var lastIndexOfLabour = $scope.furnitureRepairSubmitData.labourPrices.length - 1;
 					for (var i = 0, len = response.data[keyName].labourprices.length; i < len; i++) {
@@ -565,7 +566,7 @@ angular.module('app').controller('repairBookingCtrl', ['$scope', '$http', 'cache
 			}
 		}).then(function (response) {
 
-			console.log(response);
+			//console.log(response);
 			if (response.data.Status === 0) {
 				$scope.global.msg('提交成功');
 				$state.go('myOrderDetail', {orderId: response.data.Orderid, orderNo: response.data.Orderno});

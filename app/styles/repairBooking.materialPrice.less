@@ -8,6 +8,7 @@
   height: 100vh;
   width: 100vw;
   background-color: rgb(250, 250, 250);
+  overflow: hidden;
 
   #repair-booking-material-price-ul {
     width: 100%;
@@ -93,12 +94,16 @@
       height: 24vh;
       width: 85vw;
       overflow: auto;
-      z-index: 102;
+      //z-index: 999;
+      z-Index: 102;
+      transform: translateZ(999px);
 
       ul {
         margin: 0;
         padding: 0;
         width: 100%;
+        z-index: 999;
+        //transform: translateZ(100px);
 
         li {
           margin: 0;

@@ -20,7 +20,7 @@
 				       type="checkbox"
 				       ng-model="address.IsDefaultaddr"
 				       ng-checked="address.IsDefaultaddr?'true':''"
-				       ng-click="modifyAddress(address)">
+				       ng-click="modifyDefalutAddress(address)">
 				<label for="{{'isDefault-'+address.Id}}"></label>
 				<label class="span-left" for="{{'isDefault-'+address.Id}}">默认地址</label>
 			</div>
@@ -28,12 +28,12 @@
 			<span class="f-r span-right" ng-click="deleteAddress(address.Id)">
 				<i class="fa fa-trash-o" aria-hidden="true"> 删除</i>
 			</span>
-			<span class="f-r span-right" ui-sref="editAddress({addrId:address.Id, province:'', city:'', area:'', regionid:''})">
+			<span class="f-r span-right" ng-click="toEditAddr(address.Id)">
 				<i class="fa fa-pencil-square-o" aria-hidden="true"> 编辑</i>
 			</span>
 		</li>
 	</ul>
 </div>
 <!--底部按钮-->
-<button class="add-addr-btn" ui-sref="addAddr({province:'',city:'',area:'',regionid:''})">新增地址</button>
+<button class="add-addr-btn" ng-click="toaddAddr()">新增地址</button>
 

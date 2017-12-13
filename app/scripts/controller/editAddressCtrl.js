@@ -7,11 +7,12 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
-	var allAddressList = [];
+	var allAddressList = [];//所有地址信息列表
+	$scope.addressInfo = {};//当前要修改的地址信息对象
 
-	// 返回所有地址信息的列表
-	// 10位unix时间戳
-	var unix_time = Math.round(new Date().getTime()/1000);
+	/**
+	 * 返回所有地址信息的列表，再从所有地址中选出指定Id的地址
+	 */
 	$http({
 		method: 'GET',
 		url: $scope.global.url + 'fixaddress/request',
@@ -19,7 +20,7 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 			Mobileno: mobilenoCookie,
 			Usertype: 1,
 			Token: tokenCookie,
-			Reqtime: unix_time
+			Reqtime: Math.round(new Date().getTime()/1000)
 		}
 	}).then(function (response) {
 		//console.log(response);
@@ -39,7 +40,7 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 				});
 			}
 
-			console.log(allAddressList);
+			//console.log(allAddressList);
 
 			// 从所有地址中选出指定Id的地址，赋值到$scope中
 			for (var i = 0, len = allAddressList.length; i < len; i++) {
@@ -49,12 +50,16 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 					break;
 				}
 			}
-			var province = decodeURI($state.params.province);
-			var city = decodeURI($state.params.city);
-			var area = decodeURI($state.params.area);
-			if (province !== '' || city !== '' || area !=='') {
+
+			var province = decodeURI(sessionStorage.getItem('province')||'');
+			var city = decodeURI(sessionStorage.getItem('city')||'');
+			var area = decodeURI(sessionStorage.getItem('area')||'');
+			if (province !== '' && city !== '' && area !=='') {
 				$scope.addressInfo.Region = province + city + area;
+				$scope.addressInfo.Regionid = sessionStorage.getItem('regionid');
 			}
+
+			//console.log($scope.addressInfo);
 
 
 		} else {
@@ -63,6 +68,46 @@ angular.module('app').controller('editAddressCtrl', ['$scope', '$http', 'cache',
 	}, function (response) {
 		console.log('fail! ' + response);
 	});
+
+
+	/**
+	 * 提交修改回调函数
+	 */
+	$scope.editAddrSubmit = function () {
+
+		$scope.addressInfo.IsDefaultaddr =	$scope.addressInfo.IsDefaultaddr?1:0;
+		//console.log(newAddressInfo);
+		$http({
+			method: 'GET',
+			url: $scope.global.url + 'fixaddress/modify',
+			params: {
+				Mobileno: mobilenoCookie,
+				Usertype: 1,
+				Token: tokenCookie,
+				Reqtime: Math.round(new Date().getTime()/1000),
+				Id: $scope.addressInfo.Id,
+				Phone: $scope.addressInfo.Phone,
+				Contactaddr: $scope.addressInfo.Contactaddr,
+				Contactname: $scope.addressInfo.Contactname,
+				Region: $scope.addressInfo.Regionid,
+				IsDefaultaddr: $scope.addressInfo.IsDefaultaddr
+			}
+		}).then(function (response) {
+			//console.log(response);
+			if (response.data.status === 0) {
+				window.history.back();
+			} else {
+				$scope.global.cancel('修改失败');
+			}
+
+		}, function (response) {
+			console.log('fail! ' + response);
+		});
+
+
+
+
+	};
 
 
 

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
+angular.module('app').directive('appHead', ['$state', '$rootScope', function ($state, $rootScope) {
 	return {
 		restrict: 'AE',
 		replace: 'true',
@@ -23,7 +23,21 @@ angular.module('app').directive('appHead', ['transUrl', function (transUrl) {
 			 * 后退
 			 */
 			scope.back = function() {
-				window.history.back();
+				//if ($state.$current.name === 'addAddr') {
+					//console.log(scope.$parent);
+					//if ($rootScope.global.manageAddrLength !== 0) {
+					//	alert('window.history.length:' + window.history.length);
+					//	alert('manageAddrLength:' + $rootScope.global.manageAddrLength);
+					//	var x = window.history.length - $rootScope.global.manageAddrLength;
+					//	window.history.go(-x);
+					//} else {
+					//	$state.go('manageAddr'); //直接跳转会导致后退键混乱
+					//}
+
+					//window.history.go(-3);
+				//} else {
+					window.history.back();
+				//}
 			};
 
 			/**

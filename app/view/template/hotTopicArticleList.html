@@ -2,7 +2,7 @@
 <ul class="hot-topic-article-list">
 	<li class="btn hot-topic-article-list-item"
 	    ng-repeat="item in items[id]"
-	    ui-sref="hotTopicArticleDetail({id: item.Id})">
+	    ui-sref="hotTopicArticleDetail({catId: id, id: item.Id})">
 		<div class="d-ib item-left">
 			<div class="item-left-title" ng-bind="item.Title"></div>
 			<div class="item-left-other">

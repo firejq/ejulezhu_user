@@ -46,7 +46,8 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 		//console.log(response.data.records);
 
 		if(response.data.status === 0) {
-			//console.log(response.data);
+			console.log(response.data);
+
 			for (var i  =  0; i < response.data.records.length; i++) {
 				response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
 			}

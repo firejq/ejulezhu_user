@@ -37,7 +37,7 @@ angular.module('app').controller('overallDecorationSubmitCtrl', ['$scope', '$htt
 		],
 		imgInfoList: [],//上传图片信息
 		voiceId: '',//语音文件id
-		total: ''//装修估价
+		total: 0//装修估价
 	};
 
 	/**

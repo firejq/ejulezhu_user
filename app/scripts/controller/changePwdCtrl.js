@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('app').controller('changePwdCtrl', ['$scope', '$http', 'cache', function ($scope, $http, cache) {
+angular.module('app').controller('changePwdCtrl', ['$scope', '$http', 'cache', '$state', function ($scope, $http, cache, $state) {
 
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
@@ -35,8 +35,14 @@ angular.module('app').controller('changePwdCtrl', ['$scope', '$http', 'cache', f
 				Newpasswd: $scope.changePwdData.Newpasswd
 			}
 		}).then(function (response) {
-			if (response.data.Status === 0) {
+			if (response.data.status === 0) {
+				$scope.global.msg('密码修改成功~');
+				cache.remove('Mobileno');
+				cache.remove('Token');
+				$state.go('login');
 
+			} else {
+				$scope.global.msg('密码修改失败');
 			}
 
 		}, function (response) {

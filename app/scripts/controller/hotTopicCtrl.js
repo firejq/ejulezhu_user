@@ -73,7 +73,6 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 			//console.log('运行到加载更多动画这里');
 			document.getElementById('load-more').style.display = 'block';
 			document.getElementById('load-more').scrollIntoView();
-
 		}
 
 		// 获取话题类型对应的条目

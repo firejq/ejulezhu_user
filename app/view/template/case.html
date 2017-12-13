@@ -1,5 +1,5 @@
 <ul id="case" class="case f-l">
-	<li class="f-l" ng-repeat="sample in sampleList">
+	<li class="f-l" ng-repeat="sample in sampleList" ui-sref="caseDetail({id: sample.Id})">
 		<img ng-src="{{sample.Img}}">
 		<div class="case-describe">
 			<label class="case-describe-title" ng-bind="sample.Desc"></label>

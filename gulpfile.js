@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var open = require('open');
+//var autoprefixer = required('gulp-autoprefixer');
 
 var app = {
 	srcPath: 'app/',
@@ -36,6 +37,10 @@ gulp.task('less', function() {
 	gulp.src(app.srcPath + 'styles/index.less')
 		.pipe($.plumber())
 		.pipe($.less())
+		.pipe($.autoprefixer({
+			browsers: ['last 2 versions', 'Android >= 4.0', 'last 3 Safari versions', 'iOS 7'],
+			cascade: false
+		}))
 		.pipe($.cssmin())
 		.pipe(gulp.dest(app.prdPath + 'css'))
 		.pipe($.connect.reload());

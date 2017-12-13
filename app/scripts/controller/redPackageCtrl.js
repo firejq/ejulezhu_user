@@ -177,7 +177,7 @@ angular.module('app').controller('redPackageCtrl', ['$scope', '$http', 'cache', 
 					dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 					trigger: function (res) {
 						// 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
-						$scope.global.msg('click shared');
+						//$scope.global.msg('click shared');
 					},
 					success: function () {
 						// 用户确认分享后执行的回调函数

@@ -3,13 +3,13 @@
  */
 'use strict';
 
-angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', function ($scope, $http, cache) {
+angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', '$state', function ($scope, $http, cache, $state ) {
 
 	var mobilenoCookie = cache.get('Mobileno');
 	var tokenCookie = cache.get('Token');
 
 	// 返回所有地址信息的列表
-	(function () {
+	var getAllAddrList = function () {
 		// 10位unix时间戳
 		var unix_time = Math.round(new Date().getTime()/1000);
 		$http({
@@ -39,7 +39,7 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 						Regionid: response.data.records[i].Regionid
 					});
 				}
-				console.log($scope.addressList);
+				//console.log($scope.addressList);
 			} else {
 				$scope.global.cancel('获取地址失败');
 			}
@@ -47,14 +47,45 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 		}, function (response) {
 			console.log('fail! ' + response);
 		});
-	})();
+	};
+	getAllAddrList();
 
 
-	$scope.modifyAddress = function (newAddressInfo) {
+	/**
+	 * 跳转到修改地址页面的回调函数
+	 */
+	$scope.toEditAddr = function (addressId) {
+		//先清除本地的地址信息缓存再跳转
+		window.sessionStorage.removeItem('province');
+		window.sessionStorage.removeItem('city');
+		window.sessionStorage.removeItem('area');
+		window.sessionStorage.removeItem('regionid');
+
+		$state.go('editAddress', {addrId: addressId});
+	};
+
+
+	/**
+	 * 跳转到新增地址页面的回调函数
+	 */
+	$scope.toaddAddr = function () {
+		//先清除本地的地址信息缓存再跳转
+		window.sessionStorage.removeItem('province');
+		window.sessionStorage.removeItem('city');
+		window.sessionStorage.removeItem('area');
+		window.sessionStorage.removeItem('regionid');
+
+		$state.go('addAddr');
+	};
+
+
+	/**
+	 * 修改默认地址
+	 * 提交成功后返回上一级而不是刷新
+	 */
+	$scope.modifyDefalutAddress = function (newAddressInfo) {
 		newAddressInfo.IsDefaultaddr =	newAddressInfo.IsDefaultaddr?1:0;
 		//console.log(newAddressInfo);
-		// 10位unix时间戳
-		var unix_time = Math.round(new Date().getTime()/1000);
 		$http({
 			method: 'GET',
 			url: $scope.global.url + 'fixaddress/modify',
@@ -62,7 +93,7 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 				Mobileno: mobilenoCookie,
 				Usertype: 1,
 				Token: tokenCookie,
-				Reqtime: unix_time,
+				Reqtime: Math.round(new Date().getTime()/1000),
 				Id: newAddressInfo.Id,
 				Phone: newAddressInfo.Phone,
 				Contactaddr: newAddressInfo.Contactaddr,
@@ -73,7 +104,7 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 		}).then(function (response) {
 			//console.log(response);
 			if (response.data.status === 0) {
-				location.reload();
+				window.history.back();
 			} else {
 				$scope.global.cancel('修改失败');
 			}
@@ -81,9 +112,12 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 		}, function (response) {
 			console.log('fail! ' + response);
 		});
-
 	};
 
+	/**
+	 * 删除地址
+	 * @param id
+	 */
 	$scope.deleteAddress = function (id) {
 		//询问框
 		layer.open({
@@ -103,7 +137,8 @@ angular.module('app').controller('manageAddrCtrl', ['$scope', '$http', 'cache', 
 					}
 				}).then(function (response) {
 					if (response.data.status === 0) {
-						location.reload();
+						//location.reload();
+						getAllAddrList();
 						layer.close(index);
 					} else {
 						console.log('fail! ' + resposne);

@@ -91,7 +91,7 @@ angular.module('app').controller('myOrderCtrl', ['$scope', 'cache', '$http', fun
 		//console.log(response.data.records);
 
 		if(response.data.status === 0) {
-			console.log(response.data);
+			//console.log(response.data);
 
 			//格式化图片链接
 			for (var i = 0, len = response.data.records.length; i < len; i++) {

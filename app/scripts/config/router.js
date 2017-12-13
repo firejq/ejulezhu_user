@@ -27,7 +27,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				controller: 'hotTopicCtrl'
 			})
 			.state('hotTopicArticleDetail', {
-				url: '/hotTopicArticleDetail/:id',
+				url: '/hotTopicArticleDetail/:catId/:id',
 				templateUrl: 'view/hotTopicArticleDetail.html',
 				controller: 'hotTopicArticleDetailCtrl'
 			})
@@ -35,6 +35,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				url: '/case',
 				templateUrl: 'view/case.html',
 				controller: 'caseCtrl'
+			})
+			.state('caseDetail', {
+				url: '/caseDetail/:id',
+				templateUrl: 'view/caseDetail.html',
+				controller: 'caseDetailCtrl'
 			})
 			.state('me', {
 				url: '/me',
@@ -90,7 +95,7 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				controller: 'changePwdCtrl'
 			})
 			.state('addAddr', {
-				url: '/addAddr/:province/:city/:area/:regionid',
+				url: '/addAddr',
 				templateUrl: 'view/addAddr.html',
 				controller: 'addAddrCtrl'
 			})
@@ -100,12 +105,12 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 				controller: 'manageAddrCtrl'
 			})
 			.state('cityPicker', {
-				url: '/cityPicker/:from',
+				url: '/cityPicker',
 				templateUrl: 'view/cityPicker.html',
 				controller: 'cityPickerCtrl'
 			})
 			.state('editAddress', {
-				url: '/editAddress/:addrId/:province/:city/:area/:regionid',
+				url: '/editAddress/:addrId',
 				templateUrl: 'view/editAddress.html',
 				controller: 'editAddressCtrl'
 			})

@@ -20,6 +20,8 @@ angular.module('app')
 			Token: '',
 			code: '',//微信授权code，在main首页获取
 
+			//manageAddrLength: 0,//地址管理页面的window.history.length
+
 			footer: {//底部导航栏控制变量
 				isShown: false//是否显示，默认不显示
 			},
@@ -217,6 +219,23 @@ angular.module('app')
 			$rootScope.global.footer.isShown = false;
 		});
 
-	}]);
+	}])
+
+
+	///**
+	// * 监听路由的状态变化
+	// *
+	// */
+	//.run(['$transitions', '$rootScope', function ($transitions, $rootScope) {
+	//	$transitions.onExit({exiting: 'manageAddr'}, function (transition, state) {
+	//		console.log("Entered " + state.name + " module while transitioning to " + transition.to().name);
+	//
+	//		$rootScope.global.manageAddrLength = window.history.length;
+	//		console.log(window.history.length);
+	//
+	//
+	//
+	//	});
+	//}]);
 
 

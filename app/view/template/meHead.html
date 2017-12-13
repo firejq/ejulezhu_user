@@ -1,7 +1,7 @@
 <!--头像-->
 <div class="me-head">
 	<div class="me-head-indiv">
-		<img class="me-head-img d-b" src="./images/tx.png"/>
+		<img class="me-head-img d-b" ng-src="{{user.loginChecked?user.Image:'/images/tx.png'}}" ng-click="user.loginChecked?changeHeadImage():''"/>
 		<!--若未登陆，显示登陆按钮 -->
 		<input ng-if="!user.loginChecked" ui-sref="login" class="me-head-btn d-b" type="image" src="./images/dl.png"/>
 
@@ -11,4 +11,5 @@
 			<li ng-bind="user.phone"></li>
 		</ul>
 	</div>
+	<input id="head-image" type="file" accept="image/*" style="display: none;">
 </div>
