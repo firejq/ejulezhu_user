@@ -113,7 +113,7 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 			case 'weixin': {
 				console.log('进入微信支付');
 
-				if(typeof $scope.global.code === 'undefined') {//TODO
+				if(typeof $scope.global.code === 'undefined') {//TODO 未开发完毕
 					// https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_4
 					// https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
 					//跳转到微信授权页面

@@ -32,7 +32,7 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 				//console.log(response.data);
 				$scope.user.Username = response.data.Username;
 				$scope.user.Points = response.data.Points;
-				$scope.user.Image = $scope.global.ip + response.data.Image;
+				$scope.user.Image = $scope.user.Image!==''?($scope.global.ip + response.data.Image):'/images/tx.png';
 			}
 
 		}, function (response) {
