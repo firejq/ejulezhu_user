@@ -76,6 +76,7 @@ angular.module('app').controller('mainCtrl', ['$scope', '$http', 'cache', functi
 			}
 		}).then(function (response) {
 			//console.log(response);
+			//alert(JSON.stringify(response));
 			if (response.data.status === 0) {
 				//console.log(response.data);
 				//若有未读信息，显示小红点

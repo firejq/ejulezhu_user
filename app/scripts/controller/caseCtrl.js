@@ -96,31 +96,33 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 			if(response.data.status === 0) {
 				console.log(response.data);
 
-				//请求成功，则隐藏"加载更多"层
-				document.getElementById('load-more').style.display = 'none';
+				setTimeout(function () {
+					//请求成功，则隐藏"加载更多"层
+					document.getElementById('load-more').style.display = 'none';
 
-				if (response.data.records.length === 0) {
-					console.log(123123123);
-					is_done = 1;
-					layer.closeAll();
-					$scope.global.msg('暂无更多数据~');
-					return;
-				}
+					if (response.data.records.length === 0) {
+						is_done = 1;
+						layer.closeAll();
+						$scope.global.msg('暂无更多数据~');
+						return;
+					}
 
-				//格式化图片链接
-				for (var i  =  0; i < response.data.records.length; i++) {
-					response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
-				}
+					//格式化图片链接
+					for (var i  =  0; i < response.data.records.length; i++) {
+						response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
+					}
 
-				for (var i = 0; i < response.data.records.length; i++) {
-					$scope.sampleList.push(response.data.records[i]);
-				}
+					for (var i = 0; i < response.data.records.length; i++) {
+						$scope.sampleList.push(response.data.records[i]);
+					}
+					console.log($scope.sampleList);
+
+				}, 1000);
 
 			}
 		}, function (response) {
 			console.log('failed!!' + response);
 		});
-
 		layer.closeAll();
 	};
 
@@ -129,42 +131,26 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 	 * 延迟1s注册监听事件，是因为立即注册的话document.getElementById('my-order-list')获取不到dom元素
 	 */
 	setTimeout(function () {
-		//console.log('注册');
+		console.log('注册');
+
+		// TODO 死活无法触发
+		// http://www.alloyteam.com/2017/04/secrets-of-mobile-web-scroll-bars-and-drop-refresh/
+		// https://www.google.com/search?hl=zh-CN&q=%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6%E6%97%A0%E6%B3%95%E8%A7%A6%E5%8F%91
 		document.getElementById('case').addEventListener('scroll', function (event) {
 
-			var ele = event.target;
-			console.log(ele);
+			console.log('trigger');
+			console.log(document.body.scrollTop);
+			console.log(document.body.clientHeight);
+			console.log(document.body.scrollHeight);
 
-			var element = document.getElementById('case');
-			//console.log('scroll is triggered'); TODO 高度无法正确获取
-			//console.log(element.scrollTop);
-			//console.log(window.pageYOffset);
-			//console.log(element.clientHeight);
-			//console.log(window.innerHeight);
-			//console.log(element.scrollHeight);
-			//console.log(element.offsetHeight);
+			if (document.body.scrollTop + document.body.clientHeight >= document.body.scrollHeight) {
 
-			if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
 				console.log('触发加载函数');
 				$scope.GetItem(++pageNum);
 			}
+
 		});
-
-		//window.onscroll = function () {
-		//	//console.log('scroll is triggered');
-		//	console.log(window.pageYOffset);
-		//	console.log(window.innerHeight);
-		//	console.log(document.getElementById('case').scrollHeight);
-		//	if (window.pageYOffset + window.innerHeight >=
-		//		document.getElementById('case').scrollHeight) {
-		//		//console.log('触发加载函数');
-		//		$scope.GetItem(++pageNum);
-		//	}
-		//};
-
-
-
-		}, 1000);
+	}, 1000);
 
 }]);
 

@@ -29,11 +29,11 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 		}).then(function (response) {
 
 			if (response.data.status === 0) {
-				console.log(response.data);
+				//console.log(response.data);
 				$scope.user.Username = response.data.Username;
 				$scope.user.Points = response.data.Points;
 				$scope.user.Image = $scope.user.Image?($scope.global.imagesServer + response.data.Image):'./images/tx.png';
-				console.log($scope.user);
+				//console.log($scope.user);
 			}
 
 		}, function (response) {

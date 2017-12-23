@@ -124,7 +124,7 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 			//console.log(response.data);
 			$scope.messageData.systemMessage.records = response.data.records;
 
-			console.log($scope.messageData);
+			console.log($scope.messageData);//TODO
 		} else {
 			$scope.global.msg('获取用户消息出错');
 		}
@@ -184,54 +184,13 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 	 */
 	$scope.seeSystemMessageDetail = function (systemMessage) {
 
-		//TODO 详情页面？
-		///**
-		// * 获取消息详细内容
-		// */
-		//$http({
-		//	method: 'GET',
-		//	url: $scope.global.url + 'message/detail',
-		//	params: {
-		//		Mobileno: mobilenoCookie,
-		//		Usertype: 1,
-		//		Token: tokenCookie,
-		//		Reqtime: Math.round(new Date().getTime()/1000),//10位unix时间戳
-		//		Id: systemMessage.Id//消息Id，从获取用户消息列表的结果获得
-		//	}
-		//}).then(function (response) {
-		//	//console.log(response);
-		//	if (response.data.status === 0) {
-		//		console.log(response.data);
-		//
-		//
-		//	} else {
-		//		$scope.global.msg('获取消息出错');
-		//	}
-		//}, function (response) {
-		//	console.log('fail! ' + response);
-		//});
-
-
-		//$state.go('systemMessageDetail', {id: systemMessage.Id});
+		$state.go('systemMessageDetail', {id: systemMessage.Id});
 
 
 		//消息已阅读
 		messageRead(systemMessage.Readid);
 
-
-
 	};
-
-
-
-
-
-
-
-
-
-
-
 
 
 }]);

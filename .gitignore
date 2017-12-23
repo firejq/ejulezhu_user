@@ -1,9 +1,5 @@
-node_modules
-dist
-.tmp
-bower_components
-test/bower_components
-.idea/ejulezhu_user.iml
-.idea/inspectionProfiles/
-.idea/modules.xml
-.idea/workspace.xml
+dist/
+node_modules/
+.tmp/
+bower_components/
+.idea/
