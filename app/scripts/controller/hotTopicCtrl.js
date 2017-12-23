@@ -24,7 +24,7 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 		};
 		for (var i = 0; i < response.data.records.length; i++) {
 			$scope.banner.slides.push({
-				image: $scope.global.ip + response.data.records[i]['Img'],
+				image: $scope.global.imagesServer + response.data.records[i]['Img'],
 				id: i,
 				href: response.data.records[i]['Href']
 			});
@@ -94,7 +94,7 @@ angular.module('app').controller('hotTopicCtrl', ['$scope', '$state', '$http', f
 
 				//格式化图片链接
 				for (i = 0; i < response.data.records.length; i++) {
-					response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
+					response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
 				}
 
 				if ("undefined" === typeof $scope.items[id]) {

@@ -1,27 +1,27 @@
 <div class="head ta-c p-r">
-	<!--TODO 为什么此处的 hasBack 若不使用 {{}} 会无效，而 text 若使用 {{}} 无法显示？-->
+	<!--   TODO 为什么此处的 hasBack 若不使用 {{}} 会无效，而 text 若使用 {{}} 无法显示？   -->
 
-	<!--左边“返回”按钮-->
+	<!--   左边“返回”按钮   -->
 	<span id="backBtn" class="head-left" ng-show="{{hasBack}}" ng-click="back();">&lt;</span>
 
-	<!--左边“维修估价”按钮，用于首页-->
+	<!--   左边“维修估价”按钮，用于首页   -->
 	<span id="calculator" class="head-left" ng-show="{{hasRepairValuation}}" ui-sref="repairValuation">
 		<i class="fa fa-calculator" aria-hidden="true"></i>
 	</span>
 
-	<!--标题-->
+	<!--   标题   -->
 	<span id="title" ng-bind="text"></span>
 
-	<!--右边“完成”按钮-->
+	<!--   右边“完成”按钮   -->
 	<span id="complete" class="head-right" ng-show="{{hasComplete}}" ng-click="test()">完成</span>
 
-	<!--右边“消息”按钮，用于首页-->
+	<!--   右边“消息”按钮，用于首页   -->
 	<span id="envelope" class="head-right" ng-show="{{hasMessageBox}}" ui-sref="messageBox">
 		<i class="fa fa-envelope-o" aria-hidden="true"></i>
 		<i id="message-unread-red-dot" class="ng-hide"></i>
 	</span>
 
-	<!--右边“分享”按钮，用于抢红包页面-->
+	<!--   右边“分享”按钮，用于抢红包页面   -->
 	<span id="share" class="head-right" ng-show="{{hasShare}}" ng-click="share()">
 		<i class="fa fa-share-alt" aria-hidden="true"></i>
 	</span>

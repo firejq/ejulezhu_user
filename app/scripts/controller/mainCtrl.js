@@ -30,7 +30,7 @@ angular.module('app').controller('mainCtrl', ['$scope', '$http', 'cache', functi
 		};
 		for (var i = 0; i < response.data.records.length; i++) {
 			$scope.banner.slides.push({
-				image: $scope.global.ip + response.data.records[i]['Img'],
+				image: $scope.global.imagesServer + response.data.records[i]['Img'],
 				id: i,
 				href: response.data.records[i]['Href']
 			});
@@ -51,7 +51,7 @@ angular.module('app').controller('mainCtrl', ['$scope', '$http', 'cache', functi
 	}).then(function (response) {
 		$scope.topics = response.data.records;
 		$scope.topics.forEach(function (item, index, array) {
-			item['CatImg'] = $scope.global.ip + item['CatImg'];
+			item['CatImg'] = $scope.global.imagesServer + item['CatImg'];
 		});
 		//console.log($scope.topics);
 

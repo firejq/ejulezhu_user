@@ -29,7 +29,7 @@ angular.module('app').controller('hotTopicArticleDetailCtrl', ['$http', '$scope'
 	});
 
 	// 为iframe的src赋值
-	$scope.url = $sce.trustAsResourceUrl($scope.global.url + 'web?Id=' + $state.params.id);
+	$scope.url = $sce.trustAsResourceUrl('http://www.ejx88.com:9090/html/hottopic/index.html?id=' + $state.params.id + '&PlateType=ejx');
 
 	//console.log($scope.url);
 
@@ -51,7 +51,7 @@ angular.module('app').controller('hotTopicArticleDetailCtrl', ['$http', '$scope'
 				if (response.data.records[i].Id.toString() === $state.params.id.toString()) {
 					//console.log(response.data.records[i]);
 					$scope.hotTopicArticleDetailInfo = response.data.records[i];
-					$scope.hotTopicArticleDetailInfo.Img = $scope.global.ip + $scope.hotTopicArticleDetailInfo.Img;
+					$scope.hotTopicArticleDetailInfo.Img = $scope.global.imagesServer + $scope.hotTopicArticleDetailInfo.Img;
 					break;
 				}
 			}
@@ -150,7 +150,7 @@ angular.module('app').controller('hotTopicArticleDetailCtrl', ['$http', '$scope'
 				});
 			});
 			wx.error(function(res){
-				console.log(JSON.stringify(res));
+				//console.log(JSON.stringify(res));
 				$scope.global.msg('出现错误');
 			});
 		}

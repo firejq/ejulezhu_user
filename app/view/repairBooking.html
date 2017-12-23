@@ -3,7 +3,7 @@
 	<label id="title-introduction">注：带*号的为必填项,其他可不填</label>
 
 	<label id="selected-type-label">
-		<img ng-src="/images/home_icon_block.png" alt="">已选择维修
+		<img ng-src="./images/home_icon_block.png" alt="">已选择维修
 	</label>
 	<input class="t-o"
 	       type="text"
@@ -35,7 +35,7 @@
 		       type="datetime-local"
 		       ng-model="furnitureRepairSubmitData.appointTime"
 		       title="appointTime"/>
-		<!--<label for="appoint-time">预约师傅上门时间</label>-->
+		<!--   <label for="appoint-time">预约师傅上门时间</label>   -->
 		<span class="form-item-arrow"></span>
 	</div>
 
@@ -51,12 +51,12 @@
 		<span class="form-item-arrow" ui-sref="manageAddr"></span>
 	</div>
 
-	<!--图片上传按钮（不可按）-->
+	<!--   图片上传按钮（不可按）   -->
 	<div class="img-btn">
 		<i class="fa fa-picture-o" aria-hidden="true"></i>
 		<span>现场图片</span>
 	</div>
-	<!--语音文件上传按钮（可按）-->
+	<!--   语音文件上传按钮（可按）   -->
 	<label class="voice-btn" for="voice-upload">
 		<input id="voice-upload"
 		       type="file"
@@ -64,22 +64,22 @@
 		<i class="fa fa-volume-off" aria-hidden="true"></i><span>语音留言</span>
 	</label>
 
-	<!--图片上传区域-->
+	<!--   图片上传区域   -->
 	<div class="img-upload">
 		<input id="img-upload" type="file"/>
 		<label id="img-upload-insert-label"
 		       for="img-upload"
 		       class="img-upload-insert-label">
-			<img class="img-upload-insert-btn" ng-src="/images/upload-img.png">
+			<img class="img-upload-insert-btn" ng-src="./images/upload-img.png">
 		</label>
 	</div>
 
-	<!--获取暂估价区域-->
+	<!--   获取暂估价区域   -->
 	<div class="total">合计：<span class="t-r" ng-bind="furnitureRepairSubmitData.total|currency:'￥':0"></span>
 		<button ng-click="evaluate()">获取暂估价</button>
 	</div>
 
-	<!--客户留言区域-->
+	<!--   客户留言区域   -->
 	<div class="custom-message">
 		<span class="form-item-span"><span class="t-r">*</span>客户留言</span>
 		<textarea id="message"
@@ -93,7 +93,7 @@
 	</div>
 </form>
 
-<!-- 放大预览图片时的遮罩层 -->
+<!--    放大预览图片时的遮罩层    -->
 <div id="preview-img-modal">
 	<header>
 		<span ng-click="hideModal()">&lt;</span>
@@ -101,5 +101,5 @@
 	</header>
 </div>
 
-<!--维修材料费 和 维修人工费 的子视图-->
+<!--   维修材料费 和 维修人工费 的子视图   -->
 <ui-view></ui-view>

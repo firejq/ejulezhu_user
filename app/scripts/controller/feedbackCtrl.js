@@ -165,7 +165,7 @@ angular.module('app').controller('feedbackCtrl', ['$scope', '$http', 'cache', '$
 					imgInfoList.push({
 						ImgElementId: nameHash + '-preview-img',
 						Id: response.data.Id,
-						Url: $scope.global.ip + response.data.Url
+						Url: $scope.global.imagesServer + response.data.Url
 					});
 
 					//若选择图片数量到达4张，不再允许添加图片

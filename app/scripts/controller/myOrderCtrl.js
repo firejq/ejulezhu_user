@@ -33,9 +33,9 @@ angular.module('app').controller('myOrderCtrl', ['$scope', 'cache', '$http', fun
 	//		//格式化图片地址
 	//		for (var i = 0, len = $scope.myOrderList.length; i < len; i++) {
 	//			if ($scope.myOrderList[i].Img !== '') {
-	//				$scope.myOrderList[i].Img = $scope.global.ip + $scope.myOrderList[i].Img;
+	//				$scope.myOrderList[i].Img = $scope.global.imagesServer + $scope.myOrderList[i].Img;
 	//			} else {
-	//				$scope.myOrderList[i].Img = '/images/e.png';
+	//				$scope.myOrderList[i].Img = './images/e.png';
 	//			}
 	//		}
 	//		//console.log($scope.myOrderList);
@@ -96,9 +96,9 @@ angular.module('app').controller('myOrderCtrl', ['$scope', 'cache', '$http', fun
 			//格式化图片链接
 			for (var i = 0, len = response.data.records.length; i < len; i++) {
 				if (response.data.records[i].Img !== '') {
-					response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
+					response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
 				} else {
-					response.data.records[i].Img = '/images/e.png';
+					response.data.records[i].Img = './images/e.png';
 				}
 			}
 
@@ -167,9 +167,9 @@ angular.module('app').controller('myOrderCtrl', ['$scope', 'cache', '$http', fun
 				//格式化图片链接
 				for (var i = 0, len = response.data.records.length; i < len; i++) {
 					if (response.data.records[i].Img !== '') {
-						response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
+						response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
 					} else {
-						response.data.records[i].Img = '/images/e.png';
+						response.data.records[i].Img = './images/e.png';
 					}
 				}
 

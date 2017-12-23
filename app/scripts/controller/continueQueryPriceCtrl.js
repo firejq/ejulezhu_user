@@ -53,7 +53,7 @@ angular.module('app').controller('continueQueryPriceCtrl', ['$scope', '$http', '
 					//获取服务器回调信息：图片Id和外链地址，并存储到 imgInfoList 中
 					imgInfoList.push({
 						Id: response.data.Id,
-						Url: $scope.global.ip + response.data.Url
+						Url: $scope.global.imagesServer + response.data.Url
 					});
 
 					//若选择图片数量到达4张，不再允许添加图片

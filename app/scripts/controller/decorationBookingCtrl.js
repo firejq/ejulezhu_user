@@ -44,7 +44,7 @@ angular.module('app').controller('decorationBookingCtrl', ['$scope', '$http', 'c
 			for (var i = 0, len = response.data.records.length; i < len; i ++) {
 				//console.log(response.data.records[i].Sampleimg);
 				if (response.data.records[i].Id.toString() === $state.params.styleId) {
-					$scope.Sampleimg = $scope.global.ip + response.data.records[i].Sampleimg;
+					$scope.Sampleimg = $scope.global.imagesServer + response.data.records[i].Sampleimg;
 					//console.log($scope.Sampleimg);
 				}
 			}

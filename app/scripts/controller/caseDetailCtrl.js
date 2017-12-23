@@ -12,7 +12,7 @@ angular.module('app').controller('caseDetailCtrl', ['$http', '$scope', '$state',
 
 
 	// eg: http://120.25.74.193/html/projectsample/index.html?id=6&PlateType=ejx&Mobileno=15813879994&Usertype=1&Token=817230581f938c082f85584eddb43ef4&Reqtime=1512806656
-	$scope.caseDetailUrl = $sce.trustAsResourceUrl($scope.global.ip + '/html/projectsample/index.html?id=' + $state.params.id + '&PlateType=ejx&Mobileno=' + mobilenoCookie + '&Usertype=1&Token=' + tokenCookie + '&Reqtime=' + Math.round(new Date().getTime()/1000));
+	$scope.caseDetailUrl = $sce.trustAsResourceUrl('http://www.ejx88.com:9090/html/projectsample/index.html?id=' + $state.params.id + '&PlateType=ejx&Mobileno=' + mobilenoCookie + '&Usertype=1&Token=' + tokenCookie + '&Reqtime=' + Math.round(new Date().getTime()/1000));
 
 
 	/**
@@ -33,7 +33,7 @@ angular.module('app').controller('caseDetailCtrl', ['$http', '$scope', '$state',
 					//console.log(response.data.records[i]);
 
 					$scope.sampleInfo = response.data.records[i];
-					$scope.sampleInfo.Img = $scope.global.ip + $scope.sampleInfo.Img;
+					$scope.sampleInfo.Img = $scope.global.imagesServer + $scope.sampleInfo.Img;
 					break;
 				}
 			}

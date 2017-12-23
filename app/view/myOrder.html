@@ -1,9 +1,9 @@
 <div app-head text="我的维修" has-back="true"></div>
 
-<!--若订单数为0，显示“没有订单”页面-->
+<!--   若订单数为0，显示“没有订单”页面   -->
 <div ng-if="!myOrderList.length" app-developing content="你还没订单哦，赶紧去下单吧~"></div>
 
-<!--若订单数不为零，显示订单列表-->
+<!--   若订单数不为零，显示订单列表   -->
 <ul id="my-order-list" class="pt-90 my-order-list" ng-if="myOrderList.length">
 	<li class="f-l" ng-repeat="order in myOrderList" ui-sref="myOrderDetail({orderId: order.Orderid, orderNo: order.Orderno})">
 		<img class="f-l" ng-src="{{order.Img}}">
@@ -12,7 +12,7 @@
 		<span class="f-l my-order-list-time" ng-bind="order.Ordertime"></span>
 		<span class="f-l my-order-list-status" ng-bind="order.Status"></span>
 	</li>
-	<!--loading动画-->
+	<!--   loading动画   -->
 	<li id="load-more">
 		<div class="lds-spinner" style="height:100%">
 			<div></div>

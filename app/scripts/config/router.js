@@ -215,6 +215,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			.state('messageBox.systemMessage', {
 				url: '/systemMessage',
 				templateUrl: 'view/messageBox.systemMessage.html'
+			})
+			.state('systemMessageDetail', {
+				url: '/systemMessageDetail/:id',
+				controller: 'systemMessageDetailCtrl',
+				templateUrl: 'view/systemMessageDetail.html'
 			});
 		$urlRouterProvider.otherwise('main');
 	}]);

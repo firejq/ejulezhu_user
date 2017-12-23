@@ -1,8 +1,8 @@
 <div app-head text="地址管理" has-back="true"></div>
-<!--当地址列表为空-->
+<!--   当地址列表为空   -->
 <div ng-if="addressList.length === 0" app-developing content="地址为空，赶紧去添加地址吧~"></div>
 
-<!--当地址列表不为空-->
+<!--   当地址列表不为空   -->
 <div ng-if="addressList.length !== 0" class="pt-90 pb-90 manage-addr-list">
 	<ul ng-repeat="address in addressList">
 		<li class="li-first">
@@ -34,6 +34,6 @@
 		</li>
 	</ul>
 </div>
-<!--底部按钮-->
+<!--   底部按钮   -->
 <button class="add-addr-btn" ng-click="toaddAddr()">新增地址</button>
 

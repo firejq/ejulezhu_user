@@ -29,10 +29,11 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 		}).then(function (response) {
 
 			if (response.data.status === 0) {
-				//console.log(response.data);
+				console.log(response.data);
 				$scope.user.Username = response.data.Username;
 				$scope.user.Points = response.data.Points;
-				$scope.user.Image = $scope.user.Image!==''?($scope.global.ip + response.data.Image):'/images/tx.png';
+				$scope.user.Image = $scope.user.Image?($scope.global.imagesServer + response.data.Image):'./images/tx.png';
+				console.log($scope.user);
 			}
 
 		}, function (response) {
@@ -81,7 +82,7 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 
 							//console.log(response);
 							if (response.data.status === 0) {
-								$scope.user.Image = $scope.global.ip + response.data.url;
+								$scope.user.Image = $scope.global.imagesServer + response.data.url;
 								$scope.global.msg('头像上传成功~');
 								//location.reload();
 

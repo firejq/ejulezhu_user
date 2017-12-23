@@ -23,7 +23,7 @@ angular.module('app').controller('overallDecorationCtrl', ['$scope', '$http', fu
 	//		$scope.styleRecords = response.data.records;
 	//
 	//		for (var i = 0, len = $scope.styleRecords.length; i < len; i ++) {
-	//			$scope.styleRecords[i].Sampleimg = $scope.global.ip + $scope.styleRecords[i].Sampleimg;
+	//			$scope.styleRecords[i].Sampleimg = $scope.global.imagesServer + $scope.styleRecords[i].Sampleimg;
 	//		}
 	//
 	//		console.log($scope.styleRecords);
@@ -52,7 +52,7 @@ angular.module('app').controller('overallDecorationCtrl', ['$scope', '$http', fu
 
 			//格式化图片链接
 			for (var i = 0, len = response.data.records.length; i < len; i ++) {
-				response.data.records[i].Sampleimg = $scope.global.ip + response.data.records[i].Sampleimg;
+				response.data.records[i].Sampleimg = $scope.global.imagesServer + response.data.records[i].Sampleimg;
 			}
 
 			$scope.styleRecords = response.data.records;
@@ -113,7 +113,7 @@ angular.module('app').controller('overallDecorationCtrl', ['$scope', '$http', fu
 
 				//格式化图片链接
 				for (var i = 0, len = response.data.records.length; i < len; i ++) {
-					response.data.records[i].Sampleimg = $scope.global.ip + response.data.records[i].Sampleimg;
+					response.data.records[i].Sampleimg = $scope.global.imagesServer + response.data.records[i].Sampleimg;
 				}
 
 				for (var i = 0; i < response.data.records.length; i++) {

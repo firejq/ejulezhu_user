@@ -117,21 +117,21 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 					// https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_4
 					// https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842
 					//跳转到微信授权页面
-					location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8f87a4579e561e2f&redirect_uri=http%3a%2f%2fapi.firejq.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+					location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8f87a4579e561e2f&redirect_uri=http%3a%2f%2f'+$scope.global.domain+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
 					return;
 				}
 
 				alert('code:' + $scope.global.code);
+
 				$http({
 					method: 'GET',
-					url: $scope.global.url + 'thirdparty/login',
+					url: $scope.global.url + 'pubpay/openid',
 					params: {
-						Code: $scope.global.code,
-						Usertype: 1
+						Code: $scope.global.code
 					}
 				}).then(function (response) {
 					//console.log(response);
-					//TODO 这里 "errmsg": "GetUserAccessToken error!", 无法拿到openid
+					//TODO 这里 "errmsg": "GetUserAccessToken error!", 无法拿到 openid
 					alert(JSON.stringify(response));
 
 					if (response.data.status === 0) {
@@ -153,10 +153,12 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 							}
 						}).then(function (response) {
 							console.log(response);
+							alert(1);
 							if (response.data.status === 0) {
+								alert(2);
 								console.log(response.data);
 								$scope.payProgressPaymentData.weChatPayParams = response.data.Payparam;
-								console.log('获取支付参数：' + JSON.stringify($scope.payProgressPaymentData.weChatPayParams));
+								alert('获取支付参数：' + JSON.stringify($scope.payProgressPaymentData.weChatPayParams));
 
 
 

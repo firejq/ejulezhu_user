@@ -32,7 +32,7 @@ angular.module('app').controller('confirmMasterPriceCtrl', ['$scope', '$http', '
 				$scope.masterPriceRecords = response.data.records;
 
 				for (var i = 0, len = $scope.masterPriceRecords["0"].Imagelist.length; i < len; i ++) {
-					$scope.masterPriceRecords["0"].Imagelist[i] = $scope.global.ip + $scope.masterPriceRecords["0"].Imagelist[i];
+					$scope.masterPriceRecords["0"].Imagelist[i] = $scope.global.imagesServer + $scope.masterPriceRecords["0"].Imagelist[i];
 				}
 
 				console.log($scope.masterPriceRecords);

@@ -8,7 +8,7 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 	//初始化变量
 	var is_done = 0;// 标志是否加载完所有条目
 	var pageNum = 1;// 当前第几页
-	var defaultRecperPage = 6;//默认每页几条记录
+	var defaultRecperPage = 8;// 默认每页几条记录
 	$scope.sampleList = [];
 
 
@@ -23,7 +23,7 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 	//	if(response.data.status === 0){
 	//		$scope.sampleList = response.data.records;
 	//		for (var i  =  0; i < response.data.records.length; i++) {
-	//			$scope.sampleList[i].Img = $scope.global.ip + response.data.records[i].Img;
+	//			$scope.sampleList[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
 	//		}
 	//		//console.log($scope.sampleList);
 	//
@@ -49,7 +49,7 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 			console.log(response.data);
 
 			for (var i  =  0; i < response.data.records.length; i++) {
-				response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
+				response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
 			}
 			$scope.sampleList = response.data.records;
 
@@ -66,7 +66,7 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 	 * @param recperPage 每页多少记录
 	 * @constructor
 	 */
-	$scope.GetItem = function (pageNum, recperPage){
+	$scope.GetItem = function (pageNum, recperPage) {
 		recperPage = recperPage || defaultRecperPage;
 
 		if (is_done === 1) {
@@ -94,12 +94,13 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 			//console.log(response.data.records);
 
 			if(response.data.status === 0) {
-				//console.log(response.data);
+				console.log(response.data);
 
 				//请求成功，则隐藏"加载更多"层
 				document.getElementById('load-more').style.display = 'none';
 
 				if (response.data.records.length === 0) {
+					console.log(123123123);
 					is_done = 1;
 					layer.closeAll();
 					$scope.global.msg('暂无更多数据~');
@@ -108,19 +109,17 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 
 				//格式化图片链接
 				for (var i  =  0; i < response.data.records.length; i++) {
-					response.data.records[i].Img = $scope.global.ip + response.data.records[i].Img;
+					response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
 				}
 
 				for (var i = 0; i < response.data.records.length; i++) {
-					$scope.myOrderList.push(response.data.records[i]);
+					$scope.sampleList.push(response.data.records[i]);
 				}
 
 			}
 		}, function (response) {
 			console.log('failed!!' + response);
 		});
-
-
 
 		layer.closeAll();
 	};
@@ -133,17 +132,39 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 		//console.log('注册');
 		document.getElementById('case').addEventListener('scroll', function (event) {
 
-			var element = event.target;
-			//console.log('scroll is triggered');
+			var ele = event.target;
+			console.log(ele);
+
+			var element = document.getElementById('case');
+			//console.log('scroll is triggered'); TODO 高度无法正确获取
 			//console.log(element.scrollTop);
+			//console.log(window.pageYOffset);
 			//console.log(element.clientHeight);
+			//console.log(window.innerHeight);
 			//console.log(element.scrollHeight);
+			//console.log(element.offsetHeight);
+
 			if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
-				//console.log('触发加载函数');
+				console.log('触发加载函数');
 				$scope.GetItem(++pageNum);
 			}
 		});
-	}, 1000);
+
+		//window.onscroll = function () {
+		//	//console.log('scroll is triggered');
+		//	console.log(window.pageYOffset);
+		//	console.log(window.innerHeight);
+		//	console.log(document.getElementById('case').scrollHeight);
+		//	if (window.pageYOffset + window.innerHeight >=
+		//		document.getElementById('case').scrollHeight) {
+		//		//console.log('触发加载函数');
+		//		$scope.GetItem(++pageNum);
+		//	}
+		//};
+
+
+
+		}, 1000);
 
 }]);
 

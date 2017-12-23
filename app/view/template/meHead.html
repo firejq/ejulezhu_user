@@ -1,11 +1,11 @@
-<!--头像-->
+<!--   头像   -->
 <div class="me-head">
 	<div class="me-head-indiv">
-		<img class="me-head-img d-b" ng-src="{{user.loginChecked?user.Image:'/images/tx.png'}}" ng-click="user.loginChecked?changeHeadImage():''"/>
-		<!--若未登陆，显示登陆按钮 -->
+		<img class="me-head-img d-b" ng-src="{{user.loginChecked?user.Image:'./images/tx.png'}}" ng-click="user.loginChecked?changeHeadImage():''"/>
+		<!--   若未登陆，显示登陆按钮    -->
 		<input ng-if="!user.loginChecked" ui-sref="login" class="me-head-btn d-b" type="image" src="./images/dl.png"/>
 
-		<!-- 若已登陆，显示用户名和手机号 -->
+		<!--    若已登陆，显示用户名和手机号    -->
 		<ul  class="me-head-info" ng-if="user.loginChecked">
 			<li ng-bind="user.Username"></li>
 			<li ng-bind="user.phone"></li>

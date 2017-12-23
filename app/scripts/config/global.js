@@ -8,13 +8,16 @@ angular.module('app')
  * 为全局变量和函数赋值
  */
 	.run(['$rootScope', function ($rootScope) {
-		var ip = 'http://120.25.74.193';
+		var ip = 'http://120.24.171.144:9090';
 		/**
 		 * 存储全局变量和方法
 		 */
 		$rootScope.global = {
 			ip: ip,
 			url: ip + '/v1/',
+			imagesServer: 'http://www.ejx88.com:9090/',//图片服务器
+			domain: 'www.ejx88.com/ejxwx/',//微信公众号入口的回调地址域名 TODO
+			shareDomain:'http://120.24.171.144:9090',//微信分享地址的域名
 			cryptid: '123456',
 			Mobileno: '',
 			Token: '',

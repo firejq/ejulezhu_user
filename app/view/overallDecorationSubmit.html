@@ -51,24 +51,24 @@
 		<label for="bathRoomNum" ng-click="minu(3)">－</label>
 	</div>
 
-	<!--图片上传按钮（不可按）-->
+	<!--   图片上传按钮（不可按）   -->
 	<div class="img-btn">
 		<i class="fa fa-picture-o" aria-hidden="true"></i>
 		<span>现场图片</span>
 	</div>
-	<!--语音文件上传按钮（可按）-->
+	<!--   语音文件上传按钮（可按）   -->
 	<label class="voice-btn" for="voice-upload">
 		<input id="voice-upload" type="file" accept="audio/mpeg"/>
 		<i class="fa fa-volume-off" aria-hidden="true"></i><span>语音留言</span>
 	</label>
 
-	<!--图片上传区域-->
+	<!--   图片上传区域   -->
 	<div class="img-upload">
 		<input id="img-upload" type="file"/>
 		<label id="img-upload-insert-label"
 		       for="img-upload"
 		       class="img-upload-insert-label">
-			<img class="img-upload-insert-btn" ng-src="/images/upload-img.png">
+			<img class="img-upload-insert-btn" ng-src="./images/upload-img.png">
 		</label>
 	</div>
 
@@ -80,7 +80,7 @@
 	<button class="booking-submit-btn" ng-click="bookingSubmit()">提交预约</button>
 </form>
 
-<!-- 放大预览图片时的遮罩层 -->
+<!--    放大预览图片时的遮罩层    -->
 <div id="preview-img-modal">
 	<header>
 		<span ng-click="hideModal()">&lt;</span>

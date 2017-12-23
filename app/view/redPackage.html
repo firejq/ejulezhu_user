@@ -2,49 +2,49 @@
 <div class="red-package-page pt-90">
 
 	<img id="rule-img"
-	     ng-src="/images/redpackage/public_btn_rule.png"
+	     ng-src="./images/redpackage/public_btn_rule.png"
 	     ng-click="showRule()"
 	     alt="">
 	<span id="rule-text" ng-click="showRule()">规则</span>
 
 	<div id="anticipate" class="main" ng-show="redPackageData.visible.anticipate">
 		<img class="red-doll"
-		     ng-src="/images/redpackage/public_img_anticipate.png"
+		     ng-src="./images/redpackage/public_img_anticipate.png"
 		     alt="">
 		<img id="grab-redpackage-btn"
-		     ng-src="/images/redpackage/public_btn_redenvelope.png"
+		     ng-src="./images/redpackage/public_btn_redenvelope.png"
 		     ng-click="grabRedPackage()"
 		     alt="">
 	</div>
 
 	<div id="happy" class="main" ng-show="redPackageData.visible.happy">
-		<img ng-src="/images/redpackage/public_img_happy.png"
+		<img ng-src="./images/redpackage/public_img_happy.png"
 		     class="red-doll"
 		     alt="">
 		<span class="introduction"
 		      ng-bind="'抢到'+redPackageData.score+'积分'" ></span>
 		<img class="continue-grab"
-		     ng-src="/images/redpackage/public_btn_goon.png"
+		     ng-src="./images/redpackage/public_btn_goon.png"
 		     ng-click="grabRedPackage()"
 		     alt="">
 		<img class="go-share"
-		     ng-src="/images/redpackage/public_btn_share1.png"
+		     ng-src="./images/redpackage/public_btn_share1.png"
 		     ng-click="showShareTip()"
 		     alt="">
 	</div>
 
 	<div id="sad" class="main" ng-show="redPackageData.visible.sad">
-		<img ng-src="/images/redpackage/public_img_sad.png"
+		<img ng-src="./images/redpackage/public_img_sad.png"
 		     class="red-doll"
 		     alt="">
 		<span class="introduction"
 		      ng-bind="'啥都没有...'" ></span>
 		<img class="continue-grab"
-		     ng-src="/images/redpackage/public_btn_goon.png"
+		     ng-src="./images/redpackage/public_btn_goon.png"
 		     ng-click="grabRedPackage()"
 		     alt="">
 		<img class="go-share"
-		     ng-src="/images/redpackage/public_btn_share1.png"
+		     ng-src="./images/redpackage/public_btn_share1.png"
 		     ng-click="showShareTip()"
 		     alt="">
 	</div>
