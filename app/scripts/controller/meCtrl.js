@@ -32,7 +32,7 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 				//console.log(response.data);
 				$scope.user.Username = response.data.Username;
 				$scope.user.Points = response.data.Points;
-				$scope.user.Image = $scope.user.Image?($scope.global.imagesServer + response.data.Image):'./images/tx.png';
+				$scope.user.Image = response.data.Image?($scope.global.imagesServer + response.data.Image):'./images/tx.png';
 				//console.log($scope.user);
 			}
 
@@ -43,6 +43,7 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 
 
 
+
 	/**
 	 * 修改头像
 	 */
@@ -50,14 +51,16 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 		//弹出底部对话框
 		layer.open({
 			content: '请选择上传方式',
-			btn: ['<label style="color: #000;font-weight: normal;" for="head-image">从相册选取</label>', '<span style="color: #000;background-color: #dadada">取消</span>'],
+			btn: ['<input id="user-head-image" type="file" accept="image/*" style="display: none;"><label style="color: #000;font-weight: normal;" for="user-head-image">从相册选取</label>', '<span style="color: #000;background-color: #dadada">取消</span>'],
 			skin: 'footer',
 			yes: function(index) {
+
 				/**
-				 * 上传头像监听事件
+				 * 监听头像上传
 				 */
-				document.getElementById('head-image').addEventListener("change", function(e) {
-					//console.log('trigger');
+				//console.log('已注册');
+				document.getElementById('user-head-image').addEventListener("change", function(e) {
+					//console.log(e.target.files[0]);
 					//alert('已选择图片');
 					if (typeof e.target.files[0] !== 'undefined') {
 						var file = e.target.files[0]; //获取图片资源
@@ -91,7 +94,7 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 							}
 
 							//关闭弹窗
-							layer.close(index);
+							//layer.close(index);
 
 						}, function (response) {
 							console.log('fail! ' + response);
@@ -99,6 +102,9 @@ angular.module('app').controller('meCtrl', ['$scope', '$http', 'cache', function
 						});
 					}
 				});
+
+				//主动创建点击操作
+				document.getElementById('user-head-image').click();
 
 
 				//关闭弹窗
