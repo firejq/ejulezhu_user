@@ -46,7 +46,7 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 		//console.log(response.data.records);
 
 		if(response.data.status === 0) {
-			console.log(response.data);
+			//console.log(response.data);
 
 			for (var i  =  0; i < response.data.records.length; i++) {
 				response.data.records[i].Img = $scope.global.imagesServer + response.data.records[i].Img;
@@ -115,7 +115,7 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 					for (var i = 0; i < response.data.records.length; i++) {
 						$scope.sampleList.push(response.data.records[i]);
 					}
-					console.log($scope.sampleList);
+					//console.log($scope.sampleList);
 
 				}, 1000);
 
@@ -131,25 +131,21 @@ angular.module('app').controller('caseCtrl', ['$scope', '$http', function ($scop
 	 * 延迟1s注册监听事件，是因为立即注册的话document.getElementById('my-order-list')获取不到dom元素
 	 */
 	setTimeout(function () {
-		console.log('注册');
+		//console.log('注册');
 
-		// TODO 死活无法触发
-		// http://www.alloyteam.com/2017/04/secrets-of-mobile-web-scroll-bars-and-drop-refresh/
-		// https://www.google.com/search?hl=zh-CN&q=%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6%E6%97%A0%E6%B3%95%E8%A7%A6%E5%8F%91
-		document.getElementById('case').addEventListener('scroll', function (event) {
-
-			console.log('trigger');
-			console.log(document.body.scrollTop);
-			console.log(document.body.clientHeight);
-			console.log(document.body.scrollHeight);
-
-			if (document.body.scrollTop + document.body.clientHeight >= document.body.scrollHeight) {
-
-				console.log('触发加载函数');
+		window.onscroll = function (event) {
+			//console.log(window.pageYOffset);
+			//console.log(window.innerHeight);
+			//console.log(document.getElementsByTagName('body')[0].scrollHeight);
+			if (window.pageYOffset + window.innerHeight >=
+				document.getElementsByTagName('body')[0].scrollHeight) {
+				//console.log('触发加载函数');
 				$scope.GetItem(++pageNum);
 			}
 
-		});
+		};
+
+
 	}, 1000);
 
 }]);

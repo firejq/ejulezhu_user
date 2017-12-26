@@ -23,8 +23,6 @@ angular.module('app')
 			Token: '',
 			code: '',//微信授权code，在main首页获取
 
-			//manageAddrLength: 0,//地址管理页面的window.history.length
-
 			footer: {//底部导航栏控制变量
 				isShown: false//是否显示，默认不显示
 			},
@@ -121,19 +119,65 @@ angular.module('app')
 
 	/**
 	 * 监听路由的状态变化
-	 * 解决了由于设置 body{height:100%} 导致无法触发 scroll 事件，不设置会导致其它页面样式出错得问题：当路由到 hotTopic
-	 * 这个 state 时动态修改 style 即可
+	 * 解决了由于设置 body{height:100%} 导致无法触发 scroll 事件的问题：
+	 * 不设置 body{height:100%} 会导致其它页面样式出错的问题，因此只能当路由到需要触发 scroll 事件的路由时动态修改 style。
 	 */
 	.run(['$transitions', function ($transitions) {
-		$transitions.onEnter({entering: 'hotTopic'}, function (transition, state) {
-			//console.log(state.name);
+
+		$transitions.onEnter({
+			to: function (state) {
+				var showFooterState = [
+					'hotTopic',
+					'case'
+				];
+				for (var i = 0; i < showFooterState.length; i ++) {
+					if (state.name === showFooterState[i]) {
+						return true;
+					}
+				}
+			}
+		}, function (transition, state) {
 			document.getElementsByTagName('body')[0].style.height='auto';
 		});
+
+		//$transitions.onExit({
+		//	from: function (state) {
+		//		var showFooterState = [
+		//			'hotTopic',
+		//			'case'
+		//		];
+		//		for (var i = 0; i < showFooterState.length; i ++) {
+		//			if (state.name === showFooterState[i]) {
+		//				return true;
+		//			}
+		//		}
+		//	}
+		//}, function (transition, state) {
+		//	//console.log(state);
+		//	document.getElementsByTagName('body')[0].style.height='100%';
+		//});
 
 		$transitions.onExit({exiting: 'hotTopic'}, function (transition, state) {
 			//console.log(state);
 			document.getElementsByTagName('body')[0].style.height='100%';
+
+			//取消注册滚动事件
+			//console.log('remove');
+			window.onscroll = function () {};
+
 		});
+
+		$transitions.onExit({exiting: 'case'}, function (transition, state) {
+			//console.log(state);
+			document.getElementsByTagName('body')[0].style.height='100%';
+
+			//取消注册滚动事件
+			//console.log('remove');
+			window.onscroll = function (event) {};
+
+		});
+
+
 	}])
 
 	/**
@@ -222,23 +266,5 @@ angular.module('app')
 			$rootScope.global.footer.isShown = false;
 		});
 
-	}])
-
-
-	///**
-	// * 监听路由的状态变化
-	// *
-	// */
-	//.run(['$transitions', '$rootScope', function ($transitions, $rootScope) {
-	//	$transitions.onExit({exiting: 'manageAddr'}, function (transition, state) {
-	//		console.log("Entered " + state.name + " module while transitioning to " + transition.to().name);
-	//
-	//		$rootScope.global.manageAddrLength = window.history.length;
-	//		console.log(window.history.length);
-	//
-	//
-	//
-	//	});
-	//}]);
-
+	}]);
 
