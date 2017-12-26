@@ -6,6 +6,7 @@
 
   .hot-topic-article-list-item {
     //overflow: hidden;
+    box-sizing: border-box;
     text-align: left;
     width: 100%;
     height: 25vw;
@@ -20,10 +21,14 @@
     border-top-color: @lineColor;
     .item-left {
       vertical-align: middle;
-      width: 63%;
+      width: 65%;
       height: 100%;
 
       .item-left-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
         white-space: normal;
         width: 100%;
         height: 80%;
@@ -37,25 +42,25 @@
       .item-left-other {
         color: #cccccc;
         width: 100%;
-        float: bottom;
 
         .item-left-other-source {
-          width: 80%;
+          width: 70%;
         }
         .item-left-other-view-number {
-          width: 20%;
+          width: 30%;
           img {
-            width: 40%;
+            width: 30%;
           }
         }
-
       }
-
     }
 
     .item-right {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
       vertical-align: middle;
-      width: 35%;
+      width: 33%;
       height:100%;
     }
   }
