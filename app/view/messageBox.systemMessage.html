@@ -22,7 +22,7 @@
 
 </ul>
 <script>
-		window.onload = function () {
+		setTimeout(function () {
 			var contents = document.querySelectorAll('.message-box-system-message-content');
 			var innerHtml = '';
 			for (var i = 0; i < contents.length; i ++) {
@@ -30,6 +30,6 @@
 				console.log(innerHtml);
 				contents[i].innerHTML = innerHtml;
 			}
-		};
+		}, 500);
 
 </script>

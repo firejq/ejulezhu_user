@@ -184,11 +184,11 @@ angular.module('app').controller('messageBoxCtrl', ['$scope', 'cache', '$http', 
 	 */
 	$scope.seeSystemMessageDetail = function (systemMessage) {
 
-		$state.go('systemMessageDetail', {id: systemMessage.Id});
-
-
 		//消息已阅读
 		messageRead(systemMessage.Readid);
+
+		//路由跳转到系统消息详情页面
+		$state.go('systemMessageDetail', {id: systemMessage.Id});
 
 	};
 
