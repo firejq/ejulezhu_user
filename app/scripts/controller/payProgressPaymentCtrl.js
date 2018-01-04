@@ -161,60 +161,6 @@ angular.module('app').controller('payProgressPaymentCtrl', ['$http', '$scope', '
 								alert('获取支付参数：' + JSON.stringify($scope.payProgressPaymentData.weChatPayParams));
 
 
-
-								//调用微信JS API
-								//https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&index=6
-								//var weixinPayParams = {
-								//	"appId": $scope.payProgressPaymentData.weChatPayParams.appid,     //公众号名称，由商户传入
-								//	"timeStamp": $scope.payProgressPaymentData.weChatPayParams.timestamp,//时间戳，自1970年以来的秒数
-								//	"nonceStr": $scope.payProgressPaymentData.weChatPayParams.noncestr, //随机串
-								//	"package": 'prepay_id=' + $scope.payProgressPaymentData.weChatPayParams.prepayid,
-								//	"signType": 'MD5', //微信签名方式：
-								//	"paySign": $scope.payProgressPaymentData.weChatPayParams.sign //微信签名
-								//};
-								//console.log(weixinPayParams);
-								//var onBridgeReady = function() {
-								//	WeixinJSBridge.invoke(
-								//		'getBrandWCPayRequest', weixinPayParams, function(res){
-								//			WeixinJSBridge.log(res.err_msg);
-								//			// writeObj(res);
-								//			alert(JSON.stringify(res));
-								//			if(res.err_msg === "get_brand_wcpay_request:ok" ) {
-								//				// 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-								//				//console.log('ok!');
-								//				alert('ok');
-								//			} else if (res.err_msg === "get_brand_wcpay_request:fail"){
-								//				//console.log('fail!');
-								//				alert('fail');
-								//			} else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-								//				console.log('cancel!');
-								//				alert('cancel');
-								//			}
-								//		});
-								//};
-								//
-								//window.event.returnValue = false;
-								//try {
-								//	if (typeof WeixinJSBridge === "undefined") {
-								//		alert('非微信浏览器！');
-								//		if( document.addEventListener ){
-								//			document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-								//		}else if (document.attachEvent){
-								//			document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-								//			document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-								//		}
-								//	}else{
-								//		//console.log('defined');
-								//		//alert('defined');
-								//		onBridgeReady();
-								//	}
-								//} catch (e) {
-								//	alert(e);
-								//}
-
-
-
-
 								//调用微信JS API
 								//https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115
 								wx.config({
